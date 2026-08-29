@@ -1,3 +1,6 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+
+def brief(request):
+    return render(request, 'leads/brief.html')

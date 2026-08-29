@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Услуги - AurumWeb{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="wrap">
+        <p class="small-title">Услуги</p>
+        <h1>Чем я могу помочь</h1>
+        <div class="cards">
+            {% for service in services %}
+            <div class="card">
+                <h2>{{ service.name }}</h2>
+                <p>{{ service.text }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

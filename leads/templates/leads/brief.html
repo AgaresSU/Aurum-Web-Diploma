@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Заявка - AurumWeb{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="wrap form-wrap">
+        <p class="small-title">Новый проект</p>
+        <h1>Расскажите о своей задаче</h1>
+        <form method="post" class="brief-form">
+            {% csrf_token %}
+            <p>
+                <label>Ваше имя</label>
+                <input type="text" name="name" required>
+            </p>
+            <p>
+                <label>Email</label>
+                <input type="email" name="email" required>
+            </p>
+            <p>
+                <label>Что нужно сделать</label>
+                <textarea name="message" rows="6"></textarea>
+            </p>
+            <button class="button" type="submit">Отправить заявку</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

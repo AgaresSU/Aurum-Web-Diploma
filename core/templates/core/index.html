@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %}
+
+{% block title %}AurumWeb - разработка сайтов{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="wrap">
+        <p class="small-title">Веб-разработка и консультации</p>
+        <h1>Помогаю превратить идею в работающий сайт</h1>
+        <p class="hero-text">
+            Разрабатываю сайты, автоматизирую рабочие задачи и помогаю
+            разобраться, какое решение подходит проекту.
+        </p>
+        <a class="button" href="{% url 'brief' %}">Обсудить проект</a>
+    </div>
+</section>
+
+<section class="section">
+    <div class="wrap">
+        <h2>Основные направления</h2>
+        <div class="cards">
+            {% for item in directions %}
+            <div class="card">
+                <h3>{{ item }}</h3>
+                <p>Сначала обсуждаем задачу, затем выбираем понятный план работы.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

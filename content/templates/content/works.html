@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Примеры работ - AurumWeb{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="wrap">
+        <p class="small-title">Примеры</p>
+        <h1>Какие проекты можно сделать</h1>
+        <div class="cards">
+            {% for work in works %}
+            <div class="card work-card">
+                <div class="work-picture">AurumWeb</div>
+                <h2>{{ work }}</h2>
+                <p>Адаптивная страница с понятной структурой и формой связи.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

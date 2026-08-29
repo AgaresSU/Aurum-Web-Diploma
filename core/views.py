@@ -1,5 +1,11 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def home(request):
-    return HttpResponse('<h1>AurumWeb</h1><p>Проект создан.</p>')
+    directions = [
+        'Сайты под ключ',
+        'Поддержка сайтов',
+        'Python-автоматизация',
+        'Telegram-боты',
+    ]
+    return render(request, 'core/index.html', {'directions': directions})
