@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Страница не найдена - AurumWeb{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="wrap form-wrap">
+        <p class="small-title">Ошибка 404</p>
+        <h1>Такого примера пока нет</h1>
+        <p class="page-intro">Можно вернуться к примерам или оставить заявку на новый проект.</p>
+        <div class="actions">
+            <a class="button" href="{% url 'works' %}">Смотреть примеры</a>
+            <a class="text-link" href="{% url 'brief' %}">Оставить заявку</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

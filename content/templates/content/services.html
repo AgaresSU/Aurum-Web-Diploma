@@ -7,13 +7,38 @@
     <div class="wrap">
         <p class="small-title">Услуги</p>
         <h1>Чем я могу помочь</h1>
+        <p class="page-intro">Напишите, что нужно сделать. Я задам несколько вопросов и скажу, как это можно реализовать.</p>
         <div class="cards">
             {% for service in services %}
             <div class="card">
                 <h2>{{ service.name }}</h2>
                 <p>{{ service.text }}</p>
+                <a class="card-link" href="{% url 'brief' %}">Обсудить задачу</a>
             </div>
             {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section section-dark">
+    <div class="wrap telegram-block">
+        <div>
+            <p class="small-title">Telegram-боты</p>
+            <h2>Telegram-бот для заявок и уведомлений</h2>
+            <p class="page-intro">
+                Бот может задать клиенту несколько вопросов, сохранить контакты
+                и отправить уведомление менеджеру. Набор вопросов зависит от задачи.
+            </p>
+            <a class="button" href="{% url 'brief' %}?service=telegram">Заказать Telegram-бота</a>
+        </div>
+        <div class="bot-card">
+            <span class="bot-icon">TG</span>
+            <h3>Как это работает</h3>
+            <ol>
+                <li>Бот задаёт несколько вопросов.</li>
+                <li>Клиент оставляет контакты.</li>
+                <li>Менеджер получает уведомление.</li>
+            </ol>
         </div>
     </div>
 </section>

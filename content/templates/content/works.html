@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block title %}Примеры работ - AurumWeb{% endblock %}
 
@@ -6,13 +7,21 @@
 <section class="section">
     <div class="wrap">
         <p class="small-title">Примеры</p>
-        <h1>Какие проекты можно сделать</h1>
+        <h1>Примеры сайтов</h1>
+        <p class="page-intro">Сейчас здесь два примера. Остальные добавлю позже.</p>
         <div class="cards">
             {% for work in works %}
             <div class="card work-card">
-                <div class="work-picture">AurumWeb</div>
-                <h2>{{ work }}</h2>
-                <p>Адаптивная страница с понятной структурой и формой связи.</p>
+                <a class="work-picture" href="{% static work.demo %}" target="_blank" rel="noopener">
+                    <img src="{% static work.image %}" alt="{{ work.name }}">
+                </a>
+                <span class="work-category">{{ work.category }}</span>
+                <h2><a href="{% url 'work_detail' work.slug %}">{{ work.name }}</a></h2>
+                <p>{{ work.text }}</p>
+                <div class="card-actions">
+                    <a class="button button-small" href="{% static work.demo %}" target="_blank" rel="noopener">Открыть сайт</a>
+                    <a class="text-link" href="{% url 'brief' %}?project={{ work.slug }}">Хочу похожий</a>
+                </div>
             </div>
             {% endfor %}
         </div>

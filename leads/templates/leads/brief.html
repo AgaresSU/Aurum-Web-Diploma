@@ -7,6 +7,7 @@
     <div class="wrap form-wrap">
         <p class="small-title">Новый проект</p>
         <h1>Расскажите о своей задаче</h1>
+        <p class="page-intro">Напишите в свободной форме, что хотите сделать. Подробности обсудим позже.</p>
         <form method="post" class="brief-form">
             {% csrf_token %}
             <p>
@@ -19,7 +20,7 @@
             </p>
             <p>
                 <label>Что нужно сделать</label>
-                <textarea name="message" rows="6"></textarea>
+                <textarea name="message" rows="6">{% if request.GET.service == 'telegram' %}Нужен Telegram-бот для {% elif request.GET.project %}Интересует похожий проект: {{ request.GET.project }}{% endif %}</textarea>
             </p>
             <button class="button" type="submit">Отправить заявку</button>
         </form>

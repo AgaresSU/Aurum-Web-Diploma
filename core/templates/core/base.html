@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}AurumWeb{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260829">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260908">
 </head>
 <body>
 <header class="header">
     <div class="wrap header-row">
         <a class="logo" href="{% url 'home' %}">Aurum<span>Web</span></a>
         <ul class="menu">
-            <li><a href="{% url 'home' %}">Главная</a></li>
-            <li><a href="{% url 'services' %}">Услуги</a></li>
-            <li><a href="{% url 'works' %}">Примеры</a></li>
-            <li><a href="{% url 'brief' %}">Оставить заявку</a></li>
+            <li><a class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Главная</a></li>
+            <li><a class="{% if request.resolver_match.url_name == 'services' %}active{% endif %}" href="{% url 'services' %}">Услуги</a></li>
+            <li><a class="{% if request.resolver_match.url_name == 'works' or request.resolver_match.url_name == 'work_detail' %}active{% endif %}" href="{% url 'works' %}">Примеры</a></li>
+            <li><a class="{% if request.resolver_match.url_name == 'brief' %}active{% endif %}" href="{% url 'brief' %}">Оставить заявку</a></li>
         </ul>
     </div>
 </header>
@@ -26,8 +26,16 @@
 </main>
 
 <footer class="footer">
-    <div class="wrap">
-        <p>AurumWeb - разработка сайтов и автоматизация.</p>
+    <div class="wrap footer-row">
+        <div>
+            <a class="logo footer-logo" href="{% url 'home' %}">Aurum<span>Web</span></a>
+            <p>Сайты, поддержка, Python-автоматизация и Telegram-боты.</p>
+        </div>
+        <div class="footer-links">
+            <a href="{% url 'services' %}">Услуги</a>
+            <a href="{% url 'works' %}">Примеры</a>
+            <a href="{% url 'brief' %}">Обсудить проект</a>
+        </div>
     </div>
 </footer>
 </body>

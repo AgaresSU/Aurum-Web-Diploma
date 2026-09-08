@@ -4,28 +4,76 @@
 
 {% block content %}
 <section class="hero">
-    <div class="wrap">
-        <p class="small-title">Веб-разработка и консультации</p>
-        <h1>Помогаю превратить идею в работающий сайт</h1>
-        <p class="hero-text">
-            Разрабатываю сайты, автоматизирую рабочие задачи и помогаю
-            разобраться, какое решение подходит проекту.
-        </p>
-        <a class="button" href="{% url 'brief' %}">Обсудить проект</a>
+    <div class="wrap hero-grid">
+        <div>
+            <p class="small-title">Сайты, поддержка, Python и Telegram</p>
+            <h1>Создаю сайты под ключ и поддерживаю их после запуска</h1>
+            <p class="hero-text">
+                Делаю сайты, небольшие программы и Telegram-ботов.
+                Сначала обсуждаем, что нужно сделать, и только потом начинаю работу.
+            </p>
+            <div class="actions">
+                <a class="button" href="{% url 'brief' %}">Обсудить проект</a>
+                <a class="button button-light" href="{% url 'works' %}">Смотреть примеры</a>
+                <a class="text-link" href="{% url 'services' %}">Все услуги</a>
+            </div>
+        </div>
+        <aside class="hero-panel">
+            <p class="small-title">Первый шаг</p>
+            <h2>От идеи до работающего проекта</h2>
+            <p>Сначала вы рассказываете, что хотите получить. Потом мы решаем, какие страницы и функции нужны.</p>
+            <ul class="check-list">
+                <li>Разбор задачи</li>
+                <li>План и сроки</li>
+                <li>Разработка и проверка</li>
+            </ul>
+        </aside>
     </div>
 </section>
 
 <section class="section">
     <div class="wrap">
-        <h2>Основные направления</h2>
+        <div class="section-heading">
+            <div>
+                <p class="small-title">Основные направления</p>
+                <h2>Что можно заказать</h2>
+            </div>
+            <a class="text-link" href="{% url 'services' %}">Подробнее об услугах</a>
+        </div>
         <div class="cards">
             {% for item in directions %}
             <div class="card">
-                <h3>{{ item }}</h3>
-                <p>Сначала обсуждаем задачу, затем выбираем понятный план работы.</p>
+                <span class="card-number">0{{ forloop.counter }}</span>
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.text }}</p>
+                <a class="card-link" href="{% url 'brief' %}">Оставить заявку</a>
             </div>
             {% endfor %}
         </div>
+    </div>
+</section>
+
+<section class="section section-dark">
+    <div class="wrap">
+        <p class="small-title">Как проходит работа</p>
+        <h2>Всего четыре этапа</h2>
+        <div class="steps">
+            <article class="step"><span>01</span><h3>Разбор</h3><p>Обсуждаем задачу и смотрим, какие материалы уже есть.</p></article>
+            <article class="step"><span>02</span><h3>План</h3><p>Составляем список страниц и функций.</p></article>
+            <article class="step"><span>03</span><h3>Разработка</h3><p>Собираю проект и проверяю, как всё работает.</p></article>
+            <article class="step"><span>04</span><h3>Поддержка</h3><p>Помогаю с запуском, обновлениями и дальнейшим развитием.</p></article>
+        </div>
+    </div>
+</section>
+
+<section class="section final-section">
+    <div class="wrap final-block">
+        <div>
+            <p class="small-title">Обсудить проект</p>
+            <h2>Расскажите, что нужно сделать</h2>
+            <p>Для начала достаточно нескольких предложений.</p>
+        </div>
+        <a class="button" href="{% url 'brief' %}">Перейти к заявке</a>
     </div>
 </section>
 {% endblock %}
