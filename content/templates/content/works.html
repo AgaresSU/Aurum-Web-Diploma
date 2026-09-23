@@ -1,4 +1,6 @@
 {% extends 'core/base.html' %}
+{% load static %}
+
 {% block title %}Примеры работ - AurumWeb{% endblock %}
 
 {% block content %}
@@ -6,31 +8,20 @@
     <div class="wrap">
         <p class="small-title">Примеры</p>
         <h1>Примеры сайтов</h1>
-        <p class="page-intro">Здесь собраны примеры сайтов, которые можно открыть и посмотреть целиком.</p>
-        <form class="search-form" method="get">
-            <input type="search" name="q" value="{{ search_query }}" placeholder="Название или категория">
-            <button class="button button-small" type="submit">Найти</button>
-            {% if search_query %}<a class="text-link" href="{% url 'works' %}">Сбросить</a>{% endif %}
-        </form>
+        <p class="page-intro">Сейчас здесь два примера. Остальные добавлю позже.</p>
         <div class="cards">
             {% for work in works %}
             <div class="card work-card">
-                <a class="work-picture" href="{{ work.demo_url|default:work.get_absolute_url }}"{% if work.demo_url %} target="_blank" rel="noopener"{% endif %}>
-                    {% if work.preview_url %}<img src="{{ work.preview_url }}" alt="{{ work.title }}">{% endif %}
+                <a class="work-picture" href="{% static work.demo %}" target="_blank" rel="noopener">
+                    <img src="{% static work.image %}" alt="{{ work.name }}">
                 </a>
                 <span class="work-category">{{ work.category }}</span>
-                <h2><a href="{{ work.get_absolute_url }}">{{ work.title }}</a></h2>
-                <p>{{ work.short_description }}</p>
+                <h2><a href="{% url 'work_detail' work.slug %}">{{ work.name }}</a></h2>
+                <p>{{ work.text }}</p>
                 <div class="card-actions">
-                    {% if work.demo_url %}<a class="button button-small" href="{{ work.demo_url }}" target="_blank" rel="noopener">Открыть сайт</a>{% endif %}
-                    <a class="text-link" href="{{ work.get_absolute_url }}">Подробнее</a>
+                    <a class="button button-small" href="{% static work.demo %}" target="_blank" rel="noopener">Открыть сайт</a>
                     <a class="text-link" href="{% url 'brief' %}?project={{ work.slug }}">Хочу похожий</a>
                 </div>
-            </div>
-            {% empty %}
-            <div class="empty-block">
-                <h2>Ничего не найдено</h2>
-                <p>Попробуйте изменить запрос или посмотреть все примеры.</p>
             </div>
             {% endfor %}
         </div>

@@ -11,9 +11,9 @@
         <div class="cards">
             {% for service in services %}
             <div class="card">
-                <h2>{{ service.title }}</h2>
-                <p>{{ service.short_description }}</p>
-                <a class="card-link" href="{% url 'brief' %}?service={{ service.slug }}">Обсудить задачу</a>
+                <h2>{{ service.name }}</h2>
+                <p>{{ service.text }}</p>
+                <a class="card-link" href="{% url 'brief' %}">Обсудить задачу</a>
             </div>
             {% endfor %}
         </div>
