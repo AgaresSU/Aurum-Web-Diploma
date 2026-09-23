@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Техническая пауза — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Техническая пауза AurumWeb. Можно вернуться на главную или в личный кабинет.">
+{% endblock %}
+{% block meta_robots %}<meta name="robots" content="noindex,nofollow,noarchive">{% endblock %}
+{% block og_title %}Техническая пауза — AurumWeb{% endblock %}
+
+{% block content %}
+  <div class="system-page">
+    <p class="eyebrow">500</p>
+    <h1>Техническая пауза</h1>
+    <p>
+      На сайте возникла временная ошибка. Заявки, диалоги и счета не должны теряться:
+      после проверки можно продолжить работу из кабинета или повторить действие.
+    </p>
+    <div class="system-page__actions">
+      <a class="button button--primary" href="/">На главную</a>
+      <a class="button button--dark" href="/client/">Личный кабинет</a>
+    </div>
+  </div>
+{% endblock %}

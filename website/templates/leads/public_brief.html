@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Заявка на сайт — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Заявка AurumWeb: опишите сайт, поддержку, Python-задачу или Telegram-бота, чтобы получить понятный план работ и ориентир по стоимости.">
+{% endblock %}
+{% block og_title %}Заявка на сайт — AurumWeb{% endblock %}
+{% block og_description %}Опишите задачу, сроки и нужные функции, чтобы начать диалог по сайту, поддержке или автоматизации.{% endblock %}
+{% block twitter_title %}Заявка на сайт — AurumWeb{% endblock %}
+{% block twitter_description %}Короткая заявка на сайт, поддержку, Python-задачу или Telegram-бота.{% endblock %}
+
+{% block content %}
+  <section class="lux-brief">
+    <div>
+      <p class="lux-kicker">заявка на проект</p>
+      <h1>Опишите задачу и получите понятный план работ</h1>
+      <p>
+        Напишите задачу обычными словами: что нужно сделать, для кого, какие сроки важны
+        и какой результат хотите получить. После отправки откроется личный диалог для уточнений.
+      </p>
+      <div class="lux-process lux-process--compact">
+        <article><span>01</span><h3>Задача</h3><p>Что нужно сделать и зачем.</p></article>
+        <article><span>02</span><h3>Ожидания</h3><p>Сроки, функции и пример результата.</p></article>
+        <article><span>03</span><h3>Контакты</h3><p>Куда отправить план работ.</p></article>
+      </div>
+    </div>
+
+    <form class="lux-brief-form lux-brief-wizard" method="post">
+      {% csrf_token %}
+      {% if form.non_field_errors %}
+        <div class="lux-form-errors is-wide">{{ form.non_field_errors }}</div>
+      {% endif %}
+
+      <section class="lux-brief-step is-wide">
+        <div class="lux-brief-step__head">
+          <span>01</span>
+          <div>
+            <h2>Проект</h2>
+            <p>Выберите тип сайта, нишу и пример, который ближе всего к вашей задаче.</p>
+          </div>
+        </div>
+        {% if selected_template %}
+          <div class="lux-selected-template">
+            <span>выбранный пример</span>
+            <h3>{{ selected_template.title }}</h3>
+            <p>{{ selected_template.short_description }}</p>
+            <a href="{% url 'template-site-demo' selected_template.slug %}" target="_blank" rel="noopener">Открыть пример сайта</a>
+          </div>
+        {% endif %}
+        <div class="lux-brief-fields">
+          <label><span>{{ form.site_type.label }}</span>{{ form.site_type }}{{ form.site_type.errors }}</label>
+          <label><span>{{ form.industry.label }}</span>{{ form.industry }}{{ form.industry.errors }}</label>
+          <label class="is-wide"><span>{{ form.template_slug.label }}</span>{{ form.template_slug }}{{ form.template_slug.errors }}</label>
+        </div>
+      </section>
+
+      <section class="lux-brief-step is-wide">
+        <div class="lux-brief-step__head">
+          <span>02</span>
+          <div>
+            <h2>Цель и функции</h2>
+            <p>Отметьте, что сайт должен делать: собирать заявки, показывать услуги, принимать оплату или связываться с другими сервисами.</p>
+          </div>
+        </div>
+        <div class="lux-brief-fields">
+          <label class="is-wide"><span>{{ form.goal.label }}</span>{{ form.goal }}{{ form.goal.errors }}</label>
+        </div>
+        <div class="lux-checkboxes is-wide">{{ form.integrations }}{{ form.integrations.errors }}</div>
+      </section>
+
+      <section class="lux-brief-step is-wide">
+        <div class="lux-brief-step__head">
+          <span>03</span>
+          <div>
+            <h2>Сроки и бюджет</h2>
+            <p>Ориентир помогает сразу предложить реалистичный формат работы.</p>
+          </div>
+        </div>
+        <div class="lux-brief-fields">
+          <label><span>{{ form.budget.label }}</span>{{ form.budget }}{{ form.budget.errors }}</label>
+          <label><span>{{ form.timeframe.label }}</span>{{ form.timeframe }}{{ form.timeframe.errors }}</label>
+        </div>
+      </section>
+
+      <section class="lux-brief-step is-wide">
+        <div class="lux-brief-step__head">
+          <span>04</span>
+          <div>
+            <h2>Контакты</h2>
+            <p>После отправки откроется диалог, где можно спокойно уточнить детали.</p>
+          </div>
+        </div>
+        <div class="lux-brief-fields">
+          <label><span>{{ form.name.label }}</span>{{ form.name }}{{ form.name.errors }}</label>
+          <label><span>{{ form.email.label }}</span>{{ form.email }}{{ form.email.errors }}</label>
+          <label class="is-wide"><span>{{ form.contact.label }}</span>{{ form.contact }}{{ form.contact.errors }}</label>
+          <label class="is-wide"><span>{{ form.task.label }}</span>{{ form.task }}{{ form.task.errors }}</label>
+        </div>
+        <label class="lux-consent is-wide">
+          {{ form.personal_data_consent }}
+          <span>
+            {{ form.personal_data_consent.label }}.
+            <a href="{% url 'legal-page' 'privacy' %}" target="_blank" rel="noopener">Политика данных</a>
+            и <a href="{% url 'legal-page' 'offer' %}" target="_blank" rel="noopener">порядок работ</a>.
+          </span>
+        </label>
+        {{ form.personal_data_consent.errors }}
+      </section>
+
+      <button type="submit">Создать заявку и открыть диалог</button>
+      <p class="form-status is-wide" aria-live="polite">После отправки откроется личный диалог с менеджером.</p>
+    </form>
+  </section>
+{% endblock %}

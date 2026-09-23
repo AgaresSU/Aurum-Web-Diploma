@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+
+{% block title %}AurumWeb — сайты под ключ, поддержка, Python и Telegram-боты{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="AurumWeb: создаю сайты под ключ, поддерживаю их после запуска, делаю Python-автоматизацию и Telegram-ботов для заявок и рабочих процессов.">
+{% endblock %}
+{% block og_title %}AurumWeb — сайты под ключ, поддержка, Python и Telegram-боты{% endblock %}
+{% block og_description %}Создание сайтов, поддержка после запуска, Python-автоматизация, Telegram-боты, заявки, кабинеты и интеграции.{% endblock %}
+
+{% block content %}
+  <section class="lux-hero">
+    <div>
+      <p class="lux-kicker">сайты, поддержка, Python и Telegram</p>
+      <h1>Создаю сайты под ключ и осуществляю их поддержку после запуска</h1>
+      <p>
+        Помогаю пройти путь от идеи до рабочего сайта: структура, дизайн, формы заявок,
+        кабинет клиента, панель управления, подготовка для поиска и аналитика. Отдельно делаю
+        Python-скрипты и Telegram-ботов под конкретные задачи. Стоимость называю после короткого разбора.
+      </p>
+      <div class="lux-actions">
+        <a href="{% url 'public-brief' %}">Обсудить проект</a>
+        <a href="{% url 'content:templates' %}">Смотреть примеры</a>
+        <a href="/accounts/login/?next=/client/">Войти в кабинет</a>
+      </div>
+      <div class="lux-proof-strip" aria-label="Ключевые направления">
+        <span>Сайты под ключ</span>
+        <span>Поддержка сайта</span>
+        <span>Python-задачи</span>
+        <span>Telegram-боты</span>
+      </div>
+    </div>
+    <aside class="lux-hero-panel" aria-label="Как строится работа">
+      <p class="lux-kicker">понятно на каждом этапе</p>
+      <h2>От первой идеи до работающего результата</h2>
+      <div class="lux-hero-panel__grid">
+        <article>
+          <span>01</span>
+          <strong>Разбираем задачу</strong>
+          <p>Уточняем цель, сроки и то, что должно получиться в итоге.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <strong>Согласуем план</strong>
+          <p>Заранее определяем состав работ и ориентир по стоимости.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <strong>Делаю и показываю</strong>
+          <p>Можно посмотреть промежуточный результат и внести правки.</p>
+        </article>
+        <article>
+          <span>04</span>
+          <strong>Запускаем</strong>
+          <p>Проверяю работу и остаюсь на связи после публикации.</p>
+        </article>
+      </div>
+    </aside>
+  </section>
+
+  <section class="lux-band lux-band--services">
+    <div>
+      <p class="lux-kicker">что можно заказать</p>
+      <h2>Основные услуги</h2>
+    </div>
+    <div class="lux-service-strip">
+      {% for service in home_services|slice:":4" %}
+        <article>
+          <span>{{ forloop.counter|stringformat:"02d" }}</span>
+          <h3>{{ service.title }}</h3>
+          <p>{{ service.short_description }}</p>
+          <strong>{{ service.price_display }}</strong>
+          <a href="{{ service.get_absolute_url }}">Что входит</a>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="lux-support">
+    <div>
+      <p class="lux-kicker">поддержка сайта</p>
+      <h2>После запуска сайт остается под присмотром</h2>
+      <p>
+        В личном кабинете видны сайт, сроки домена и размещения сайта, сертификат безопасности,
+        счета, задачи, переписка и история работ. Это помогает не терять важные даты
+        и быстрее согласовывать доработки.
+      </p>
+      <a href="/accounts/login/?next=/client/">Посмотреть кабинет</a>
+    </div>
+    <div class="lux-support-grid" aria-label="Что можно контролировать">
+      <article><strong>Домен и размещение</strong><p>Провайдер, тариф, срок оплаты, статус и напоминания до окончания.</p></article>
+      <article><strong>Сертификат и копии</strong><p>Защищенное соединение, срок сертификата, резервные копии и проверки работы сайта.</p></article>
+      <article><strong>Заявки и переписка</strong><p>Формы сайта, сообщения клиента, статусы обращений и история договоренностей.</p></article>
+      <article><strong>Счета и оплата</strong><p>Выставление счетов, статусы оплат и переход на платежную страницу.</p></article>
+    </div>
+  </section>
+
+  <section class="lux-split lux-split--workflow">
+    <div>
+      <p class="lux-kicker">как проходит работа</p>
+      <h2>Сначала разбираем задачу, потом делаем и поддерживаем</h2>
+      <p>Перед началом уточняем задачу, результат, сроки и объем работ. Стоимость фиксируется после короткого разбора.</p>
+      <a href="{% url 'content:services' %}">Все услуги</a>
+    </div>
+    <div class="lux-process">
+      <article><span>01</span><h3>Разбор</h3><p>Понимаю цель, текущую ситуацию, сроки, материалы и нужный результат.</p></article>
+      <article><span>02</span><h3>План работ</h3><p>Определяю страницы, формы, сценарий заявки, функции и порядок запуска.</p></article>
+      <article><span>03</span><h3>Разработка</h3><p>Собираю сайт, панель управления, формы, бота или программу, проверяю сценарии.</p></article>
+      <article><span>04</span><h3>Поддержка</h3><p>Помогаю с доменом, размещением сайта, сертификатом безопасности, резервными копиями, правками и развитием.</p></article>
+    </div>
+  </section>
+
+  <section class="lux-templates" data-carousel>
+    <div class="lux-section-head">
+      <div>
+        <p class="lux-kicker">примеры сайтов</p>
+        <h2>Можно начать с готового направления</h2>
+      </div>
+      <div class="lux-carousel-controls">
+        <button type="button" data-carousel-control="prev" aria-label="Назад">←</button>
+        <button type="button" data-carousel-control="next" aria-label="Вперед">→</button>
+      </div>
+    </div>
+    <div class="lux-template-track" data-carousel-track>
+      {% for card in home_template_cards %}
+        {% with template=card.template %}
+          <article>
+            <img src="/assets/{{ card.preview_desktop_webp }}?v=20260712-demo-text-previews" alt="{{ template.title }}" loading="lazy">
+            <span>{{ template.category|default:"Пример сайта" }}</span>
+            <h3>{{ template.title }}</h3>
+            <p>{{ template.short_description }}</p>
+            <footer class="lux-template-actions">
+              <a href="{% url 'template-site-demo' template.slug %}" target="_blank" rel="noopener">Открыть пример</a>
+              <a href="{% url 'public-brief' %}?template={{ template.slug }}">Хочу похожий</a>
+            </footer>
+          </article>
+        {% endwith %}
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="lux-final">
+    <p class="lux-kicker">заявка</p>
+    <h2>Опишите задачу, я предложу следующий шаг</h2>
+    <p>Напишите, что нужно сделать: сайт, поддержка, Python-скрипт, Telegram-бот или интеграции. После разбора станет понятен объем работ, сроки и ориентир по стоимости.</p>
+    <a href="{% url 'public-brief' %}">Перейти к заявке</a>
+  </section>
+{% endblock %}

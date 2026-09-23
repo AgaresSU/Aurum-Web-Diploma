@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Примеры сайтов — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Примеры сайтов AurumWeb: лендинги, сайты услуг, каталоги и экспертные страницы, которые можно взять за основу проекта под ключ.">
+{% endblock %}
+{% block og_title %}Примеры сайтов AurumWeb{% endblock %}
+{% block og_description %}Каталог примеров сайтов: можно открыть, оценить структуру и выбрать основу для будущего проекта.{% endblock %}
+{% block twitter_title %}Примеры сайтов AurumWeb{% endblock %}
+{% block twitter_description %}Каталог примеров сайтов для быстрого старта проекта: структура, заявки и варианты развития.{% endblock %}
+{% block extra_head %}
+  <link rel="stylesheet" href="/assets/catalog.css?v=20260722-repository-cleanup">
+{% endblock %}
+
+{% block content %}
+  <section class="lux-page-hero lux-page-hero--between">
+    <div>
+      <p class="lux-kicker">примеры сайтов</p>
+      <h1>{{ template_count }} примеров сайтов для быстрого старта</h1>
+      <p>
+        Выберите пример, который ближе к вашей нише. Его можно адаптировать под бренд,
+        тексты, структуру, формы заявок, личный кабинет и дальнейшую поддержку сайта.
+      </p>
+    </div>
+    <aside>
+      <strong>{{ template_count }}</strong>
+      <span>{% if selected_category %}примеров в категории{% else %}примеров сайтов{% endif %}</span>
+    </aside>
+  </section>
+
+  <nav class="lux-filter" aria-label="Фильтр примеров">
+    <a href="{% url 'content:templates' %}" class="{% if not selected_category %}is-active{% endif %}">Все</a>
+    {% for category in categories %}
+      <a
+        href="{% url 'content:templates' %}?category={{ category.value|urlencode }}"
+        class="{% if selected_category == category.value %}is-active{% endif %}"
+      >{{ category.label }}</a>
+    {% endfor %}
+  </nav>
+
+  <section class="lux-template-grid">
+    {% for card in templates %}
+      {% with template=card.template %}
+      <article>
+        <a class="lux-template-preview" href="{% url 'template-site-demo' template.slug %}" target="_blank" rel="noopener" aria-label="Открыть пример сайта {{ template.title }}">
+          <span class="lux-template-preview__desktop">
+            <img src="{% static card.preview_desktop_webp %}?v=20260712-demo-text-previews" alt="Desktop-превью сайта {{ template.title }}" width="720" height="500" loading="lazy" decoding="async">
+          </span>
+          <span class="lux-template-preview__mobile">
+            <img src="{% static card.preview_mobile_webp %}?v=20260712-demo-text-previews" alt="Mobile-превью сайта {{ template.title }}" width="260" height="563" loading="lazy" decoding="async">
+          </span>
+        </a>
+        <div>
+          {% if template.category %}<span>{{ template.category }}</span>{% endif %}
+          {% if template.industry %}<span>{{ template.industry }}</span>{% endif %}
+        </div>
+        <h2>{{ template.title }}</h2>
+        <p>{{ template.short_description }}</p>
+        {% if template.conversion_focus %}
+          <p><strong>Цель:</strong> {{ template.conversion_focus }}</p>
+        {% endif %}
+        <footer>
+          <a href="{% url 'template-site-demo' template.slug %}" target="_blank" rel="noopener">Открыть пример сайта</a>
+          <a href="{% url 'public-brief' %}?template={{ template.slug }}">Заказать похожий</a>
+        </footer>
+      </article>
+      {% endwith %}
+    {% empty %}
+      <article><h2>В этой категории пока нет опубликованных примеров</h2></article>
+    {% endfor %}
+  </section>
+{% endblock %}

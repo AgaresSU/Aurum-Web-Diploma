@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}{{ service.title }} — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="{{ service.short_description|striptags|truncatechars:155 }}">
+{% endblock %}
+{% block og_title %}{{ service.title }} — AurumWeb{% endblock %}
+{% block og_description %}{{ service.short_description|striptags|truncatechars:180 }}{% endblock %}
+{% block twitter_title %}{{ service.title }} — AurumWeb{% endblock %}
+{% block twitter_description %}{{ service.short_description|striptags|truncatechars:180 }}{% endblock %}
+
+{% block content %}
+  <section class="lux-detail lux-service-detail">
+    <div class="lux-service-main">
+      <p class="lux-kicker">{{ service.get_service_type_display }}</p>
+      <h1>{{ service.title }}</h1>
+      <p>{{ service.full_description|default:service.short_description }}</p>
+      {% if service.business_value %}
+        <div class="lux-service-outcome">
+          <span>что получает клиент</span>
+          <p>{{ service.business_value }}</p>
+        </div>
+      {% endif %}
+    </div>
+
+    <aside class="lux-service-price-card">
+      <span>ориентир</span>
+      <strong>{{ service.price_display }}</strong>
+      {% if service.price_note %}<p>{{ service.price_note }}</p>{% endif %}
+      <div class="lux-service-price-points">
+        <p><span>01</span>Итоговая сумма фиксируется после короткого разбора.</p>
+        <p><span>02</span>Состав работ и сроки согласуются до оплаты.</p>
+        <p><span>03</span>После старта видны задачи, счета и переписка.</p>
+      </div>
+      <div class="lux-actions">
+        <a href="{% url 'public-brief' %}">Обсудить задачу</a>
+        <a href="{% url 'content:services' %}">Все услуги</a>
+      </div>
+    </aside>
+  </section>
+
+  <section class="lux-service-grid">
+    <article class="lux-service-deliverables">
+      <p class="lux-kicker">состав работ</p>
+      <h2>Что входит</h2>
+      <ul>
+        {% for item in service.deliverables.splitlines %}
+          <li>{{ item }}</li>
+        {% empty %}
+          <li>Состав работ фиксируется после разбора задачи.</li>
+        {% endfor %}
+      </ul>
+    </article>
+    <article class="lux-service-ready">
+      <p class="lux-kicker">что подготовить</p>
+      <h2>Для быстрого старта</h2>
+      <ul>
+        <li>Опишите цель: что должно измениться после запуска.</li>
+        <li>Пришлите примеры сайтов или сервисов, которые вам близки.</li>
+        <li>Если проект уже есть, добавьте ссылки и текущие ограничения.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="lux-path lux-service-steps">
+    <article><span>01</span><h2>Разбор</h2><p>Фиксируем цель, материалы, ограничения и ожидаемый результат.</p></article>
+    <article><span>02</span><h2>Сборка</h2><p>Делаем сайт, бота, кабинет, форму или интеграцию по согласованному составу.</p></article>
+    <article><span>03</span><h2>Запуск</h2><p>Проверяем сценарии, доступы, уведомления, оплату и аналитику.</p></article>
+  </section>
+
+  <section class="lux-final lux-service-final">
+    <p class="lux-kicker">следующий шаг</p>
+    <h2>Можно начать с короткого описания задачи</h2>
+    <p>После заявки я уточню детали и предложу понятный состав работ без лишней переписки.</p>
+    <a href="{% url 'public-brief' %}">Описать задачу</a>
+  </section>
+{% endblock %}

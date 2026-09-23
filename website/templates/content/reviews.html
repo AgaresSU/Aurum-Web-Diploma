@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block title %}Отзывы — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Отзывы клиентов о сайтах, поддержке и других проектах AurumWeb.">
+{% endblock %}
+{% block og_title %}Отзывы клиентов AurumWeb{% endblock %}
+{% block og_description %}Что клиенты говорят о работе со мной.{% endblock %}
+
+{% block content %}
+  <section class="lux-page-hero">
+    <p class="lux-kicker">отзывы клиентов</p>
+    <h1>Что говорят о работе со мной</h1>
+    <p>Здесь собраны впечатления клиентов после завершения работы или очередного этапа проекта.</p>
+  </section>
+
+  <section class="lux-case-grid" aria-label="Отзывы клиентов">
+    {% for testimonial in testimonials %}
+      <article class="lux-review-card{% if testimonial.is_featured or forloop.first %} is-large{% endif %}">
+        <span>{{ testimonial.project_title|default:"Отзыв клиента" }}</span>
+        <blockquote>
+          <p>«{{ testimonial.text }}»</p>
+        </blockquote>
+        <footer>
+          <strong>{{ testimonial.client_name }}</strong>
+          {% if testimonial.client_details %}<span>{{ testimonial.client_details }}</span>{% endif %}
+        </footer>
+      </article>
+    {% endfor %}
+  </section>
+
+  <section class="lux-review-submit" aria-labelledby="review-submit-title">
+    {% if request.user.is_authenticated %}
+      <form class="lux-brief-form" method="post">
+        {% csrf_token %}
+        <div class="lux-brief-form-head">
+          <p class="lux-kicker">ваше мнение</p>
+          <h2 id="review-submit-title">Оставить отзыв</h2>
+          <p>Напишите своими словами, как прошла работа. Отзыв появится на сайте после проверки.</p>
+        </div>
+        {% include "accounts/_messages.html" %}
+        {{ review_form.non_field_errors }}
+        <div class="lux-brief-fields">
+          <label>
+            <span>{{ review_form.client_name.label }}</span>
+            {{ review_form.client_name }}
+            {{ review_form.client_name.errors }}
+          </label>
+          <label>
+            <span>{{ review_form.client_details.label }}</span>
+            {{ review_form.client_details }}
+            {{ review_form.client_details.errors }}
+          </label>
+          <label class="is-wide">
+            <span>{{ review_form.project_title.label }}</span>
+            {{ review_form.project_title }}
+            {{ review_form.project_title.errors }}
+          </label>
+          <label class="is-wide">
+            <span>{{ review_form.text.label }}</span>
+            {{ review_form.text }}
+            {{ review_form.text.errors }}
+          </label>
+          <label class="lux-consent is-wide">
+            {{ review_form.publication_consent }}
+            <span>{{ review_form.publication_consent.label }}</span>
+            {{ review_form.publication_consent.errors }}
+          </label>
+        </div>
+        <button type="submit">Отправить отзыв</button>
+      </form>
+    {% else %}
+      <div class="lux-brief-form">
+        <div class="lux-brief-form-head">
+          <p class="lux-kicker">ваше мнение</p>
+          <h2 id="review-submit-title">Хотите оставить отзыв?</h2>
+          <p>Войдите в личный кабинет, чтобы оставить отзыв.</p>
+          <div class="lux-actions">
+            <a href="{% url 'accounts:login' %}?next={{ request.path|urlencode }}">Войти и оставить отзыв</a>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+  </section>
+{% endblock %}

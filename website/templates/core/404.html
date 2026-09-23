@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Страница не найдена — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Страница AurumWeb не найдена. Можно вернуться на главную, открыть примеры сайтов или отправить заявку.">
+{% endblock %}
+{% block meta_robots %}<meta name="robots" content="noindex,nofollow,noarchive">{% endblock %}
+{% block og_title %}Страница не найдена — AurumWeb{% endblock %}
+
+{% block content %}
+  <div class="system-page">
+    <p class="eyebrow">404</p>
+    <h1>Такой страницы нет</h1>
+    <p>
+      Возможно, ссылка устарела или раздел еще не опубликован. Можно вернуться на главную,
+      открыть примеры сайтов или сразу отправить задачу на разбор.
+    </p>
+    <div class="system-page__actions">
+      <a class="button button--primary" href="/">На главную</a>
+      <a class="button button--dark" href="/content/templates/">Примеры сайтов</a>
+      <a class="button button--soft" href="/brief/">Оставить заявку</a>
+    </div>
+  </div>
+{% endblock %}

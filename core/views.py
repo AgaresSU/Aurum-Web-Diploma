@@ -1,23 +1,23 @@
+from django.http import Http404
 from django.shortcuts import render
+
+from content.public_data import home_template_cards, services
 
 
 def home(request):
-    directions = [
+    return render(
+        request,
+        'core/home.html',
         {
-            'name': 'Сайты под ключ',
-            'text': 'Лендинги, корпоративные сайты и небольшие каталоги.',
+            'home_services': [item for item in services() if item.is_featured],
+            'home_template_cards': home_template_cards(),
         },
-        {
-            'name': 'Поддержка сайтов',
-            'text': 'Обновляю страницы, исправляю ошибки и настраиваю резервные копии.',
-        },
-        {
-            'name': 'Python-автоматизация',
-            'text': 'Пишу программы для заявок, документов и повторяющихся задач.',
-        },
-        {
-            'name': 'Telegram-боты',
-            'text': 'Делаю ботов для консультаций, заявок и уведомлений.',
-        },
-    ]
-    return render(request, 'core/index.html', {'directions': directions})
+    )
+
+
+def missing_page(request, *args, **kwargs):
+    raise Http404('Страница не найдена.')
+
+
+def page_not_found(request, exception):
+    return render(request, 'core/404.html', status=404)

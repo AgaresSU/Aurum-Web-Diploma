@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}AurumWeb{% endblock %}</title>
+    {% block meta_description %}
+      <meta name="description" content="AurumWeb: сайты под ключ, поддержка сайтов, Python-программы, Telegram-боты, личные кабинеты, заявки и бизнес-интеграции.">
+    {% endblock %}
+    {% block meta_robots %}{% endblock %}
+    {% block canonical %}
+      <link rel="canonical" href="{{ canonical_url }}">
+    {% endblock %}
+    {% if search_verification.google %}
+      <meta name="google-site-verification" content="{{ search_verification.google }}">
+    {% endif %}
+    {% if search_verification.yandex %}
+      <meta name="yandex-verification" content="{{ search_verification.yandex }}">
+    {% endif %}
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="AurumWeb">
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}AurumWeb — сайты, поддержка, Python и Telegram-боты{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Сайты под ключ, поддержка после запуска, Python-программы, Telegram-боты, заявки, кабинеты и бизнес-интеграции.{% endblock %}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:image" content="{{ public_og_image_url }}">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{% block twitter_title %}AurumWeb — сайты и автоматизация{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Создание сайтов, поддержка, Python-утилиты, Telegram-боты и интеграции для заявок и рабочих процессов.{% endblock %}">
+    {% if public_structured_data_json %}
+      <script type="application/ld+json" nonce="{{ request.csp_nonce }}">{{ public_structured_data_json|safe }}</script>
+    {% endif %}
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/brand/aurumweb-favicon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/assets/brand/aurumweb-apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/styles.css?v=20260723-account-contrast">
+    <link rel="stylesheet" href="/assets/public.css?v=20260829-layout-density">
+    {% block extra_head %}{% endblock %}
+  </head>
+  <body class="lux-site lux-arlux">
+    <header class="lux-nav">
+      <a class="lux-brand" href="{% url 'home' %}">
+        <img src="/assets/brand/aurumweb-mark-squircle-new-128.webp" alt="AurumWeb" width="48" height="48">
+        <span>AurumWeb</span>
+      </a>
+      <button class="lux-menu-button" type="button" data-lux-menu-toggle aria-label="Открыть меню">Меню</button>
+      <nav class="lux-nav__links" data-lux-menu aria-label="Навигация">
+        <a href="{% url 'home' %}" class="{% if request.resolver_match.url_name == 'home' %}is-active{% endif %}">Главная</a>
+        <a href="{% url 'content:services' %}" class="{% if request.resolver_match.namespace == 'content' and request.resolver_match.url_name == 'services' or request.resolver_match.url_name == 'service-detail' %}is-active{% endif %}">Услуги</a>
+        <a href="{% url 'content:templates' %}" class="{% if request.resolver_match.namespace == 'content' and request.resolver_match.url_name == 'templates' or request.resolver_match.url_name == 'template-site-demo' %}is-active{% endif %}">Примеры сайтов</a>
+        <a href="{% url 'content:reviews' %}" class="{% if request.resolver_match.namespace == 'content' and request.resolver_match.url_name == 'reviews' %}is-active{% endif %}">Отзывы</a>
+        <a href="/accounts/login/?next=/client/" class="{% if request.resolver_match.namespace == 'client_portal' %}is-active{% endif %}">Личный кабинет</a>
+        <a href="{% url 'public-brief' %}" class="{% if request.resolver_match.url_name == 'public-brief' %}is-active{% endif %}">Заявка</a>
+      </nav>
+      <a class="lux-nav__cta" href="{% url 'public-brief' %}">Запросить разбор</a>
+    </header>
+
+    <main>
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="lux-footer">
+      <div>
+        <img src="/assets/brand/aurumweb-mark-squircle-new-128.webp" alt="" width="44" height="44">
+        <strong>AurumWeb</strong>
+        <p>Сайты под ключ, поддержка после запуска, Python-автоматизация и Telegram-боты.</p>
+      </div>
+      <nav aria-label="Документы">
+        <a href="{% url 'legal-page' 'offer' %}">Публичная оферта</a>
+        <a href="{% url 'legal-page' 'payment' %}">Оплата</a>
+        <a href="{% url 'legal-page' 'refund' %}">Возврат</a>
+        <a href="{% url 'legal-page' 'privacy' %}">Политика данных</a>
+        <a href="{% url 'legal-page' 'contacts' %}">Контакты</a>
+        <a href="/accounts/login/?next=/client/">Личный кабинет</a>
+      </nav>
+      <div>
+        <span>Реквизиты</span>
+        <p>{{ public_seller.name|default:"AurumWeb" }}</p>
+        <p>{{ public_seller.status|default:"Самозанятый исполнитель" }}</p>
+        {% if public_seller.inn %}<p>ИНН {{ public_seller.inn }}</p>{% endif %}
+        {% if public_seller.phone %}<p>{{ public_seller.phone }}</p>{% endif %}
+        <p>{{ public_seller.email|default:"aurumweb@aurumweb.ru" }}</p>
+      </div>
+    </footer>
+
+    <script src="/assets/app.js?v=20260723-account-submit"></script>
+    {% block analytics %}{% include "core/yandex_metrika.html" %}{% endblock %}
+    {% block extra_body %}{% endblock %}
+  </body>
+</html>

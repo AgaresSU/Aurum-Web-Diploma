@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Услуги — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Услуги AurumWeb: сайты под ключ, поддержка после запуска, Python-автоматизация, Telegram-боты, заявки, кабинеты и интеграции.">
+{% endblock %}
+{% block og_title %}Услуги AurumWeb{% endblock %}
+{% block og_description %}Создание сайтов, поддержка после запуска, Python-автоматизация, Telegram-боты, кабинеты и интеграции для бизнеса.{% endblock %}
+{% block twitter_title %}Услуги AurumWeb{% endblock %}
+{% block twitter_description %}Сайты под ключ, поддержка, Python-автоматизация, Telegram-боты и интеграции.{% endblock %}
+
+{% block content %}
+  <section class="lux-page-hero">
+    <p class="lux-kicker">услуги AurumWeb</p>
+    <h1>Что можно заказать</h1>
+    <p>
+      Я делаю сайты под ключ, поддерживаю их после запуска, пишу небольшие Python-решения
+      и создаю Telegram-ботов. Перед началом уточняем задачу, результат, сроки и объем работ.
+    </p>
+  </section>
+
+  <section class="lux-card-grid lux-card-grid--services">
+    {% for service in services %}
+      <article>
+        <span>{{ forloop.counter|stringformat:"02d" }}</span>
+        <h2>{{ service.title }}</h2>
+        <p>{{ service.short_description }}</p>
+        <strong>{{ service.price_display }}</strong>
+        {% if service.price_note %}<small>{{ service.price_note }}</small>{% endif %}
+        <p class="service-card__value">{{ service.business_value }}</p>
+        <a href="{{ service.get_absolute_url }}">Что входит</a>
+      </article>
+    {% endfor %}
+  </section>
+{% endblock %}

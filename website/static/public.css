@@ -1,0 +1,5125 @@
+/* Pre-production complete site concepts */
+
+.lux-site,
+.lux-index {
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  letter-spacing: 0;
+}
+
+.lux-site a,
+.lux-index a {
+  color: inherit;
+}
+
+.lux-kicker {
+  margin: 0 0 14px;
+  color: #27c3a3;
+  font-size: 0.78rem;
+  font-weight: 950;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.lux-index {
+  color: #112118;
+  background:
+    linear-gradient(90deg, rgba(17, 33, 24, 0.07) 1px, transparent 1px) 0 0 / 56px 56px,
+    #f5efe1;
+}
+
+.lux-index__shell,
+.lux-nav,
+.lux-hero,
+.lux-band,
+.lux-support,
+.lux-split,
+.lux-templates,
+.lux-final,
+.lux-page-hero,
+.lux-card-grid,
+.lux-detail,
+.lux-path,
+.lux-workspace,
+.lux-choice-guide,
+.lux-template-grid,
+.lux-service-grid,
+.lux-case-grid,
+.lux-brief,
+.lux-footer {
+  width: min(1500px, calc(100% - 40px));
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.lux-index__hero {
+  min-height: 520px;
+  display: grid;
+  align-content: end;
+  padding: 80px 0 40px;
+}
+
+.lux-index__hero h1,
+.lux-hero h1,
+.lux-page-hero h1,
+.lux-detail h1,
+.lux-final h2,
+.lux-band h2,
+.lux-support h2,
+.lux-split h2,
+.lux-section-head h2,
+.lux-path h2 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.lux-index__hero h1 {
+  max-width: 1020px;
+  font-size: clamp(3rem, 7vw, 7.4rem);
+  line-height: 0.94;
+}
+
+.lux-index__hero p {
+  max-width: 760px;
+  color: rgba(17, 33, 24, 0.68);
+  font-size: 1.18rem;
+  line-height: 1.7;
+}
+
+.lux-index__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.lux-index__grid article {
+  min-height: 420px;
+  display: grid;
+  align-content: space-between;
+  gap: 20px;
+  padding: 30px;
+  border: 1px solid rgba(17, 33, 24, 0.12);
+  border-radius: 24px;
+  background: rgba(255, 253, 246, 0.86);
+  box-shadow: 0 30px 90px rgba(17, 33, 24, 0.08);
+}
+
+.lux-index__grid span {
+  color: #a17522;
+  font-weight: 950;
+}
+
+.lux-index__grid h2 {
+  margin: 0;
+  font-size: clamp(2.4rem, 4.4vw, 4.8rem);
+  line-height: 0.95;
+}
+
+.lux-index__grid p {
+  color: rgba(17, 33, 24, 0.68);
+  line-height: 1.65;
+}
+
+.lux-index__grid a {
+  width: fit-content;
+  color: #f6edd6;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 14px 20px;
+  background: #112118;
+  font-weight: 920;
+}
+
+/* Arlux complete site */
+
+.lux-arlux {
+  color: #f6edd6;
+  background:
+    radial-gradient(circle at 74% 8%, rgba(218, 182, 91, 0.18), transparent 30%),
+    radial-gradient(circle at 18% 88%, rgba(39, 195, 163, 0.12), transparent 26%),
+    linear-gradient(180deg, #07120d, #11170f 52%, #070b08);
+}
+
+.lux-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid rgba(218, 182, 91, 0.18);
+  background: rgba(7, 18, 13, 0.78);
+  backdrop-filter: blur(18px);
+}
+
+.lux-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #f8e5ac;
+  font-weight: 950;
+  text-decoration: none;
+}
+
+.lux-brand img {
+  width: 42px;
+  max-width: none;
+  height: 42px;
+  flex: 0 0 42px;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 0 0 1px rgba(218, 182, 91, 0.34);
+}
+
+.lux-brand img {
+  width: 48px;
+  height: 48px;
+  flex-basis: 48px;
+}
+
+.lux-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px;
+  border: 1px solid rgba(218, 182, 91, 0.16);
+  border-radius: 999px;
+  background: rgba(8, 17, 12, 0.72);
+}
+
+.lux-nav__links a,
+.lux-nav__cta,
+.lux-actions a,
+.lux-orbit-card a,
+.lux-service-strip a,
+.lux-split a,
+.lux-template-track a,
+.lux-final a,
+.lux-card-grid a,
+.lux-detail a,
+.lux-template-grid footer a,
+.lux-brief-form button {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  border: 1px solid rgba(218, 182, 91, 0.22);
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+.lux-nav__links a.is-active,
+.lux-nav__cta,
+.lux-actions a:first-child,
+.lux-orbit-card a,
+.lux-service-strip a,
+.lux-final a,
+.lux-card-grid a,
+.lux-detail a:first-child,
+.lux-template-grid footer a:last-child,
+.lux-brief-form button {
+  color: #09100c;
+  background: linear-gradient(135deg, #f7df9f, #d3a941 62%, #9a6f25);
+  box-shadow: 0 16px 44px rgba(211, 169, 65, 0.16);
+}
+
+.lux-nav__links a {
+  color: #fff8e3;
+  transition:
+    color 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.lux-nav__links a:hover:not(.is-active),
+.lux-nav__links a:focus-visible:not(.is-active) {
+  color: #f7df9f;
+  border-color: rgba(247, 223, 159, 0.42);
+  background: rgba(247, 223, 159, 0.08);
+}
+
+.lux-nav__links a.is-active {
+  border-color: rgba(247, 223, 159, 0.78);
+}
+
+.lux-menu-button {
+  display: none;
+  min-height: 42px;
+  border: 1px solid rgba(218, 182, 91, 0.24);
+  border-radius: 999px;
+  padding: 0 14px;
+  color: #f7df9f;
+  background: rgba(8, 17, 12, 0.72);
+  font-weight: 900;
+}
+
+@media (max-width: 1180px) {
+  .lux-site .lux-nav {
+    flex-wrap: wrap;
+  }
+
+  .lux-site .lux-nav__links {
+    order: 4;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .lux-site .lux-nav__links::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .lux-site .lux-nav,
+  .lux-site .lux-hero,
+  .lux-site .lux-band,
+  .lux-site .lux-support,
+  .lux-site .lux-split,
+  .lux-site .lux-templates,
+  .lux-site .lux-final,
+  .lux-site .lux-page-hero,
+  .lux-site .lux-card-grid,
+  .lux-site .lux-detail,
+  .lux-site .lux-path,
+  .lux-site .lux-workspace,
+  .lux-site .lux-choice-guide,
+  .lux-site .lux-template-grid,
+  .lux-site .lux-case-grid,
+  .lux-site .lux-brief,
+  .lux-site .lux-footer {
+    width: min(100%, calc(100% - 24px));
+  }
+
+  .lux-site .lux-hero,
+  .lux-site .lux-band,
+  .lux-site .lux-support,
+  .lux-site .lux-split,
+  .lux-site .lux-detail,
+  .lux-site .lux-brief {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lux-site .lux-orbit-card,
+  .lux-site .lux-service-strip article,
+  .lux-site .lux-support-grid article,
+  .lux-site .lux-brief-form {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .lux-site .lux-menu-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+  }
+
+  .lux-site .lux-nav__cta {
+    display: none;
+  }
+
+  .lux-site .lux-nav__links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    border-radius: 18px;
+    padding: 10px;
+    background: rgba(7, 18, 13, 0.96);
+  }
+
+  .lux-site .lux-nav__links.is-open {
+    display: flex;
+  }
+
+  .lux-site .lux-nav__links a {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .lux-site .lux-footer {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 20px;
+  }
+
+  .lux-site .lux-section-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .lux-site .lux-carousel-controls {
+    justify-content: flex-start;
+  }
+
+  .lux-site .lux-carousel-controls button {
+    width: 52px;
+    height: 52px;
+  }
+
+  .lux-site .lux-templates {
+    overflow: hidden;
+  }
+
+  .lux-site .lux-template-track {
+    grid-auto-columns: minmax(260px, calc(100vw - 54px));
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .lux-site .lux-service-carousel .lux-service-strip {
+    grid-auto-columns: minmax(260px, calc(100vw - 54px));
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
+  .lux-site .lux-template-track article {
+    min-height: 420px;
+  }
+
+  .lux-site .lux-service-carousel .lux-service-strip article {
+    min-height: 320px;
+  }
+
+  .lux-site .lux-template-grid,
+  .lux-site .lux-choice-guide,
+  .lux-site .lux-case-grid,
+  .lux-site .lux-support-grid,
+  .lux-site .lux-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lux-site .lux-template-grid article,
+  .lux-site .lux-template-grid footer,
+  .lux-site .lux-template-grid article > div {
+    min-width: 0;
+  }
+
+  .lux-site .lux-template-grid h2,
+  .lux-site .lux-template-track h3 {
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+
+  .lux-site .lux-orbit-card {
+    min-height: 430px;
+    padding: 24px;
+  }
+}
+
+.lux-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 44px;
+  align-items: center;
+  min-height: calc(100vh - 76px);
+  padding: 56px 0 42px;
+}
+
+.lux-hero h1,
+.lux-page-hero h1,
+.lux-detail h1,
+.lux-final h2,
+.lux-band h2,
+.lux-split h2,
+.lux-section-head h2,
+.lux-path h2 {
+  color: #fff8e3;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 700;
+}
+
+.lux-hero h1 {
+  max-width: 980px;
+  font-size: clamp(3.1rem, 5.4vw, 6.5rem);
+  line-height: 0.98;
+}
+
+.lux-hero p,
+.lux-page-hero p,
+.lux-detail p,
+.lux-final p,
+.lux-band p,
+.lux-support p,
+.lux-split p,
+.lux-orbit-card p,
+.lux-service-strip p,
+.lux-card-grid p,
+.lux-template-grid p,
+.lux-case-grid p,
+.lux-footer p {
+  color: rgba(246, 237, 214, 0.7);
+  line-height: 1.68;
+}
+
+.lux-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.lux-proof-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 28px;
+}
+
+.lux-proof-strip span {
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: rgba(246, 237, 214, 0.78);
+  background: rgba(2, 6, 4, 0.28);
+  font-weight: 900;
+}
+
+.lux-orbit-card,
+.lux-service-strip article,
+.lux-process article,
+.lux-template-track article,
+.lux-card-grid article,
+.lux-detail aside,
+.lux-detail > div,
+.lux-template-grid article,
+.lux-case-grid article,
+.lux-brief-form,
+.lux-final {
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 24px;
+  background: rgba(12, 26, 18, 0.72);
+  box-shadow: 0 34px 100px rgba(0, 0, 0, 0.22);
+}
+
+.lux-orbit-card {
+  position: relative;
+  min-height: 550px;
+  display: grid;
+  align-content: end;
+  gap: 18px;
+  padding: 32px;
+  overflow: hidden;
+}
+
+.lux-orbit-card::before {
+  position: absolute;
+  inset: 28px;
+  border: 1px solid rgba(218, 182, 91, 0.24);
+  border-radius: 999px 999px 28px 28px;
+  content: "";
+}
+
+.lux-orbit-card::after {
+  position: absolute;
+  top: 58px;
+  right: 56px;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(247, 223, 159, 0.94), rgba(154, 111, 37, 0.92));
+  box-shadow: 0 0 90px rgba(218, 182, 91, 0.34);
+  content: "";
+}
+
+.lux-orbit-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.lux-orbit-card span,
+.lux-service-strip span,
+.lux-process span,
+.lux-template-track span,
+.lux-card-grid span,
+.lux-detail aside span,
+.lux-template-grid span,
+.lux-case-grid span,
+.lux-path span {
+  color: #f7df9f;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.lux-orbit-card strong {
+  max-width: 360px;
+  color: #fff8e3;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 3.1rem;
+  line-height: 1;
+}
+
+.lux-band,
+.lux-support,
+.lux-split,
+.lux-templates,
+.lux-final,
+.lux-card-grid,
+.lux-template-grid,
+.lux-service-grid,
+.lux-case-grid,
+.lux-brief {
+  margin-top: 72px;
+}
+
+.lux-band,
+.lux-support,
+.lux-split,
+.lux-brief,
+.lux-detail {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(360px, 1fr);
+  gap: 22px;
+}
+
+.lux-band h2,
+.lux-support h2,
+.lux-split h2,
+.lux-final h2,
+.lux-section-head h2,
+.lux-page-hero h1,
+.lux-detail h1 {
+  max-width: 920px;
+  font-size: clamp(2.8rem, 5.8vw, 6.4rem);
+  line-height: 0.95;
+}
+
+.lux-support {
+  align-items: stretch;
+}
+
+.lux-support > div:first-child {
+  display: grid;
+  align-content: end;
+  gap: 18px;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 24px;
+  padding: clamp(28px, 5vw, 54px);
+  background:
+    linear-gradient(135deg, rgba(218, 182, 91, 0.12), transparent 68%),
+    rgba(12, 26, 18, 0.72);
+  box-shadow: 0 34px 100px rgba(0, 0, 0, 0.18);
+}
+
+.lux-support > div:first-child a {
+  width: fit-content;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0 16px;
+  color: #09100c;
+  background: linear-gradient(135deg, #f7df9f, #d3a941 62%, #9a6f25);
+  text-decoration: none;
+  font-weight: 900;
+}
+
+.lux-support-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.lux-support-grid article {
+  display: grid;
+  gap: 12px;
+  border: 1px solid rgba(218, 182, 91, 0.16);
+  border-radius: 22px;
+  padding: 22px;
+  background: rgba(12, 26, 18, 0.58);
+}
+
+.lux-support-grid strong {
+  color: #fff8e3;
+  font-size: 1.08rem;
+}
+
+.lux-service-strip,
+.lux-process {
+  display: grid;
+  gap: 14px;
+}
+
+.lux-service-carousel {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 22px;
+}
+
+.lux-service-carousel .lux-service-strip {
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(320px, 31%);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.lux-service-carousel .lux-service-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.lux-service-carousel .lux-service-strip article {
+  min-height: 340px;
+  scroll-snap-align: start;
+}
+
+.lux-service-carousel .lux-service-strip p {
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.lux-service-strip article,
+.lux-process article {
+  display: grid;
+  gap: 12px;
+  padding: 24px;
+}
+
+.lux-service-strip h3,
+.lux-process h3,
+.lux-card-grid h2,
+.lux-template-grid h2,
+.lux-case-grid h2 {
+  margin: 0;
+  color: #fff8e3;
+  line-height: 1.05;
+}
+
+.lux-service-carousel .lux-service-strip h3 {
+  font-size: clamp(1.25rem, 1.6vw, 1.55rem);
+  line-height: 1.12;
+}
+
+.lux-service-strip strong,
+.lux-card-grid strong,
+.lux-price strong {
+  color: #f7df9f;
+}
+
+.lux-card-note {
+  border-top: 1px solid rgba(218, 182, 91, 0.14);
+  padding-top: 12px;
+  color: rgba(246, 237, 214, 0.6);
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.lux-section-head,
+.lux-page-hero--between {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.lux-carousel-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.lux-carousel-controls button {
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(218, 182, 91, 0.28);
+  border-radius: 50%;
+  color: #09100c;
+  background: #f7df9f;
+  font-size: 1.5rem;
+  font-weight: 950;
+}
+
+.lux-carousel-controls button:disabled {
+  cursor: default;
+  opacity: 0.42;
+}
+
+.lux-template-track {
+  display: grid;
+  grid-auto-flow: column;
+  gap: 18px;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  padding-bottom: 18px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.lux-template-track {
+  grid-auto-columns: minmax(340px, 31%);
+}
+
+.lux-template-track::-webkit-scrollbar {
+  display: none;
+}
+
+.lux-template-track article {
+  min-width: 0;
+  min-height: 460px;
+  display: grid;
+  align-content: space-between;
+  gap: 16px;
+  padding: 20px;
+  scroll-snap-align: start;
+}
+
+.lux-template-track img,
+.lux-template-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  border-radius: 16px;
+}
+
+.lux-template-track img {
+  object-fit: contain;
+  background:
+    linear-gradient(180deg, rgba(247, 223, 159, 0.04), rgba(247, 223, 159, 0)),
+    rgba(2, 6, 4, 0.72);
+}
+
+.lux-template-grid img {
+  object-fit: cover;
+}
+
+.lux-template-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.lux-template-actions a:first-child {
+  color: #fff8e3;
+  background: rgba(2, 6, 4, 0.36);
+}
+
+.lux-template-actions a:last-child {
+  color: #09100c;
+  border-color: transparent;
+  background: linear-gradient(135deg, #f7df9f, #d3a941 62%, #9a6f25);
+  box-shadow: 0 16px 44px rgba(211, 169, 65, 0.16);
+}
+
+.lux-page-hero {
+  min-height: 460px;
+  display: grid;
+  align-content: end;
+  padding: 70px 0 34px;
+}
+
+.lux-page-hero--compact {
+  min-height: 340px;
+  padding-top: 48px;
+}
+
+.lux-page-hero > aside {
+  min-width: 250px;
+  display: grid;
+  gap: 12px;
+  padding: 26px;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 24px;
+  background: rgba(12, 26, 18, 0.72);
+}
+
+.lux-page-hero aside strong {
+  display: block;
+  color: #f7df9f;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 0.9;
+  overflow-wrap: anywhere;
+}
+
+.lux-page-hero aside span {
+  display: block;
+  color: rgba(246, 237, 214, 0.72);
+  line-height: 1.4;
+}
+
+.lux-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.lux-card-grid article {
+  min-height: 360px;
+  display: grid;
+  align-content: space-between;
+  gap: 16px;
+  padding: 24px;
+}
+
+.lux-card-grid small {
+  color: rgba(246, 237, 214, 0.56);
+}
+
+.lux-detail {
+  align-items: stretch;
+  padding-top: 70px;
+}
+
+.lux-detail > div,
+.lux-detail aside {
+  display: grid;
+  align-content: end;
+  gap: 18px;
+  padding: clamp(28px, 5vw, 58px);
+}
+
+.lux-price {
+  display: grid;
+  gap: 6px;
+}
+
+.lux-service-detail {
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.54fr);
+  gap: 18px;
+  padding-top: 60px;
+}
+
+.lux-service-main {
+  align-content: center;
+}
+
+.lux-service-main > p:not(.lux-kicker) {
+  max-width: 760px;
+  margin: 0;
+  color: rgba(246, 237, 214, 0.76);
+  font-size: clamp(1.02rem, 1.45vw, 1.18rem);
+  line-height: 1.68;
+}
+
+.lux-service-outcome {
+  display: grid;
+  gap: 8px;
+  max-width: 760px;
+  border: 1px solid rgba(39, 195, 163, 0.18);
+  border-radius: 20px;
+  padding: 18px 20px;
+  background:
+    linear-gradient(135deg, rgba(39, 195, 163, 0.12), rgba(218, 182, 91, 0.04)),
+    rgba(2, 6, 4, 0.3);
+}
+
+.lux-service-outcome span,
+.lux-service-price-card > span {
+  color: #27c3a3;
+  font-size: 0.76rem;
+  font-weight: 950;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.lux-service-outcome p {
+  margin: 0;
+}
+
+.lux-service-price-card {
+  align-content: start;
+}
+
+.lux-service-price-card > strong {
+  display: block;
+  color: #f7df9f;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.1vw, 3.35rem);
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+.lux-service-price-card > p {
+  margin: 0;
+  color: rgba(246, 237, 214, 0.74);
+  line-height: 1.55;
+}
+
+.lux-service-price-points {
+  display: grid;
+  gap: 10px;
+}
+
+.lux-service-price-points p {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  margin: 0;
+  border: 1px solid rgba(218, 182, 91, 0.14);
+  border-radius: 16px;
+  padding: 12px;
+  background: rgba(2, 6, 4, 0.26);
+  color: rgba(246, 237, 214, 0.78);
+  line-height: 1.45;
+}
+
+.lux-service-price-points span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  border-radius: 12px;
+  color: #09100c;
+  background: linear-gradient(135deg, #f7df9f, #d3a941);
+  font-weight: 950;
+}
+
+.lux-service-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.lux-service-grid article {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 24px;
+  padding: clamp(24px, 4vw, 42px);
+  background:
+    linear-gradient(180deg, rgba(218, 182, 91, 0.07), rgba(218, 182, 91, 0.02)),
+    rgba(12, 26, 18, 0.62);
+}
+
+.lux-service-ready {
+  background:
+    radial-gradient(circle at 86% 8%, rgba(247, 223, 159, 0.12), transparent 32%),
+    rgba(12, 26, 18, 0.62);
+}
+
+.lux-service-grid h2 {
+  max-width: 660px;
+  margin: 0;
+  color: #fff8e3;
+  font-size: clamp(1.8rem, 2.8vw, 3rem);
+  line-height: 1.08;
+}
+
+.lux-service-grid ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lux-service-grid li {
+  position: relative;
+  padding-left: 24px;
+  color: rgba(246, 237, 214, 0.76);
+  line-height: 1.55;
+}
+
+.lux-service-grid li::before {
+  content: "";
+  position: absolute;
+  top: 0.66em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #27c3a3;
+  box-shadow: 0 0 18px rgba(39, 195, 163, 0.32);
+}
+
+.lux-path {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.lux-path article {
+  min-height: 280px;
+  display: grid;
+  align-content: end;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 24px;
+  background: rgba(12, 26, 18, 0.56);
+}
+
+.lux-case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.lux-case-grid article {
+  min-height: 300px;
+  display: grid;
+  align-content: space-between;
+  gap: 16px;
+  padding: 24px;
+}
+
+.lux-case-grid article.is-large {
+  grid-column: span 2;
+}
+
+.lux-case-grid div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lux-case-grid small {
+  border: 1px solid rgba(218, 182, 91, 0.2);
+  border-radius: 999px;
+  padding: 6px 10px;
+}
+
+.lux-review-card blockquote {
+  margin: 0;
+}
+
+.lux-review-card blockquote p {
+  color: #fff8e3;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  line-height: 1.35;
+}
+
+.lux-review-card footer {
+  display: grid;
+  gap: 5px;
+}
+
+.lux-review-card footer strong {
+  color: #f7df9f;
+  font-size: 1.05rem;
+}
+
+.lux-case-grid .lux-review-card footer span {
+  color: rgba(246, 237, 214, 0.68);
+  font-weight: 700;
+  text-transform: none;
+}
+
+.lux-review-submit {
+  width: min(980px, calc(100vw - 48px));
+  max-width: 100%;
+  margin: clamp(42px, 6vw, 72px) auto 0;
+}
+
+.lux-review-submit .lux-brief-form {
+  margin: 0;
+}
+
+.lux-review-submit .lux-brief-form-head .lux-actions {
+  margin-top: 8px;
+}
+
+.lux-case-line {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+}
+
+.lux-case-line strong {
+  color: #f7df9f;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+}
+
+.lux-case-line span {
+  color: rgba(246, 237, 214, 0.72);
+  line-height: 1.55;
+}
+
+.lux-case-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.lux-case-actions a {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(218, 182, 91, 0.22);
+  border-radius: 999px;
+  padding: 0 14px;
+  color: #09100c;
+  background: #f7df9f;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+.lux-final--compact {
+  min-height: 0;
+}
+
+.lux-workspace {
+  display: grid;
+  gap: 18px;
+  margin-top: 42px;
+}
+
+.lux-workspace__stats,
+.lux-workspace__grid {
+  display: grid;
+  gap: 14px;
+}
+
+.lux-workspace__stats {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.lux-workspace__grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lux-workspace__grid article.is-wide {
+  grid-column: span 2;
+}
+
+.lux-workspace__stats article,
+.lux-workspace__grid article {
+  min-width: 0;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 22px;
+  padding: 22px;
+  background: rgba(12, 26, 18, 0.62);
+}
+
+.lux-workspace__stats article {
+  min-height: 180px;
+  display: grid;
+  align-content: space-between;
+}
+
+.lux-workspace span {
+  color: #f7df9f;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.lux-workspace h2 {
+  margin: 0;
+  color: #fff8e3;
+}
+
+.lux-workspace p {
+  color: rgba(246, 237, 214, 0.7);
+  line-height: 1.65;
+}
+
+.lux-dashboard-layout {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.lux-panel-card {
+  min-width: 0;
+  grid-column: span 4;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 22px;
+  padding: 22px;
+  background: rgba(12, 26, 18, 0.64);
+}
+
+.lux-panel-card * {
+  min-width: 0;
+}
+
+
+.lux-panel-card--primary {
+  grid-column: span 8;
+  background:
+    linear-gradient(135deg, rgba(218, 182, 91, 0.12), transparent 64%),
+    rgba(12, 26, 18, 0.76);
+}
+
+
+.lux-panel-card.is-wide {
+  grid-column: 1 / -1;
+}
+
+.lux-panel-card h2,
+.lux-panel-card h3 {
+  margin: 0;
+  color: #fff8e3;
+  line-height: 1.05;
+}
+
+.lux-panel-card p {
+  margin: 0;
+}
+
+.lux-action-list,
+.lux-check-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lux-action-list {
+  counter-reset: action;
+}
+
+.lux-action-list li,
+.lux-check-list li,
+.lux-task-list div {
+  min-width: 0;
+  border: 1px solid rgba(218, 182, 91, 0.14);
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: rgba(2, 6, 4, 0.34);
+}
+
+
+.lux-action-list li {
+  counter-increment: action;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 12px;
+  align-items: start;
+  overflow: hidden;
+}
+
+.lux-action-list li::before {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #07120d;
+  background: #f7df9f;
+  font-weight: 950;
+  content: counter(action);
+}
+
+
+.lux-action-list strong,
+.lux-action-list small,
+.lux-task-list strong,
+.lux-task-list span,
+.lux-task-list small {
+  display: block;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.lux-action-list strong,
+.lux-action-list small {
+  grid-column: 2;
+}
+
+.lux-action-list small,
+.lux-task-list small {
+  color: rgba(246, 237, 214, 0.58);
+  line-height: 1.45;
+}
+
+
+.lux-chat {
+  display: grid;
+  gap: 10px;
+}
+
+.lux-chat p {
+  display: grid;
+  gap: 5px;
+  border-radius: 16px;
+  padding: 12px 14px;
+  background: rgba(2, 6, 4, 0.34);
+}
+
+.lux-chat strong {
+  color: #f7df9f;
+}
+
+
+.lux-chat span,
+.lux-data-list dd {
+  color: rgba(246, 237, 214, 0.74);
+  line-height: 1.45;
+}
+
+.lux-chat span {
+  font-weight: 700;
+  text-transform: none;
+}
+
+
+.lux-data-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+}
+
+.lux-data-list div {
+  display: grid;
+  grid-template-columns: minmax(90px, 0.75fr) minmax(0, 1fr);
+  gap: 12px;
+  border-bottom: 1px solid rgba(218, 182, 91, 0.12);
+  padding-bottom: 10px;
+}
+
+
+.lux-data-list dt {
+  color: rgba(246, 237, 214, 0.52);
+  font-weight: 900;
+}
+
+
+.lux-data-list dd {
+  min-width: 0;
+  margin: 0;
+  font-weight: 900;
+}
+
+.lux-task-list {
+  display: grid;
+  gap: 10px;
+}
+
+.lux-task-list div {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.65fr) minmax(130px, 0.8fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+}
+
+.lux-check-list li {
+  color: rgba(246, 237, 214, 0.76);
+  line-height: 1.5;
+}
+
+
+.lux-status-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lux-status-row small {
+  border: 1px solid rgba(39, 195, 163, 0.2);
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: #27c3a3;
+  font-weight: 900;
+}
+
+.lux-client-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.lux-client-summary--founder {
+  margin-top: 0;
+}
+
+.lux-next-action,
+.lux-client-stats article,
+.lux-office-metrics article,
+.lux-office-panel,
+.lux-office-card,
+.lux-office-actions article {
+  min-width: 0;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 22px;
+  background: rgba(12, 26, 18, 0.66);
+}
+
+
+.lux-next-action {
+  display: grid;
+  gap: 18px;
+  align-content: center;
+  padding: 28px;
+  background:
+    linear-gradient(135deg, rgba(218, 182, 91, 0.16), transparent 66%),
+    rgba(12, 26, 18, 0.78);
+}
+
+
+.lux-next-action h2,
+.lux-office-panel h2,
+.lux-office-card h2,
+.lux-office-card h3,
+.lux-section-title h2 {
+  margin: 0;
+  color: #fff8e3;
+  line-height: 1.08;
+}
+
+.lux-next-action p,
+.lux-client-stats p,
+.lux-office-metrics p,
+.lux-office-actions p,
+.lux-office-card p,
+.lux-section-title p {
+  margin: 0;
+  color: rgba(246, 237, 214, 0.72);
+  line-height: 1.55;
+}
+
+
+.lux-button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.lux-button-row a,
+.lux-card-head a {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  padding: 0 18px;
+  color: #07120d;
+  background: linear-gradient(135deg, #f7df9f, #c9a044);
+  text-decoration: none;
+  font-weight: 950;
+}
+
+.lux-button-row a + a {
+  border: 1px solid rgba(218, 182, 91, 0.22);
+  color: #f7df9f;
+  background: rgba(2, 6, 4, 0.34);
+}
+
+
+
+.lux-client-stats {
+  display: grid;
+  gap: 14px;
+}
+
+.lux-client-stats article {
+  display: grid;
+  gap: 8px;
+  padding: 20px;
+}
+
+.lux-client-stats strong {
+  display: block;
+  color: #fff8e3;
+  font-size: 1.25rem;
+  line-height: 1.15;
+}
+
+.lux-client-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lux-client-timeline li {
+  min-width: 0;
+  display: grid;
+  gap: 7px;
+  border: 1px solid rgba(218, 182, 91, 0.14);
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(12, 26, 18, 0.48);
+}
+
+
+.lux-client-timeline span,
+.lux-office-actions span {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: #07120d;
+  background: #f7df9f;
+  font-weight: 950;
+}
+
+
+.lux-client-timeline strong {
+  color: #fff8e3;
+}
+
+.lux-client-timeline small {
+  color: rgba(246, 237, 214, 0.58);
+  line-height: 1.35;
+}
+
+
+.lux-client-timeline .is-done,
+.lux-client-timeline .is-active {
+  border-color: rgba(218, 182, 91, 0.34);
+  background: rgba(218, 182, 91, 0.1);
+}
+
+
+.lux-client-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.lux-client-grid .lux-panel-card {
+  grid-column: auto;
+}
+
+.lux-client-hero-card strong {
+  color: #f7df9f;
+}
+
+.lux-client-hero {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: clamp(22px, 4vw, 48px);
+}
+
+.lux-client-hero > div {
+  min-width: 0;
+}
+
+.lux-client-hero .lux-client-hero-card {
+  width: min(360px, 100%);
+  flex: 0 0 min(360px, 100%);
+}
+
+.lux-client-hub {
+  gap: 16px;
+}
+
+.lux-client-tabs-layout {
+  display: grid;
+  grid-template-columns: minmax(210px, 260px) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.lux-client-tabs-layout > *,
+.lux-client-tabs-content > * {
+  min-width: 0;
+}
+
+.lux-client-tabs-content {
+  display: grid;
+  gap: 16px;
+}
+
+.lux-client-panel {
+  min-width: 0;
+  display: none;
+  gap: 16px;
+}
+
+.lux-client-panel.is-active {
+  display: grid;
+}
+
+.lux-client-panel > * {
+  min-width: 0;
+  grid-column: 1 / -1;
+}
+
+.lux-client-panel-head {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+  border: 1px solid rgba(218, 182, 91, 0.16);
+  border-radius: 24px;
+  padding: clamp(22px, 3vw, 32px);
+  background:
+    radial-gradient(circle at 88% 16%, rgba(247, 223, 159, 0.12), transparent 30%),
+    rgba(12, 26, 18, 0.72);
+}
+
+.lux-client-panel-head span,
+.lux-client-order-note > span,
+.lux-client-project-card span,
+.lux-client-reply-card > span,
+.lux-client-support-card > span,
+.lux-client-pay-card > span,
+.lux-client-files-card > span,
+.lux-client-access-card > span,
+.lux-client-telegram-card > span,
+.lux-client-template-card span,
+.lux-client-record-card > span,
+.lux-client-link-card > span,
+.lux-client-site-quality-card > span,
+.lux-client-invoice-card > span,
+.lux-client-profile-card > span,
+.lux-client-requisites-card > span {
+  color: #27c3a3;
+  font-weight: 950;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.lux-client-panel-head h2 {
+  max-width: 880px;
+  margin: 0;
+  color: #fff8e3;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.4vw, 4.2rem);
+  line-height: 0.98;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: balance;
+}
+
+.lux-client-panel-head p {
+  max-width: 780px;
+  margin: 0;
+  color: rgba(246, 237, 214, 0.72);
+  font-weight: 760;
+  line-height: 1.65;
+}
+
+.lux-client-panel-grid {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.lux-client-tabs {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 24px;
+  padding: 12px;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(247, 223, 159, 0.12), transparent 34%),
+    rgba(12, 26, 18, 0.78);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.18);
+}
+
+.lux-client-tabs a {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  border: 1px solid rgba(218, 182, 91, 0.12);
+  border-radius: 16px;
+  padding: 14px 15px;
+  background: rgba(2, 6, 4, 0.28);
+  color: rgba(246, 237, 214, 0.7);
+  text-decoration: none;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.lux-client-tabs a:hover,
+.lux-client-tabs a:focus-visible,
+.lux-client-tabs a.is-active {
+  border-color: rgba(247, 223, 159, 0.42);
+  background:
+    linear-gradient(135deg, rgba(218, 182, 91, 0.16), transparent 70%),
+    rgba(2, 6, 4, 0.34);
+  transform: translateX(2px);
+}
+
+.lux-client-tabs .lux-client-tabs-primary {
+  border-color: rgba(247, 223, 159, 0.54);
+  background: linear-gradient(135deg, #f7df9f, #c99f36);
+  color: #07120d;
+}
+
+.lux-client-tabs .lux-client-tabs-primary strong,
+.lux-client-tabs .lux-client-tabs-primary span {
+  color: #07120d;
+}
+
+.lux-office-tab-group {
+  margin: 8px 4px 2px;
+  color: rgba(247, 223, 159, 0.58);
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.lux-client-tabs strong {
+  min-width: 0;
+  color: #fff8e3;
+  font-weight: 950;
+  overflow-wrap: anywhere;
+}
+
+.lux-client-tabs span {
+  min-width: 0;
+  color: rgba(246, 237, 214, 0.54);
+  font-size: 0.86rem;
+  font-weight: 850;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+#client-overview,
+#client-order,
+#client-projects,
+#client-chat,
+#client-site,
+#client-billing,
+#client-docs,
+#client-profile,
+#client-access {
+  scroll-margin-top: 108px;
+}
+
+.lux-client-command {
+  display: grid;
+  grid-template-columns: minmax(0, 1.28fr) minmax(320px, 0.72fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.lux-client-main-card,
+.lux-client-today,
+.lux-client-status-grid article {
+  min-width: 0;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 24px;
+  background: rgba(12, 26, 18, 0.7);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.16);
+}
+
+.lux-client-main-card {
+  display: grid;
+  gap: 18px;
+  padding: clamp(22px, 3vw, 32px);
+  background:
+    radial-gradient(circle at 88% 12%, rgba(247, 223, 159, 0.14), transparent 32%),
+    linear-gradient(135deg, rgba(218, 182, 91, 0.12), transparent 62%),
+    rgba(12, 26, 18, 0.78);
+}
+
+.lux-client-main-card h2,
+.lux-client-today h2,
+.lux-client-status-grid strong,
+.lux-client-hub-grid h2,
+.lux-client-panel-grid h2 {
+  margin: 0;
+  color: #fff8e3;
+  line-height: 1.08;
+}
+
+.lux-client-main-card h2 {
+  max-width: 850px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.9rem, 2.45vw, 3rem);
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: balance;
+}
+
+.lux-client-main-card p,
+.lux-client-today p,
+.lux-client-status-grid p {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: break-word;
+}
+
+.lux-client-progress {
+  position: relative;
+  height: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 999px;
+  background: rgba(2, 6, 4, 0.46);
+}
+
+.lux-client-progress span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--progress, 0);
+  border-radius: inherit;
+  background: linear-gradient(90deg, #27c3a3, #f7df9f);
+  box-shadow: 0 0 22px rgba(39, 195, 163, 0.22);
+}
+
+.lux-client-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 10px;
+  margin: 0;
+}
+
+.lux-client-facts div {
+  min-width: 0;
+  border: 1px solid rgba(218, 182, 91, 0.12);
+  border-radius: 16px;
+  padding: 13px 14px;
+  background: rgba(2, 6, 4, 0.28);
+}
+
+.lux-client-facts dt,
+.lux-client-status-grid span {
+  color: rgba(246, 237, 214, 0.56);
+  font-weight: 950;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.lux-client-facts dd {
+  min-width: 0;
+  margin: 6px 0 0;
+  color: #fff8e3;
+  font-weight: 950;
+  overflow-wrap: anywhere;
+}
+
+.lux-client-today {
+  display: grid;
+  align-content: space-between;
+  gap: 18px;
+  padding: clamp(22px, 3vw, 28px);
+}
+
+.lux-client-today > span,
+.lux-client-hub-grid > .lux-panel-card > span,
+.lux-client-chat-card .lux-card-head span,
+.lux-client-billing-card .lux-card-head span,
+.lux-client-order-card .lux-card-head span {
+  min-width: 0;
+  color: #27c3a3;
+  overflow-wrap: anywhere;
+}
+
+.lux-client-status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.lux-client-status-grid article {
+  display: grid;
+  gap: 9px;
+  padding: 20px;
+}
+
+.lux-client-status-grid strong {
+  font-size: clamp(1.35rem, 2.2vw, 2.05rem);
+  overflow-wrap: anywhere;
+}
+
+.lux-client-status-grid .is-warning {
+  border-color: rgba(247, 223, 159, 0.36);
+  background:
+    linear-gradient(135deg, rgba(247, 223, 159, 0.12), transparent 66%),
+    rgba(12, 26, 18, 0.72);
+}
+
+.lux-client-timeline--hub {
+  grid-template-columns: repeat(5, minmax(130px, 1fr));
+}
+
+.lux-client-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.lux-client-hub-grid .lux-panel-card {
+  grid-column: span 4;
+  min-height: 100%;
+}
+
+.lux-client-chat-card,
+.lux-client-billing-card {
+  grid-column: span 8;
+}
+
+.lux-client-docs-card {
+  grid-column: span 8;
+}
+
+.lux-client-template-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.36fr) auto;
+  gap: 18px;
+  align-items: center;
+  background:
+    radial-gradient(circle at 8% 20%, rgba(39, 195, 163, 0.13), transparent 34%),
+    linear-gradient(135deg, rgba(218, 182, 91, 0.1), transparent 68%),
+    rgba(12, 26, 18, 0.72);
+}
+
+.lux-client-template-card > div {
+  min-width: 0;
+}
+
+.lux-client-template-card h2,
+.lux-client-record-card h2,
+.lux-client-link-card h2,
+.lux-client-invoice-card h2,
+.lux-client-profile-card h2,
+.lux-client-requisites-card h2 {
+  margin: 8px 0 0;
+  color: #fff8e3;
+  line-height: 1.08;
+}
+
+.lux-client-template-card p {
+  max-width: 780px;
+  margin: 12px 0 0;
+  color: rgba(246, 237, 214, 0.72);
+  font-weight: 780;
+  line-height: 1.55;
+}
+
+.lux-client-pill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.lux-client-pill-list span {
+  border: 1px solid rgba(247, 223, 159, 0.22);
+  border-radius: 999px;
+  padding: 8px 10px;
+  color: #07120d;
+  background: rgba(247, 223, 159, 0.86);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.lux-client-record-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.16fr) minmax(280px, 0.84fr);
+  gap: 14px;
+}
+
+.lux-client-record-card,
+.lux-client-link-card,
+.lux-client-invoice-card,
+.lux-client-profile-card,
+.lux-client-requisites-card,
+.lux-client-site-quality-card {
+  min-width: 0;
+}
+
+.lux-client-record-card .lux-client-facts {
+  margin-top: 16px;
+}
+
+.lux-client-link-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.lux-client-link-list a {
+  min-width: 0;
+  border: 1px solid rgba(218, 182, 91, 0.14);
+  border-radius: 16px;
+  padding: 13px 14px;
+  color: #fff8e3;
+  background: rgba(2, 6, 4, 0.28);
+  font-weight: 950;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.lux-client-project-list {
+  min-width: 0;
+  display: grid;
+  gap: 14px;
+}
+
+.lux-client-project-card {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.42fr);
+  gap: 18px;
+  align-items: stretch;
+  border: 1px solid rgba(218, 182, 91, 0.16);
+  border-radius: 22px;
+  padding: clamp(18px, 2.4vw, 26px);
+  background:
+    linear-gradient(135deg, rgba(218, 182, 91, 0.1), transparent 68%),
+    rgba(12, 26, 18, 0.72);
+}
+
+.lux-client-project-card > div,
+.lux-client-project-card dl,
+.lux-client-project-card dl div {
+  min-width: 0;
+}
+
+.lux-client-project-card h3 {
+  margin: 8px 0 0;
+  color: #fff8e3;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.6rem, 2.6vw, 3.1rem);
+  line-height: 1;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  text-wrap: balance;
+}
+
+.lux-client-project-card p {
+  max-width: 760px;
+  margin: 14px 0 0;
+  color: rgba(246, 237, 214, 0.72);
+  font-weight: 780;
+  line-height: 1.55;
+}
+
+.lux-client-project-card dl {
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  margin: 0;
+}
+
+.lux-client-project-card dl div {
+  border: 1px solid rgba(218, 182, 91, 0.12);
+  border-radius: 16px;
+  padding: 13px 14px;
+  background: rgba(2, 6, 4, 0.28);
+}
+
+.lux-client-project-card dt {
+  color: rgba(246, 237, 214, 0.52);
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.lux-client-project-card dd {
+  margin: 6px 0 0;
+  color: #fff8e3;
+  font-weight: 950;
+}
+
+.lux-order-scope,
+.lux-site-control-list,
+.lux-payment-list {
+  display: grid;
+  gap: 10px;
+}
+
+.lux-order-scope p,
+.lux-site-control-list p,
+.lux-payment-list p {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  border: 1px solid rgba(218, 182, 91, 0.12);
+  border-radius: 16px;
+  padding: 13px 14px;
+  background: rgba(2, 6, 4, 0.28);
+}
+
+.lux-order-scope strong,
+.lux-site-control-list strong,
+.lux-payment-list strong {
+  color: #fff8e3;
+}
+
+.lux-order-scope span,
+.lux-site-control-list span,
+.lux-payment-list span {
+  color: rgba(246, 237, 214, 0.72);
+  font-weight: 800;
+  line-height: 1.45;
+  text-transform: none;
+}
+
+.lux-site-control-list p,
+.lux-payment-list p {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+}
+
+.lux-site-control-list em,
+.lux-payment-list em {
+  width: fit-content;
+  border-radius: 999px;
+  padding: 7px 10px;
+  color: #07120d;
+  background: #f7df9f;
+  font-style: normal;
+  font-weight: 950;
+  white-space: normal;
+}
+
+.lux-chat--hub p {
+  position: relative;
+  gap: 7px;
+  padding: 14px 16px;
+}
+
+.lux-chat--hub small {
+  color: rgba(246, 237, 214, 0.48);
+  font-weight: 850;
+}
+
+.lux-chat--hub .is-client {
+  margin-left: clamp(0px, 7vw, 86px);
+  border: 1px solid rgba(39, 195, 163, 0.2);
+  background: rgba(39, 195, 163, 0.1);
+}
+
+.lux-chat--hub .is-client strong {
+  color: #98f1d8;
+}
+
+.lux-client-reply-card,
+.lux-client-pay-card {
+  align-content: start;
+}
+
+.lux-client-site-quality-card,
+.lux-client-invoice-card {
+  grid-column: 1 / -1;
+}
+
+.lux-client-invoice-card .lux-payment-list {
+  margin-top: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.lux-panel-action {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 999px;
+  padding: 13px 18px;
+  color: #07120d;
+  background: linear-gradient(135deg, #f7df9f, #c99f36);
+  font-weight: 950;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.lux-client-pay-card strong {
+  color: #f7df9f;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 0.95;
+}
+
+.lux-client-settings-form,
+.lux-client-telegram-actions,
+.lux-client-telegram-steps {
+  min-width: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.lux-client-settings-form {
+  margin-top: 6px;
+}
+
+.lux-client-settings-form p,
+.lux-client-telegram-status p,
+.lux-client-telegram-steps p {
+  margin: 0;
+  color: rgba(246, 237, 214, 0.68);
+  font-weight: 760;
+  line-height: 1.55;
+}
+
+.lux-client-field {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.lux-client-field > span {
+  color: rgba(246, 237, 214, 0.76);
+  font-weight: 900;
+}
+
+.lux-client-field input {
+  width: 100%;
+  min-width: 0;
+  min-height: 52px;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 16px;
+  padding: 0 16px;
+  color: #fff8e3;
+  background: rgba(2, 6, 4, 0.38);
+  outline: none;
+}
+
+.lux-client-field input::placeholder {
+  color: rgba(246, 237, 214, 0.42);
+}
+
+.lux-client-field input:focus {
+  border-color: rgba(247, 223, 159, 0.58);
+  box-shadow: 0 0 0 4px rgba(218, 182, 91, 0.14);
+}
+
+.lux-client-choice-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 14px;
+}
+
+.lux-client-choice-row button {
+  min-height: 42px;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 999px;
+  padding: 0 14px;
+  color: rgba(246, 237, 214, 0.76);
+  background: rgba(2, 6, 4, 0.28);
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.lux-client-choice-row button.is-active {
+  border-color: rgba(247, 223, 159, 0.46);
+  color: #07120d;
+  background: linear-gradient(135deg, #f7df9f, #c99f36);
+}
+
+.lux-client-telegram-status {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(247, 223, 159, 0.24);
+  border-radius: 18px;
+  padding: 16px;
+  background:
+    linear-gradient(135deg, rgba(247, 223, 159, 0.1), transparent 66%),
+    rgba(2, 6, 4, 0.28);
+}
+
+.lux-client-telegram-status strong {
+  color: #f7df9f;
+  font-size: 1.1rem;
+}
+
+.lux-client-telegram-steps {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lux-client-telegram-steps li {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  border: 1px solid rgba(218, 182, 91, 0.12);
+  border-radius: 16px;
+  padding: 12px;
+  background: rgba(2, 6, 4, 0.22);
+}
+
+.lux-client-telegram-steps span {
+  width: 38px;
+  height: 38px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 12px;
+  color: #07120d;
+  background: #f7df9f;
+  font-weight: 950;
+}
+
+.lux-client-telegram-actions button {
+  min-height: 50px;
+  border: 1px solid rgba(247, 223, 159, 0.28);
+  border-radius: 999px;
+  color: #fff8e3;
+  background: rgba(2, 6, 4, 0.28);
+  font-weight: 950;
+  cursor: pointer;
+}
+
+@media (max-width: 1180px) {
+  .lux-client-tabs-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .lux-client-tabs {
+    position: static;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(160px, 1fr);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+  }
+
+  .lux-client-tabs a:hover,
+  .lux-client-tabs a:focus-visible,
+  .lux-client-tabs a.is-active {
+    transform: translateY(-1px);
+  }
+
+  .lux-client-command,
+  .lux-client-panel-grid,
+  .lux-client-project-card,
+  .lux-client-template-card,
+  .lux-client-record-grid,
+  .lux-client-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .lux-client-status-grid,
+  .lux-client-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lux-client-hub-grid .lux-panel-card,
+  .lux-client-chat-card,
+  .lux-client-billing-card,
+  .lux-client-docs-card,
+  .lux-client-site-quality-card,
+  .lux-client-invoice-card {
+    grid-column: span 6;
+  }
+
+  .lux-client-invoice-card .lux-payment-list {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 760px) {
+  .lux-client-main-card,
+  .lux-client-today,
+  .lux-client-status-grid article,
+  .lux-client-hub-grid .lux-panel-card,
+  .lux-client-panel-head,
+  .lux-client-project-card,
+  .lux-client-tabs {
+    border-radius: 18px;
+    padding: 18px;
+  }
+
+  .lux-client-tabs {
+    grid-auto-columns: minmax(150px, 78vw);
+  }
+
+  .lux-client-tabs a {
+    padding: 13px 14px;
+  }
+
+  .lux-client-hero {
+    display: grid;
+  }
+
+  .lux-client-hero .lux-client-hero-card {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .lux-client-status-grid,
+  .lux-client-facts,
+  .lux-client-hub-grid,
+  .lux-client-timeline--hub {
+    grid-template-columns: 1fr;
+  }
+
+  .lux-client-hub-grid .lux-panel-card,
+  .lux-client-chat-card,
+  .lux-client-billing-card,
+  .lux-client-docs-card,
+  .lux-client-site-quality-card,
+  .lux-client-invoice-card {
+    grid-column: 1 / -1;
+  }
+
+  .lux-client-main-card h2 {
+    font-size: clamp(1.75rem, 8vw, 2.55rem);
+    line-height: 1.04;
+  }
+
+  .lux-client-panel-head h2 {
+    font-size: clamp(1.85rem, 8.5vw, 2.8rem);
+    line-height: 1.04;
+  }
+
+  .lux-chat--hub .is-client {
+    margin-left: 0;
+  }
+
+  .lux-client-hub .lux-card-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .lux-client-hub .lux-card-head a {
+    width: 100%;
+  }
+}
+
+.lux-office-metrics {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.lux-office-metrics article {
+  min-height: 170px;
+  display: grid;
+  align-content: space-between;
+  gap: 12px;
+  padding: 20px;
+}
+
+.lux-office-metrics strong {
+  color: #fff8e3;
+  font-size: clamp(1.45rem, 2.3vw, 2.25rem);
+  line-height: 1;
+}
+
+.lux-office-panel {
+  display: grid;
+  gap: 18px;
+  padding: 24px;
+}
+
+.lux-section-title {
+  display: grid;
+  gap: 8px;
+}
+
+.lux-office-actions {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.lux-office-actions article {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+  padding: 18px;
+}
+
+.lux-office-actions strong {
+  color: #fff8e3;
+  line-height: 1.2;
+}
+
+.lux-office-actions p {
+  grid-column: 1 / -1;
+}
+
+.lux-office-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.lux-office-card {
+  grid-column: span 4;
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: 22px;
+}
+
+.lux-office-card.is-large {
+  grid-column: span 8;
+}
+
+.lux-card-head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lux-card-head a {
+  min-height: 40px;
+  padding-inline: 14px;
+}
+
+.lux-office-table,
+.lux-funnel,
+.lux-service-health {
+  display: grid;
+  gap: 8px;
+}
+
+.lux-office-row {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(100px, 0.8fr) minmax(150px, 1fr) minmax(140px, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid rgba(218, 182, 91, 0.12);
+  border-radius: 14px;
+  padding: 11px 12px;
+  background: rgba(2, 6, 4, 0.28);
+}
+
+
+.lux-office-row span,
+.lux-office-row strong,
+.lux-funnel strong,
+.lux-funnel small,
+.lux-service-health strong,
+.lux-service-health span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.lux-office-row span,
+.lux-service-health span {
+  color: rgba(246, 237, 214, 0.74);
+  font-weight: 800;
+  text-transform: none;
+}
+
+
+.lux-office-row.is-head {
+  color: rgba(246, 237, 214, 0.55);
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+
+.lux-office-row strong {
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #07120d;
+  background: #f7df9f;
+  text-align: center;
+}
+
+
+.lux-funnel p,
+.lux-service-health p {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid rgba(218, 182, 91, 0.12);
+  border-radius: 14px;
+  padding: 12px;
+  background: rgba(2, 6, 4, 0.28);
+}
+
+
+.lux-funnel strong,
+.lux-service-health strong {
+  color: #fff8e3;
+}
+
+.lux-funnel small,
+.lux-service-health span {
+  color: #f7df9f;
+  font-weight: 950;
+}
+
+.lux-office-hero {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: clamp(22px, 4vw, 48px);
+}
+
+.lux-office-hero > div {
+  min-width: 0;
+}
+
+.lux-office-hero h1 {
+  max-width: 980px;
+}
+
+.lux-office-hero-card {
+  width: min(360px, 100%);
+  flex: 0 0 min(360px, 100%);
+}
+
+.lux-office-hero-card strong {
+  color: #f7df9f;
+}
+
+.lux-office-hub {
+  gap: 16px;
+}
+
+.lux-office-tabs-layout {
+  grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+}
+
+.lux-office-tabs-content {
+  gap: 16px;
+}
+
+.lux-office-panel-tab {
+  scroll-margin-top: 108px;
+}
+
+.lux-office-panel-tab .lux-client-panel-head h2 {
+  max-width: 980px;
+  font-size: clamp(2rem, 3vw, 3.55rem);
+}
+
+.lux-office-panel-tab .lux-client-panel-head p {
+  max-width: 860px;
+}
+
+.lux-office-panel-tab .lux-panel-card > span,
+.lux-office-panel-tab .lux-card-head span,
+.lux-office-lane .lux-card-head span,
+.lux-office-site-card > span,
+.lux-office-price-list strong {
+  min-width: 0;
+  color: #27c3a3;
+  font-weight: 950;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.lux-office-panel-tab .lux-panel-card,
+.lux-office-lane,
+.lux-office-site-card {
+  min-width: 0;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 22px;
+  background: rgba(12, 26, 18, 0.68);
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.15);
+}
+
+.lux-office-panel-tab .lux-panel-card {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: clamp(20px, 2.4vw, 26px);
+}
+
+.lux-office-panel-tab .lux-panel-card h2,
+.lux-office-lane h2,
+.lux-office-site-card h2 {
+  margin: 0;
+  color: #fff8e3;
+  line-height: 1.08;
+  overflow-wrap: break-word;
+}
+
+.lux-office-panel-tab .lux-panel-card p,
+.lux-office-mini-card p,
+.lux-office-queue-item p {
+  min-width: 0;
+  margin: 0;
+  color: rgba(246, 237, 214, 0.72);
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+.lux-office-command {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+  gap: 14px;
+  align-items: stretch;
+}
+
+.lux-office-main-card {
+  min-height: 360px;
+}
+
+.lux-office-main-card h2 {
+  font-size: clamp(2rem, 3.2vw, 4rem);
+}
+
+.lux-office-today .lux-button-row a {
+  flex: 1 1 120px;
+}
+
+.lux-office-focus {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.lux-office-focus p {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+  border: 1px solid rgba(218, 182, 91, 0.12);
+  border-radius: 16px;
+  padding: 14px;
+  background: rgba(2, 6, 4, 0.28);
+}
+
+.lux-office-focus strong {
+  color: #f7df9f;
+  font-size: clamp(1.55rem, 2.4vw, 2.4rem);
+  line-height: 1;
+}
+
+.lux-office-focus span {
+  color: rgba(246, 237, 214, 0.7);
+  font-weight: 850;
+  line-height: 1.35;
+}
+
+.lux-office-status-grid article {
+  min-height: 148px;
+}
+
+.lux-office-queue-panel {
+  gap: 20px;
+}
+
+.lux-office-route-strip {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: 1px solid rgba(218, 182, 91, 0.14);
+  border-radius: 20px;
+  padding: 12px;
+  background:
+    linear-gradient(135deg, rgba(247, 223, 159, 0.08), transparent 70%),
+    rgba(2, 6, 4, 0.26);
+}
+
+.lux-office-route-strip a {
+  min-width: 0;
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 999px;
+  padding: 0 16px;
+  color: #f7df9f;
+  background: rgba(12, 26, 18, 0.74);
+  text-decoration: none;
+  font-weight: 950;
+  line-height: 1.15;
+  text-align: center;
+  overflow-wrap: break-word;
+}
+
+.lux-office-route-strip a:first-child {
+  color: #07120d;
+  border-color: transparent;
+  background: linear-gradient(135deg, #f7df9f, #c9a044);
+}
+
+.lux-office-board,
+.lux-office-monitor-grid,
+.lux-office-settings-grid {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.lux-office-monitor-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+}
+
+.lux-office-lane {
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding: 18px;
+}
+
+.lux-office-lane .lux-card-head strong {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: #07120d;
+  background: #f7df9f;
+}
+
+.lux-office-mini-card,
+.lux-office-queue-item {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(218, 182, 91, 0.12);
+  border-radius: 16px;
+  padding: 15px;
+  background: rgba(2, 6, 4, 0.3);
+}
+
+.lux-office-mini-card strong,
+.lux-office-queue-item strong {
+  color: #fff8e3;
+  font-size: 1.02rem;
+  overflow-wrap: anywhere;
+}
+
+.lux-office-mini-card span,
+.lux-office-queue-item span {
+  color: #f7df9f;
+  font-weight: 950;
+  overflow-wrap: anywhere;
+}
+
+.lux-office-queue {
+  display: grid;
+  gap: 10px;
+}
+
+.lux-office-queue-item.is-hot {
+  border-color: rgba(247, 223, 159, 0.42);
+  background:
+    linear-gradient(135deg, rgba(247, 223, 159, 0.12), transparent 70%),
+    rgba(2, 6, 4, 0.32);
+}
+
+.lux-office-action-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.lux-office-action-strip a,
+.lux-office-price-list a {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 14px;
+  padding: 0 14px;
+  color: #f7df9f;
+  background: rgba(2, 6, 4, 0.3);
+  text-decoration: none;
+  font-weight: 950;
+}
+
+.lux-office-action-strip a:first-child,
+.lux-office-price-list article:first-child a {
+  color: #07120d;
+  border-color: transparent;
+  background: linear-gradient(135deg, #f7df9f, #c9a044);
+}
+
+.lux-office-row--orders {
+  grid-template-columns: minmax(160px, 1.2fr) minmax(120px, 0.7fr) minmax(110px, 0.6fr) auto;
+}
+
+.lux-office-invoice-list p {
+  grid-template-columns: minmax(58px, 0.22fr) minmax(0, 1fr) auto;
+}
+
+.lux-office-site-card {
+  display: grid;
+  align-content: start;
+  gap: 16px;
+  padding: clamp(20px, 2.4vw, 26px);
+}
+
+.lux-office-site-card.is-warning {
+  border-color: rgba(247, 223, 159, 0.34);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(247, 223, 159, 0.12), transparent 32%),
+    rgba(12, 26, 18, 0.72);
+}
+
+.lux-office-settings-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.lux-office-price-list {
+  display: grid;
+  gap: 10px;
+}
+
+.lux-office-price-list article {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(160px, auto) auto;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid rgba(218, 182, 91, 0.14);
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(12, 26, 18, 0.68);
+}
+
+.lux-office-price-list span {
+  color: #fff8e3;
+  font-weight: 950;
+  text-align: right;
+}
+
+.lux-office-insight-grid,
+.lux-office-manager-grid,
+.lux-office-status-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.lux-office-manager-grid {
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr) minmax(0, 0.95fr) minmax(0, 1fr);
+}
+
+.lux-office-status-row {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.lux-office-insight-grid .lux-panel-card,
+.lux-office-manager-grid .lux-panel-card,
+.lux-office-composer,
+.lux-office-calendar-card,
+.lux-office-fast-flow,
+.lux-office-ops-card {
+  min-width: 0;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 22px;
+  background: rgba(12, 26, 18, 0.68);
+}
+
+.lux-office-ops-grid {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 14px;
+}
+
+.lux-office-priority-card,
+.lux-office-readiness-card {
+  min-width: 0;
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.lux-office-priority-card h2,
+.lux-office-readiness-card h2 {
+  max-width: 680px;
+  color: #fff8e3;
+  font-family: var(--lux-serif);
+  font-size: clamp(2.1rem, 3.6vw, 4.4rem);
+  line-height: 0.92;
+  overflow-wrap: break-word;
+}
+
+.lux-office-priority-card p,
+.lux-office-readiness-card p {
+  max-width: 760px;
+  color: rgba(246, 237, 214, 0.72);
+  font-weight: 800;
+  line-height: 1.55;
+  overflow-wrap: break-word;
+}
+
+.lux-office-pill-row {
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.lux-office-pill-row strong {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(247, 223, 159, 0.35);
+  border-radius: 999px;
+  padding: 8px 12px;
+  color: #07120d;
+  background: linear-gradient(135deg, #f7df9f, #c9a044);
+  font-size: 0.84rem;
+  font-weight: 950;
+  line-height: 1.2;
+}
+
+.lux-office-funnel-bars,
+.lux-office-feed,
+.lux-office-flow {
+  display: grid;
+  gap: 10px;
+}
+
+.lux-office-funnel-card,
+.lux-office-day-plan,
+.lux-office-feed-card {
+  grid-column: span 1;
+}
+
+.lux-office-client-card {
+  grid-column: span 1;
+}
+
+.lux-office-day-plan ol {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lux-office-day-plan li {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: start;
+  border: 1px solid rgba(218, 182, 91, 0.12);
+  border-radius: 16px;
+  padding: 13px 14px;
+  background: rgba(2, 6, 4, 0.28);
+}
+
+.lux-office-day-plan strong {
+  color: #f7df9f;
+  font-weight: 950;
+  line-height: 1.35;
+}
+
+.lux-office-day-plan span {
+  min-width: 0;
+  color: rgba(246, 237, 214, 0.72);
+  font-weight: 800;
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
+.lux-office-health-dots {
+  display: grid;
+  gap: 10px;
+}
+
+.lux-office-health-dots p {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 10px;
+  align-items: center;
+  border: 1px solid rgba(218, 182, 91, 0.12);
+  border-radius: 16px;
+  padding: 13px 14px;
+  background: rgba(2, 6, 4, 0.28);
+}
+
+.lux-office-health-dots strong {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #27c3a3;
+  box-shadow: 0 0 0 6px rgba(39, 195, 163, 0.12);
+}
+
+.lux-office-health-dots span {
+  min-width: 0;
+  color: rgba(246, 237, 214, 0.78);
+  font-weight: 850;
+  line-height: 1.4;
+  overflow-wrap: break-word;
+}
+
+.lux-office-readiness-meter {
+  min-width: 0;
+  height: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(247, 223, 159, 0.22);
+  border-radius: 999px;
+  background: rgba(2, 6, 4, 0.46);
+}
+
+.lux-office-readiness-meter span {
+  display: block;
+  width: var(--progress, 0%);
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #27c3a3, #f7df9f 72%, #c9a044);
+  box-shadow: 0 0 20px rgba(247, 223, 159, 0.2);
+}
+
+.lux-office-funnel-bars p {
+  --bar: 0%;
+  min-width: 0;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(218, 182, 91, 0.12);
+  border-radius: 16px;
+  padding: 13px 14px;
+  background: rgba(2, 6, 4, 0.28);
+}
+
+.lux-office-funnel-bars p::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--bar);
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(39, 195, 163, 0.18), rgba(247, 223, 159, 0.08));
+}
+
+.lux-office-funnel-bars strong,
+.lux-office-funnel-bars span {
+  position: relative;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.lux-office-funnel-bars strong {
+  color: #fff8e3;
+}
+
+.lux-office-funnel-bars span {
+  color: #f7df9f;
+  font-weight: 950;
+}
+
+.lux-office-feed p,
+.lux-office-flow p,
+.lux-office-status-row article {
+  min-width: 0;
+  display: grid;
+  gap: 6px;
+  border: 1px solid rgba(218, 182, 91, 0.12);
+  border-radius: 16px;
+  padding: 13px 14px;
+  background: rgba(2, 6, 4, 0.28);
+}
+
+.lux-office-feed p {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+}
+
+.lux-office-feed strong {
+  color: #f7df9f;
+  font-weight: 950;
+}
+
+.lux-office-feed span {
+  color: rgba(246, 237, 214, 0.72);
+  font-weight: 800;
+  line-height: 1.45;
+  overflow-wrap: break-word;
+}
+
+.lux-office-status-row article {
+  align-content: start;
+}
+
+.lux-office-status-row span {
+  color: #27c3a3;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.lux-office-status-row strong {
+  color: #fff8e3;
+  font-size: clamp(1.45rem, 2.5vw, 2.3rem);
+  line-height: 1;
+}
+
+.lux-office-status-row p {
+  margin: 0;
+  color: rgba(246, 237, 214, 0.68);
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.lux-office-field-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.lux-office-field-grid label,
+.lux-office-textarea {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.lux-office-field-grid label span,
+.lux-office-textarea span {
+  color: rgba(246, 237, 214, 0.72);
+  font-weight: 950;
+}
+
+.lux-office-field-grid input,
+.lux-office-textarea textarea {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 16px;
+  color: #fff8e3;
+  background: rgba(2, 6, 4, 0.38);
+  outline: none;
+  font: inherit;
+  font-weight: 800;
+}
+
+.lux-office-field-grid input {
+  min-height: 52px;
+  padding: 0 16px;
+}
+
+.lux-office-textarea textarea {
+  min-height: 128px;
+  resize: vertical;
+  padding: 14px 16px;
+  line-height: 1.5;
+}
+
+.lux-office-field-grid input:focus,
+.lux-office-textarea textarea:focus {
+  border-color: rgba(247, 223, 159, 0.58);
+  box-shadow: 0 0 0 4px rgba(218, 182, 91, 0.14);
+}
+
+.lux-office-offer-card .lux-office-action-strip,
+.lux-office-composer .lux-office-action-strip,
+.lux-office-ops-card .lux-office-action-strip {
+  margin-top: 4px;
+}
+
+.lux-office-composer {
+  display: grid;
+  gap: 16px;
+  padding: clamp(20px, 2.4vw, 26px);
+}
+
+.lux-office-flow {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.lux-office-flow p {
+  align-content: start;
+}
+
+.lux-office-flow strong {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  color: #07120d;
+  background: rgba(246, 237, 214, 0.5);
+}
+
+.lux-office-flow span {
+  color: rgba(246, 237, 214, 0.72);
+  font-weight: 850;
+  line-height: 1.4;
+}
+
+.lux-office-flow .is-done,
+.lux-office-flow .is-active {
+  border-color: rgba(247, 223, 159, 0.34);
+  background:
+    linear-gradient(135deg, rgba(247, 223, 159, 0.1), transparent 70%),
+    rgba(2, 6, 4, 0.28);
+}
+
+.lux-office-flow .is-done strong {
+  background: #27c3a3;
+}
+
+.lux-office-flow .is-active strong {
+  background: #f7df9f;
+}
+
+.lux-office-revenue-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.lux-office-revenue-summary article {
+  min-width: 0;
+  display: grid;
+  gap: 8px;
+  align-content: start;
+  border: 1px solid rgba(218, 182, 91, 0.16);
+  border-radius: 20px;
+  padding: clamp(18px, 2.2vw, 24px);
+  background:
+    linear-gradient(145deg, rgba(247, 223, 159, 0.08), transparent 62%),
+    rgba(12, 26, 18, 0.76);
+  box-shadow: 0 24px 72px rgba(0, 0, 0, 0.16);
+}
+
+.lux-office-revenue-summary article.is-accent {
+  border-color: rgba(39, 195, 163, 0.34);
+  background:
+    radial-gradient(circle at 88% 16%, rgba(39, 195, 163, 0.18), transparent 34%),
+    linear-gradient(145deg, rgba(247, 223, 159, 0.12), transparent 62%),
+    rgba(12, 26, 18, 0.82);
+}
+
+.lux-office-revenue-summary span {
+  color: #27c3a3;
+  font-weight: 950;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.lux-office-revenue-summary strong {
+  color: #fff8e3;
+  font-size: clamp(1.65rem, 2.4vw, 2.5rem);
+  line-height: 1.02;
+  overflow-wrap: anywhere;
+}
+
+.lux-office-revenue-summary p {
+  margin: 0;
+  color: rgba(246, 237, 214, 0.7);
+  font-weight: 850;
+  line-height: 1.35;
+  overflow-wrap: break-word;
+}
+
+.lux-office-revenue-grid {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.lux-office-revenue-card {
+  grid-column: span 4;
+  min-width: 0;
+}
+
+.lux-office-revenue-card.is-wide {
+  grid-column: span 8;
+}
+
+.lux-office-revenue-card .lux-card-head a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  border: 1px solid rgba(218, 182, 91, 0.2);
+  border-radius: 14px;
+  padding: 0 14px;
+  color: #f7df9f;
+  background: rgba(2, 6, 4, 0.32);
+  text-decoration: none;
+  font-weight: 950;
+}
+
+.lux-office-month-bars,
+.lux-office-rank-list,
+.lux-office-source-list,
+.lux-office-money-table {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.lux-office-month-bars p,
+.lux-office-rank-list p {
+  --bar: 0%;
+  min-width: 0;
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(218, 182, 91, 0.14);
+  border-radius: 16px;
+  padding: 14px 15px;
+  background: rgba(2, 6, 4, 0.32);
+}
+
+.lux-office-month-bars p::before,
+.lux-office-rank-list p::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--bar);
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(39, 195, 163, 0.28), rgba(247, 223, 159, 0.12));
+}
+
+.lux-office-rank-list--count p::before {
+  background: linear-gradient(90deg, rgba(247, 223, 159, 0.24), rgba(39, 195, 163, 0.12));
+}
+
+.lux-office-month-bars strong,
+.lux-office-month-bars span,
+.lux-office-rank-list strong,
+.lux-office-rank-list span {
+  position: relative;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.lux-office-month-bars strong,
+.lux-office-rank-list strong {
+  color: #fff8e3;
+  font-weight: 950;
+}
+
+.lux-office-month-bars span,
+.lux-office-rank-list span {
+  color: #f7df9f;
+  font-weight: 950;
+  text-align: right;
+}
+
+.lux-office-revenue-note {
+  display: grid;
+  gap: 5px;
+  border: 1px solid rgba(39, 195, 163, 0.22);
+  border-radius: 18px;
+  padding: 14px 16px;
+  background:
+    radial-gradient(circle at 92% 18%, rgba(39, 195, 163, 0.16), transparent 36%),
+    rgba(2, 6, 4, 0.28);
+}
+
+.lux-office-revenue-note strong {
+  color: #fff8e3;
+  font-weight: 950;
+}
+
+.lux-office-revenue-note span {
+  color: rgba(246, 237, 214, 0.72);
+  font-weight: 850;
+  line-height: 1.45;
+}
+
+.lux-office-source-list p {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid rgba(218, 182, 91, 0.14);
+  border-radius: 16px;
+  padding: 13px 14px;
+  background:
+    linear-gradient(135deg, rgba(247, 223, 159, 0.06), transparent 70%),
+    rgba(2, 6, 4, 0.31);
+}
+
+.lux-office-source-list strong,
+.lux-office-source-list span,
+.lux-office-source-list em {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.lux-office-source-list strong {
+  color: #fff8e3;
+  font-weight: 950;
+}
+
+.lux-office-source-list span {
+  color: #f7df9f;
+  font-weight: 950;
+  text-align: right;
+}
+
+.lux-office-source-list em {
+  justify-self: end;
+  border-radius: 999px;
+  padding: 5px 8px;
+  color: #07120d;
+  background: #27c3a3;
+  font-style: normal;
+  font-weight: 950;
+}
+
+.lux-office-revenue-advice {
+  align-content: start;
+}
+
+.lux-office-money-row {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(52px, 0.28fr) minmax(150px, 1.1fr) minmax(100px, 0.7fr) auto;
+  gap: 12px;
+  align-items: center;
+  border: 1px solid rgba(218, 182, 91, 0.13);
+  border-radius: 16px;
+  padding: 13px 14px;
+  background: rgba(2, 6, 4, 0.3);
+}
+
+.lux-office-money-row span,
+.lux-office-money-row strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.lux-office-money-row span {
+  color: rgba(246, 237, 214, 0.74);
+  font-weight: 850;
+}
+
+.lux-office-money-row strong {
+  justify-self: end;
+  border-radius: 999px;
+  padding: 7px 11px;
+  color: #07120d;
+  background: #f7df9f;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.lux-office-money-row.is-head {
+  color: rgba(246, 237, 214, 0.52);
+  text-transform: uppercase;
+}
+
+.lux-office-money-row.is-head span {
+  color: inherit;
+  font-weight: 950;
+}
+
+@media (max-width: 1180px) {
+  .lux-office-command,
+  .lux-office-board,
+  .lux-office-monitor-grid,
+  .lux-office-settings-grid,
+  .lux-office-manager-grid,
+  .lux-office-ops-grid,
+  .lux-office-revenue-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lux-office-insight-grid,
+  .lux-office-status-row,
+  .lux-office-revenue-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lux-office-revenue-card,
+  .lux-office-revenue-card.is-wide {
+    grid-column: auto;
+  }
+
+  .lux-office-flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .lux-office-focus {
+    grid-template-columns: repeat(3, minmax(120px, 1fr));
+  }
+
+  .lux-office-tab-group {
+    display: none;
+  }
+}
+
+@media (max-width: 920px) {
+  .lux-office-hero {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .lux-office-hero-card {
+    width: 100%;
+    flex-basis: auto;
+  }
+
+  .lux-office-tabs-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .lux-office-tabs {
+    position: static;
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-columns: unset;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    overflow-x: visible;
+  }
+
+  .lux-office-price-list article {
+    grid-template-columns: 1fr;
+  }
+
+  .lux-office-price-list span {
+    text-align: left;
+  }
+
+  .lux-office-panel-tab {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lux-office-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lux-office-insight-grid,
+  .lux-office-status-row,
+  .lux-office-field-grid,
+  .lux-office-flow,
+  .lux-office-revenue-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .lux-office-tabs {
+    display: grid;
+    grid-auto-flow: row;
+    grid-auto-columns: unset;
+    grid-template-columns: 1fr;
+    overflow-x: visible;
+  }
+
+  .lux-office-focus,
+  .lux-office-status-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lux-office-hub,
+  .lux-office-tabs-layout,
+  .lux-office-tabs-content,
+  .lux-office-panel,
+  .lux-office-panel-tab {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .lux-office-actions {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .lux-office-actions article {
+    width: 100%;
+  }
+
+  .lux-office-row,
+  .lux-office-row--orders,
+  .lux-office-invoice-list p,
+  .lux-office-money-row,
+  .lux-office-month-bars p,
+  .lux-office-rank-list p,
+  .lux-office-source-list p {
+    grid-template-columns: 1fr;
+  }
+
+  .lux-office-row strong,
+  .lux-office-money-row strong,
+  .lux-office-month-bars span,
+  .lux-office-rank-list span,
+  .lux-office-source-list span,
+  .lux-office-source-list em {
+    justify-self: start;
+    text-align: left;
+  }
+}
+
+
+.lux-brief {
+  align-items: start;
+}
+
+.lux-brief--application {
+  gap: clamp(24px, 4vw, 52px);
+}
+
+.lux-brief-copy {
+  position: sticky;
+  top: 104px;
+  display: grid;
+  gap: 22px;
+  align-self: start;
+}
+
+.lux-brief-copy > p:not(.lux-kicker) {
+  max-width: 680px;
+  margin: 0;
+  color: rgba(246, 237, 214, 0.74);
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  line-height: 1.65;
+}
+
+.lux-brief-promise {
+  display: grid;
+  gap: 10px;
+}
+
+.lux-brief-promise article {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(90px, 0.34fr) minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  border: 1px solid rgba(218, 182, 91, 0.14);
+  border-radius: 18px;
+  padding: 13px 15px;
+  background: rgba(2, 6, 4, 0.26);
+}
+
+.lux-brief-promise strong {
+  color: #f7df9f;
+  font-weight: 950;
+}
+
+.lux-brief-promise span {
+  color: rgba(246, 237, 214, 0.7);
+  line-height: 1.35;
+}
+
+.lux-brief-form {
+  display: grid;
+  gap: 18px;
+  padding: clamp(20px, 3vw, 28px);
+}
+
+.lux-brief-form-head {
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(218, 182, 91, 0.16);
+  border-radius: 20px;
+  padding: clamp(18px, 2.5vw, 24px);
+  background:
+    radial-gradient(circle at 90% 12%, rgba(247, 223, 159, 0.12), transparent 34%),
+    rgba(2, 6, 4, 0.28);
+}
+
+.lux-brief-form-head h2 {
+  margin: 0;
+  color: #fff8e3;
+  font-size: clamp(1.45rem, 2.1vw, 2.2rem);
+  line-height: 1.08;
+}
+
+.lux-brief-form-head p {
+  margin: 0;
+  color: rgba(246, 237, 214, 0.68);
+  line-height: 1.55;
+}
+
+.lux-brief-form label,
+.lux-checkboxes,
+.lux-consent {
+  display: grid;
+  gap: 8px;
+  color: #fff8e3;
+  font-weight: 900;
+}
+
+.lux-brief-step {
+  display: grid;
+  gap: 16px;
+  border: 1px solid rgba(218, 182, 91, 0.14);
+  border-radius: 20px;
+  padding: 18px;
+  background: rgba(2, 6, 4, 0.28);
+}
+
+.lux-brief-step__head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.lux-brief-step__head > span {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  color: #07120d;
+  background: #f7df9f;
+  font-weight: 950;
+}
+
+.lux-brief-step h2,
+.lux-selected-template h3 {
+  margin: 0;
+  color: #fff8e3;
+  line-height: 1.1;
+}
+
+.lux-brief-step h2 {
+  font-size: clamp(1.2rem, 1.7vw, 1.55rem);
+}
+
+.lux-brief-step p,
+.lux-selected-template p {
+  margin: 0;
+  color: rgba(246, 237, 214, 0.68);
+  line-height: 1.5;
+}
+
+.lux-selected-template {
+  display: grid;
+  gap: 8px;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(218, 182, 91, 0.08);
+}
+
+.lux-selected-template > span {
+  color: #f7df9f;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.lux-selected-template a {
+  width: fit-content;
+  color: #f7df9f;
+  font-weight: 950;
+}
+
+.lux-brief-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.lux-brief-form .is-wide,
+.lux-brief-form .form-status,
+.lux-brief-form button,
+.lux-form-errors,
+.lux-form-success {
+  grid-column: 1 / -1;
+}
+
+.lux-brief-form input,
+.lux-brief-form select,
+.lux-brief-form textarea {
+  width: 100%;
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 16px;
+  padding: 15px 16px;
+  color: #f6edd6;
+  background: rgba(2, 6, 4, 0.72);
+}
+
+.lux-brief-form input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  padding: 0;
+  accent-color: #d3a941;
+}
+
+.lux-checkboxes ul {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lux-checkboxes label,
+.lux-consent {
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  min-height: 46px;
+  border: 1px solid rgba(218, 182, 91, 0.14);
+  border-radius: 16px;
+  padding: 10px 12px;
+  background: rgba(2, 6, 4, 0.42);
+}
+
+.lux-checkboxes label {
+  align-items: center;
+}
+
+.lux-brief-form button {
+  border: 0;
+}
+
+.lux-brief-form .form-status {
+  min-height: 22px;
+  margin: 0;
+  color: rgba(246, 237, 214, 0.62);
+}
+
+.lux-form-errors,
+.lux-brief-form .errorlist {
+  margin: 0;
+  color: #ffb6a7;
+}
+
+.lux-form-errors,
+.lux-form-success {
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-weight: 900;
+}
+
+.lux-form-errors {
+  border: 1px solid rgba(255, 122, 105, 0.32);
+  background: rgba(126, 24, 17, 0.28);
+}
+
+.lux-form-success {
+  border: 1px solid rgba(39, 195, 163, 0.32);
+  color: #98f1d8;
+  background: rgba(39, 195, 163, 0.12);
+}
+
+.lux-footer {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 0.6fr) minmax(220px, 0.5fr);
+  gap: 28px;
+  margin-top: 90px;
+  margin-bottom: 34px;
+  padding: 28px;
+  border: 1px solid rgba(218, 182, 91, 0.16);
+  border-radius: 24px;
+  background: rgba(12, 26, 18, 0.7);
+}
+
+.lux-footer img {
+  width: 44px;
+  max-width: none;
+  height: 44px;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.lux-footer nav {
+  display: grid;
+  gap: 10px;
+}
+
+.lux-footer a {
+  text-decoration: none;
+  font-weight: 900;
+}
+
+/* Local Arlux production polish: readable inner pages, forms and legal/auth screens */
+
+body.lux-site {
+  --ink: #fff8e3;
+  --muted: rgba(246, 237, 214, 0.76);
+  --line: rgba(218, 182, 91, 0.22);
+  --gold: #d3a941;
+  --gold-soft: #f7df9f;
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+body.lux-site *,
+body.lux-site *::before,
+body.lux-site *::after {
+  box-sizing: border-box;
+}
+
+body.lux-site h1,
+body.lux-site h2,
+body.lux-site h3,
+body.lux-site strong,
+body.lux-site summary {
+  color: #fff8e3;
+}
+
+body.lux-site p,
+body.lux-site small,
+body.lux-site li,
+body.lux-site label,
+body.lux-site dd {
+  color: var(--muted);
+}
+
+body.lux-site .eyebrow,
+body.lux-site .lux-kicker {
+  color: #27c3a3;
+}
+
+body.lux-site .lux-nav {
+  isolation: isolate;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: min(1500px, calc(100vw - 36px));
+  margin: 0 auto;
+  padding: 10px clamp(44px, 4vw, 76px);
+  transform: translateX(-50%);
+  border-bottom: 0;
+  background: transparent;
+  overflow: visible;
+}
+
+.yandex-metrika-pixel {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+}
+
+body.lux-site main {
+  padding-top: 88px;
+}
+
+body.lux-site .lux-nav::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border-bottom: 1px solid rgba(218, 182, 91, 0.16);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(7, 18, 13, 0),
+      rgba(7, 18, 13, 0.76) 44px,
+      rgba(7, 18, 13, 0.76) calc(100% - 44px),
+      rgba(7, 18, 13, 0)
+    );
+  backdrop-filter: blur(18px);
+}
+
+body.lux-site .lux-brand,
+body.lux-site .lux-nav__links,
+body.lux-site .lux-nav__cta {
+  flex: 0 0 auto;
+}
+
+body.lux-site .lux-brand {
+  margin-left: clamp(12px, 1.2vw, 24px);
+}
+
+body.lux-site .lux-nav__links {
+  max-width: min(100%, 960px);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+body.lux-site .lux-nav__links::-webkit-scrollbar {
+  display: none;
+}
+
+body.lux-site .lux-nav__links a,
+body.lux-site .lux-nav__cta,
+body.lux-site .lux-actions a,
+body.lux-site .lux-card-grid a,
+body.lux-site .lux-detail a,
+body.lux-site .lux-final a,
+body.lux-site .lux-template-grid footer a,
+body.lux-site .lux-case-actions a,
+body.lux-site .lux-brief-form button,
+body.lux-site .lead-form button,
+body.lux-site .lead-form .button {
+  min-width: 0;
+  white-space: normal;
+  text-align: center;
+}
+
+body.lux-site .lux-hero,
+body.lux-site .lux-band,
+body.lux-site .lux-support,
+body.lux-site .lux-split,
+body.lux-site .lux-templates,
+body.lux-site .lux-final,
+body.lux-site .lux-page-hero,
+body.lux-site .lux-card-grid,
+body.lux-site .lux-detail,
+body.lux-site .lux-path,
+body.lux-site .lux-choice-guide,
+body.lux-site .lux-template-grid,
+body.lux-site .lux-service-grid,
+body.lux-site .lux-case-grid,
+body.lux-site .lux-brief,
+body.lux-site .legal-hub,
+body.lux-site .lead-panel,
+body.lux-site .lux-footer {
+  width: min(1500px, calc(100vw - 48px));
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+body.lux-site .lux-page-hero {
+  min-height: auto;
+  padding: clamp(46px, 7vw, 88px) 0 clamp(28px, 4vw, 48px);
+}
+
+body.lux-site .lux-page-hero h1,
+body.lux-site .lux-detail h1,
+body.lux-site .lux-final h2,
+body.lux-site .lux-band h2,
+body.lux-site .lux-support h2,
+body.lux-site .lux-split h2,
+body.lux-site .lux-section-head h2 {
+  max-width: 980px;
+  margin: 0;
+  font-size: clamp(2.4rem, 4.4vw, 5.2rem);
+  line-height: 1.02;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+body.lux-site .lux-hero h1 {
+  overflow-wrap: anywhere;
+}
+
+body.lux-site .lux-page-hero p,
+body.lux-site .lux-final p,
+body.lux-site .lux-detail p,
+body.lux-site .lux-band p,
+body.lux-site .lux-support p,
+body.lux-site .lux-split p {
+  max-width: 820px;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+}
+
+body.lux-site .lux-band,
+body.lux-site .lux-support,
+body.lux-site .lux-split,
+body.lux-site .lux-templates,
+body.lux-site .lux-final,
+body.lux-site .lux-card-grid,
+body.lux-site .lux-choice-guide,
+body.lux-site .lux-template-grid,
+body.lux-site .lux-service-grid,
+body.lux-site .lux-case-grid,
+body.lux-site .lux-brief {
+  margin-top: clamp(42px, 6vw, 72px);
+}
+
+body.lux-site .lux-final {
+  display: grid;
+  gap: 18px;
+  min-height: 0;
+  overflow: hidden;
+  padding: clamp(28px, 5vw, 58px);
+}
+
+body.lux-site .lux-card-grid article,
+body.lux-site .lux-case-grid article,
+body.lux-site .lux-template-grid article,
+body.lux-site .lux-choice-guide article,
+body.lux-site .lux-template-track article,
+body.lux-site .lux-service-strip article,
+body.lux-site .lux-process article,
+body.lux-site .lux-support-grid article,
+body.lux-site .lux-detail > div,
+body.lux-site .lux-detail aside,
+body.lux-site .lux-service-grid article,
+body.lux-site .lux-brief-step {
+  min-width: 0;
+  overflow: hidden;
+}
+
+body.lux-site .lux-card-grid h2,
+body.lux-site .lux-case-grid h2,
+body.lux-site .lux-template-grid h2,
+body.lux-site .lux-service-grid h2,
+body.lux-site .lux-service-strip h3,
+body.lux-site .lux-process h3 {
+  overflow-wrap: anywhere;
+}
+
+body.lux-site .lux-template-grid footer {
+  align-items: stretch;
+}
+
+body.lux-site .lux-template-grid footer a {
+  flex: 1 1 190px;
+}
+
+body.lux-site .lux-template-grid article > div span,
+body.lux-site .lux-case-grid small,
+body.lux-site .lux-proof-strip span {
+  overflow-wrap: anywhere;
+}
+
+body.lux-site .lead-panel {
+  grid-template-columns: minmax(0, 0.8fr) minmax(360px, 1fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: center;
+  padding: clamp(44px, 7vw, 82px) 0;
+}
+
+body.lux-site .lead-panel h1 {
+  max-width: 760px;
+  margin: 0;
+  color: #fff8e3;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2.6rem, 5vw, 5.4rem);
+  line-height: 1;
+  overflow-wrap: anywhere;
+}
+
+body.lux-site .lead-panel > div {
+  min-width: 0;
+}
+
+body.lux-site .lead-panel > div > p:not(.eyebrow) {
+  max-width: 640px;
+  color: rgba(246, 237, 214, 0.76);
+  font-size: 1.08rem;
+  line-height: 1.65;
+}
+
+body.lux-site .lead-form {
+  border-color: rgba(218, 182, 91, 0.22);
+  border-radius: 24px;
+  padding: clamp(22px, 3vw, 34px);
+  color: #fff8e3;
+  background:
+    linear-gradient(180deg, rgba(218, 182, 91, 0.07), rgba(218, 182, 91, 0.02)),
+    rgba(16, 35, 26, 0.94);
+  box-shadow: 0 34px 100px rgba(0, 0, 0, 0.28);
+}
+
+body.lux-site .lead-form label,
+body.lux-site .lead-form p {
+  min-width: 0;
+}
+
+body.lux-site .lead-form label,
+body.lux-site .lead-form label > span,
+body.lux-site .lead-form p > label {
+  color: rgba(246, 237, 214, 0.86);
+}
+
+body.lux-site .lead-form .helptext,
+body.lux-site .lead-form ul,
+body.lux-site .lead-form li {
+  color: rgba(246, 237, 214, 0.64);
+}
+
+body.lux-site .lead-form input,
+body.lux-site .lead-form textarea,
+body.lux-site .lead-form select,
+body.lux-site .lux-brief-form input:not([type="checkbox"]),
+body.lux-site .lux-brief-form textarea,
+body.lux-site .lux-brief-form select {
+  min-width: 0;
+  min-height: 50px;
+  border: 1px solid rgba(218, 182, 91, 0.26);
+  border-radius: 16px;
+  color: #fff8e3;
+  background-color: rgba(2, 6, 4, 0.72);
+}
+
+body.lux-site .lead-form input::placeholder,
+body.lux-site .lead-form textarea::placeholder,
+body.lux-site .lux-brief-form input::placeholder,
+body.lux-site .lux-brief-form textarea::placeholder {
+  color: rgba(246, 237, 214, 0.44);
+}
+
+body.lux-site .lead-form input:focus,
+body.lux-site .lead-form textarea:focus,
+body.lux-site .lead-form select:focus,
+body.lux-site .lux-brief-form input:not([type="checkbox"]):focus,
+body.lux-site .lux-brief-form textarea:focus,
+body.lux-site .lux-brief-form select:focus {
+  border-color: rgba(247, 223, 159, 0.72);
+  box-shadow:
+    0 0 0 4px rgba(218, 182, 91, 0.14),
+    inset 0 0 0 1px rgba(247, 223, 159, 0.08);
+}
+
+body.lux-site .lux-brief-form input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  min-height: 18px;
+  margin: 2px 0 0;
+  border: 0;
+  border-radius: 4px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  accent-color: #d3a941;
+}
+
+body.lux-site .lux-brief-form input[type="checkbox"]:focus {
+  outline: 2px solid rgba(247, 223, 159, 0.72);
+  outline-offset: 3px;
+}
+
+body.lux-site .lead-form select,
+body.lux-site .lux-brief-form select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 54px;
+  cursor: pointer;
+  background:
+    linear-gradient(45deg, transparent 50%, #f7df9f 50%) calc(100% - 27px) 50% / 9px 9px no-repeat,
+    linear-gradient(135deg, #f7df9f 50%, transparent 50%) calc(100% - 19px) 50% / 9px 9px no-repeat,
+    linear-gradient(90deg, rgba(218, 182, 91, 0.36), rgba(218, 182, 91, 0.36)) calc(100% - 49px) 50% / 1px 62% no-repeat,
+    rgba(2, 6, 4, 0.72);
+}
+
+body.lux-site .lead-form select::-ms-expand,
+body.lux-site .lux-brief-form select::-ms-expand {
+  display: none;
+}
+
+body.lux-site .lead-form select option,
+body.lux-site .lux-brief-form select option {
+  color: #fff8e3;
+  background: #07120d;
+}
+
+body.lux-site .lead-form button.button--primary,
+body.lux-site .lead-form .button--primary,
+body.lux-site .button.button--primary {
+  border: 0;
+  color: #09100c;
+  background: linear-gradient(135deg, #f7df9f, #d3a941 62%, #9a6f25);
+}
+
+body.lux-site .lux-nav__links a.is-active,
+body.lux-site .lux-nav__cta,
+body.lux-site .lux-actions a:first-child,
+body.lux-site .lux-orbit-card a,
+body.lux-site .lux-service-strip a,
+body.lux-site .lux-final a,
+body.lux-site .lux-card-grid a,
+body.lux-site .lux-detail a:first-child,
+body.lux-site .lux-template-grid footer a:last-child,
+body.lux-site .lux-template-actions a:last-child,
+body.lux-site .lux-brief-form button,
+body.lux-site .lead-form button.button--primary,
+body.lux-site .lead-form .button--primary,
+body.lux-site .button.button--primary,
+body.lux-site .lux-button-row a:first-child,
+body.lux-site .lux-card-head a,
+body.lux-site .lux-office-action-strip a:first-child,
+body.lux-site .lux-office-price-list article:first-child a {
+  color: #07120d !important;
+  text-shadow: none !important;
+}
+
+body.lux-site .lead-form .button--dark,
+body.lux-site .lead-form .button--ghost {
+  border: 1px solid rgba(218, 182, 91, 0.28);
+  color: #fff8e3 !important;
+  background: rgba(2, 6, 4, 0.36);
+  text-shadow: none !important;
+}
+
+body.lux-site .lux-band h2,
+body.lux-site .lux-support h2,
+body.lux-site .lux-split h2,
+body.lux-site .lux-section-head h2 {
+  font-size: clamp(2.2rem, 3.7vw, 4.35rem);
+  line-height: 1.04;
+}
+
+body.lux-site .lux-final h2 {
+  max-width: 900px;
+  font-size: clamp(2.2rem, 3.6vw, 4.2rem);
+  line-height: 1.04;
+}
+
+body.lux-site .lux-final a {
+  width: fit-content;
+  max-width: 100%;
+  padding-right: 34px;
+  padding-left: 34px;
+}
+
+body.lux-site .lux-consent a,
+body.lux-site .lead-form a,
+body.lux-site .legal-hub a {
+  color: #f7df9f;
+}
+
+body.lux-site .legal-document a {
+  color: #07120d !important;
+  text-shadow: none !important;
+}
+
+body.lux-site .legal-hub {
+  gap: 28px;
+  margin-top: 46px;
+}
+
+body.lux-site .legal-hub__hero,
+body.lux-site .legal-document,
+body.lux-site .legal-prices,
+body.lux-site .legal-fulltext,
+body.lux-site .legal-requisites {
+  border-color: rgba(218, 182, 91, 0.22);
+  background:
+    linear-gradient(180deg, rgba(218, 182, 91, 0.07), rgba(218, 182, 91, 0.02)),
+    rgba(16, 35, 26, 0.88);
+}
+
+body.lux-site .legal-hub__hero h1,
+body.lux-site .legal-document h2,
+body.lux-site .legal-prices h2,
+body.lux-site .legal-fulltext h2,
+body.lux-site .legal-requisites h2 {
+  color: #fff8e3;
+}
+
+body.lux-site .legal-hub__hero h1 {
+  max-width: 900px;
+  font-size: clamp(2.25rem, 3.4vw, 4.1rem);
+  line-height: 1.02;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: balance;
+}
+
+body.lux-site .legal-hub__hero p,
+body.lux-site .legal-fulltext p,
+body.lux-site .legal-page__disclaimer {
+  color: rgba(246, 237, 214, 0.74);
+}
+
+body.lux-site .legal-prices__list a,
+body.lux-site .legal-fulltext details,
+body.lux-site .legal-clause {
+  border-color: rgba(218, 182, 91, 0.18);
+  background: rgba(2, 6, 4, 0.36);
+}
+
+body.lux-site .legal-prices__list strong,
+body.lux-site .legal-fulltext summary,
+body.lux-site .legal-clause h3 {
+  color: #fff8e3;
+}
+
+body.lux-site .legal-clause p {
+  color: rgba(246, 237, 214, 0.76);
+}
+
+body.lux-site .legal-fulltext--document .legal-fulltext__head {
+  border-bottom-color: rgba(218, 182, 91, 0.18);
+}
+
+body.lux-site .legal-prices__list span,
+body.lux-site .legal-hub__status strong {
+  color: #f7df9f;
+}
+
+body.lux-site .legal-prices__list a {
+  align-items: center;
+}
+
+body.lux-site .legal-prices__list strong {
+  overflow-wrap: anywhere;
+}
+
+body.lux-site .legal-prices__list span {
+  white-space: nowrap;
+}
+
+.lux-arlux .lux-hero {
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 46px);
+}
+
+.lux-arlux .lux-hero h1 {
+  max-width: 980px;
+  font-size: clamp(3rem, 4.6vw, 5.35rem);
+  line-height: 1.02;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: balance;
+}
+
+.lux-arlux .lux-page-hero h1,
+.lux-arlux .lux-detail h1 {
+  max-width: 900px;
+  font-size: clamp(2.25rem, 3.7vw, 4.2rem);
+  line-height: 1.04;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: balance;
+}
+
+.lux-arlux .lux-service-detail {
+  align-items: stretch;
+}
+
+.lux-arlux .lux-service-detail h1 {
+  max-width: 760px;
+  font-size: clamp(2.15rem, 3.4vw, 3.85rem);
+  line-height: 1.06;
+}
+
+.lux-arlux .lux-service-steps {
+  margin-top: 18px;
+}
+
+.lux-arlux .lux-service-steps h2 {
+  font-size: clamp(1.55rem, 2vw, 2.1rem);
+  line-height: 1.12;
+}
+
+.lux-arlux .lux-service-final {
+  margin-top: 18px;
+}
+
+.lux-arlux .lux-band h2,
+.lux-arlux .lux-support h2,
+.lux-arlux .lux-split h2,
+.lux-arlux .lux-section-head h2,
+.lux-arlux .lux-path h2 {
+  max-width: 760px;
+  font-size: clamp(2rem, 3.15vw, 3.65rem);
+  line-height: 1.06;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: balance;
+}
+
+.lux-arlux .lux-final h2 {
+  max-width: 780px;
+  font-size: clamp(2rem, 3vw, 3.35rem);
+  line-height: 1.08;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: balance;
+}
+
+.lux-arlux .lux-support > div:first-child,
+.lux-arlux .lux-final {
+  align-content: center;
+}
+
+.lux-arlux .lux-support > div:first-child p,
+.lux-arlux .lux-split > div:first-child p,
+.lux-arlux .lux-final p {
+  max-width: 720px;
+}
+
+.lux-arlux .lux-brief {
+  grid-template-columns: minmax(0, 0.72fr) minmax(480px, 1fr);
+}
+
+.lux-arlux .lux-brief h1 {
+  max-width: 720px;
+  font-size: clamp(2.15rem, 3.4vw, 3.75rem);
+  line-height: 1.05;
+  overflow-wrap: normal;
+  word-break: normal;
+  text-wrap: balance;
+}
+
+@media (max-width: 1180px) {
+  body.lux-site .lux-nav {
+    flex-wrap: wrap;
+  }
+
+  body.lux-site main {
+    padding-top: 148px;
+  }
+
+  body.lux-site .lux-nav__links {
+    order: 4;
+    width: 100%;
+    max-width: 100%;
+    justify-content: flex-start;
+  }
+
+  body.lux-site .lead-panel,
+  body.lux-site .legal-hub__hero,
+  body.lux-site .legal-prices {
+    grid-template-columns: 1fr;
+  }
+
+  body.lux-site .legal-hub__status {
+    justify-self: start;
+    text-align: left;
+  }
+
+  .lux-arlux .lux-service-detail,
+  .lux-arlux .lux-service-grid,
+  .lux-arlux .lux-brief {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lux-arlux .lux-brief-copy {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  body.lux-site main {
+    padding-top: 82px;
+  }
+
+  body.lux-site .lux-nav::before {
+    right: 0;
+    left: 0;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(7, 18, 13, 0),
+        rgba(7, 18, 13, 0.78) 12px,
+        rgba(7, 18, 13, 0.78) calc(100% - 12px),
+        rgba(7, 18, 13, 0)
+      );
+  }
+
+  body.lux-site .lux-nav,
+  body.lux-site .lux-hero,
+  body.lux-site .lux-band,
+  body.lux-site .lux-support,
+  body.lux-site .lux-split,
+  body.lux-site .lux-templates,
+  body.lux-site .lux-final,
+  body.lux-site .lux-page-hero,
+  body.lux-site .lux-card-grid,
+  body.lux-site .lux-detail,
+  body.lux-site .lux-path,
+  body.lux-site .lux-choice-guide,
+  body.lux-site .lux-template-grid,
+  body.lux-site .lux-service-grid,
+  body.lux-site .lux-case-grid,
+  body.lux-site .lux-brief,
+  body.lux-site .legal-hub,
+  body.lux-site .lead-panel,
+  body.lux-site .lux-footer {
+    width: min(100%, calc(100% - 24px));
+  }
+
+  body.lux-site .lux-nav {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  body.lux-site .lux-brand {
+    margin-left: 10px;
+  }
+
+  body.lux-site .lux-nav__cta {
+    display: none;
+  }
+
+  body.lux-site .lux-page-hero h1,
+  body.lux-site .lux-hero h1,
+  body.lux-site .lux-detail h1,
+  body.lux-site .lux-final h2,
+  body.lux-site .lux-band h2,
+  body.lux-site .lux-support h2,
+  body.lux-site .lux-split h2,
+  body.lux-site .lux-section-head h2,
+  body.lux-site .lead-panel h1,
+  body.lux-site .legal-hub__hero h1 {
+    font-size: clamp(2.25rem, 10vw, 3.45rem);
+    line-height: 1.04;
+  }
+
+  body.lux-site .lux-page-hero {
+    padding-top: 36px;
+  }
+
+  body.lux-site .lux-final,
+  body.lux-site .lead-form,
+  body.lux-site .legal-document,
+  body.lux-site .legal-prices,
+  body.lux-site .legal-fulltext {
+    padding: 20px;
+  }
+
+  body.lux-site .lux-template-track {
+    grid-auto-columns: minmax(260px, 82vw);
+  }
+
+  body.lux-site .lux-brief-fields,
+  body.lux-site .lux-checkboxes ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.lux-site .lux-brief-form select {
+    min-width: 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  body.lux-site .lux-path {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.lux-site .lux-choice-guide,
+  body.lux-site .lux-template-grid,
+  body.lux-site .lux-service-grid,
+  body.lux-site .lux-case-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  body.lux-site .lux-case-grid article.is-large {
+    grid-column: auto;
+  }
+
+  body.lux-site .legal-document,
+  body.lux-site .legal-prices__list a {
+    grid-template-columns: 1fr;
+  }
+
+  body.lux-site .legal-prices__list span {
+    white-space: normal;
+  }
+
+  .lux-arlux .lux-hero h1,
+  .lux-arlux .lux-page-hero h1,
+  .lux-arlux .lux-detail h1,
+  .lux-arlux .lux-band h2,
+  .lux-arlux .lux-support h2,
+  .lux-arlux .lux-split h2,
+  .lux-arlux .lux-section-head h2,
+  .lux-arlux .lux-final h2,
+  .lux-arlux .lux-brief h1 {
+    max-width: 100%;
+    font-size: clamp(2rem, 8.2vw, 2.72rem);
+    line-height: 1.1;
+    overflow-wrap: break-word;
+    word-break: normal;
+    text-wrap: auto;
+  }
+
+  .lux-arlux .lux-hero > div,
+  .lux-arlux .lux-page-hero > div,
+  .lux-arlux .lux-detail > div,
+  .lux-arlux .lux-band > div,
+  .lux-arlux .lux-support > div,
+  .lux-arlux .lux-split > div,
+  .lux-arlux .lux-final > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .lux-arlux .lux-hero p,
+  .lux-arlux .lux-page-hero p,
+  .lux-arlux .lux-detail p,
+  .lux-arlux .lux-band p,
+  .lux-arlux .lux-support p,
+  .lux-arlux .lux-split p,
+  .lux-arlux .lux-final p {
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+
+  .lux-arlux .lux-brief-promise article {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+  }
+
+  .lux-arlux .lux-service-detail {
+    padding-top: 34px;
+  }
+
+  .lux-arlux .lux-service-detail > div,
+  .lux-arlux .lux-service-detail aside,
+  .lux-arlux .lux-service-grid article {
+    padding: 20px;
+  }
+
+  .lux-arlux .lux-service-price-points p {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lux-arlux .lux-service-price-points span {
+    width: 44px;
+  }
+
+  .lux-arlux .lux-brief-step__head {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lux-arlux .lux-brief-step__head > span {
+    width: 48px;
+    height: 38px;
+  }
+}
+
+body.lux-site .button--primary,
+body.lux-site .lux-nav__cta,
+body.lux-site .lux-template-arrow,
+body.lux-site .lux-template-card a,
+body.lux-site .lux-brief-form button,
+body.lux-site .lead-form button.button--primary,
+body.lux-site .lead-form .button--primary,
+body.lux-site .lux-office-row strong,
+body.lux-site .lux-office-lane .lux-card-head strong,
+body.lux-site .lux-office-pill-row strong,
+body.lux-site .lux-client-choice-row button.is-active,
+body.lux-site .lux-client-telegram-actions button,
+body.lux-site .lux-client-tabs a.is-active,
+body.lux-site .lux-filter a.is-active,
+body.lux-site .lux-office-flow .is-active strong,
+body.lux-site .lux-office-route-strip a:first-child,
+body.lux-site .lux-client-pill-list span,
+body.lux-site .client-steps p > span {
+  color: #07120d !important;
+  text-shadow: none !important;
+}
+
+/* Compact public layout: balanced wide screens and a footer at the page bottom. */
+
+body.lux-site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+body.lux-site main {
+  width: 100%;
+  min-width: 0;
+  flex: 1 0 auto;
+}
+
+body.lux-site .lux-nav,
+body.lux-site .lux-hero,
+body.lux-site .lux-band,
+body.lux-site .lux-support,
+body.lux-site .lux-split,
+body.lux-site .lux-templates,
+body.lux-site .lux-final,
+body.lux-site .lux-page-hero,
+body.lux-site .lux-card-grid,
+body.lux-site .lux-detail,
+body.lux-site .lux-path,
+body.lux-site .lux-choice-guide,
+body.lux-site .lux-template-grid,
+body.lux-site .lux-service-grid,
+body.lux-site .lux-case-grid,
+body.lux-site .lux-brief,
+body.lux-site .legal-hub,
+body.lux-site .lead-panel,
+body.lux-site .lux-footer {
+  width: min(1680px, calc(100vw - 64px));
+}
+
+.lux-arlux .lux-hero {
+  grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.72fr);
+  gap: clamp(30px, 4vw, 64px);
+  min-height: auto;
+  align-items: center;
+  padding: clamp(54px, 7vh, 92px) 0 clamp(46px, 6vh, 78px);
+}
+
+.lux-arlux .lux-hero > div {
+  min-width: 0;
+}
+
+.lux-arlux .lux-hero h1 {
+  max-width: 940px;
+  font-size: clamp(3rem, 4.2vw, 5rem);
+}
+
+.lux-hero-panel {
+  display: grid;
+  gap: 22px;
+  min-width: 0;
+  border: 1px solid rgba(218, 182, 91, 0.2);
+  border-radius: 28px;
+  padding: clamp(24px, 3vw, 38px);
+  background:
+    radial-gradient(circle at 90% 4%, rgba(247, 223, 159, 0.13), transparent 38%),
+    rgba(12, 26, 18, 0.76);
+  box-shadow: 0 34px 100px rgba(0, 0, 0, 0.2);
+}
+
+.lux-hero-panel h2 {
+  max-width: 620px;
+  margin: 0;
+  color: #fff8e3;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 2.7vw, 3.15rem);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.lux-hero-panel__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.lux-hero-panel__grid article {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-width: 0;
+  border: 1px solid rgba(218, 182, 91, 0.15);
+  border-radius: 18px;
+  padding: 16px;
+  background: rgba(2, 6, 4, 0.3);
+}
+
+.lux-hero-panel__grid span {
+  color: #27c3a3;
+  font-size: 0.76rem;
+  font-weight: 950;
+}
+
+.lux-hero-panel__grid strong {
+  font-size: 1.03rem;
+  line-height: 1.2;
+}
+
+.lux-hero-panel__grid p {
+  margin: 0;
+  font-size: 0.94rem;
+  line-height: 1.48;
+}
+
+body.lux-site .lux-page-hero {
+  padding: clamp(38px, 6vh, 70px) 0 clamp(24px, 4vh, 42px);
+}
+
+body.lux-site .lux-band,
+body.lux-site .lux-support,
+body.lux-site .lux-split,
+body.lux-site .lux-templates,
+body.lux-site .lux-final,
+body.lux-site .lux-card-grid,
+body.lux-site .lux-choice-guide,
+body.lux-site .lux-template-grid,
+body.lux-site .lux-service-grid,
+body.lux-site .lux-case-grid,
+body.lux-site .lux-brief {
+  margin-top: clamp(36px, 5vh, 62px);
+}
+
+.lux-band--services,
+.lux-split--workflow {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 26px;
+}
+
+.lux-band--services .lux-service-strip {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.lux-band--services .lux-service-strip article {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+}
+
+.lux-band--services .lux-service-strip article > span,
+.lux-band--services .lux-service-strip article > h3,
+.lux-band--services .lux-service-strip article > p {
+  grid-column: 1 / -1;
+}
+
+.lux-band--services .lux-service-strip article > strong,
+.lux-band--services .lux-service-strip article > a {
+  align-self: end;
+}
+
+.lux-band--services .lux-service-strip article > a {
+  justify-self: end;
+}
+
+.lux-split--workflow .lux-process {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.lux-split--workflow .lux-process article {
+  border: 1px solid rgba(218, 182, 91, 0.18);
+  border-radius: 22px;
+  background: rgba(12, 26, 18, 0.58);
+}
+
+body.lux-site .lead-panel {
+  padding: clamp(42px, 7vh, 76px) 0;
+}
+
+body.lux-site .lux-review-submit {
+  margin-top: clamp(34px, 5vh, 58px);
+}
+
+body.lux-site .lux-footer {
+  flex: 0 0 auto;
+  margin-top: clamp(46px, 6vh, 72px);
+  margin-bottom: 0;
+  border-bottom: 0;
+  border-radius: 24px 24px 0 0;
+  padding-bottom: clamp(28px, 4vh, 44px);
+}
+
+@media (max-width: 1180px) {
+  .lux-arlux .lux-hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lux-hero-panel {
+    max-width: none;
+  }
+
+  .lux-split--workflow .lux-process {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .lux-arlux .lux-hero {
+    padding-top: 34px;
+    padding-bottom: 42px;
+  }
+
+  .lux-hero-panel {
+    padding: 20px;
+  }
+
+  .lux-hero-panel__grid,
+  .lux-band--services .lux-service-strip,
+  .lux-split--workflow .lux-process {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lux-band--services .lux-service-strip article {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .lux-band--services .lux-service-strip article > *,
+  .lux-band--services .lux-service-strip article > a {
+    grid-column: auto;
+    justify-self: stretch;
+  }
+
+  body.lux-site .lux-footer {
+    margin-top: 44px;
+    border-radius: 20px 20px 0 0;
+  }
+}

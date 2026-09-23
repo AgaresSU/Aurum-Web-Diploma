@@ -1,0 +1,7 @@
+{% if messages %}
+  <div class="lead-form__messages">
+    {% for message in messages %}
+      <p class="form-message form-message--{{ message.tags|default:'info' }}">{{ message }}</p>
+    {% endfor %}
+  </div>
+{% endif %}

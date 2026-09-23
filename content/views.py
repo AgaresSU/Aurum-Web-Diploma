@@ -1,56 +1,40 @@
-from django.shortcuts import render
+from django.conf import settings
+from django.http import Http404
+from django.shortcuts import redirect, render
 
-
-WORKS = [
-    {
-        'slug': 'it-company',
-        'name': 'Корпоративный сайт IT-компании',
-        'category': 'Корпоративный сайт',
-        'text': 'Сайт компании с рассказом об услугах, проектах и технологиях.',
-        'image': 'images/examples/it-company-corporate.png',
-        'demo': 'demos/it-company-corporate/index.html',
-        'features': ['Главный экран', 'Раздел услуг', 'Форма обращения'],
-    },
-    {
-        'slug': 'coffee-house',
-        'name': 'Лендинг для кофейни',
-        'category': 'Лендинг',
-        'text': 'Одностраничный сайт кофейни с меню, преимуществами и контактами.',
-        'image': 'images/examples/coffee-house-landing.png',
-        'demo': 'demos/coffee-house-landing/index.html',
-        'features': ['Главная страница', 'Меню', 'Контакты'],
-    },
-]
+from .public_data import catalog_context, find_service, find_template, services as public_services
 
 
 def services(request):
-    service_list = [
-        {
-            'name': 'Сайт под ключ',
-            'text': 'Сделаю сайт для компании, специалиста или небольшого проекта.',
-        },
-        {
-            'name': 'Поддержка сайта',
-            'text': 'Обновлю страницы, исправлю ошибки и помогу с доработками.',
-        },
-        {
-            'name': 'Python-автоматизация',
-            'text': 'Напишу небольшую программу для повторяющихся рабочих задач.',
-        },
-        {
-            'name': 'Telegram-бот',
-            'text': 'Сделаю бота для заявок, консультаций или уведомлений.',
-        },
-    ]
-    return render(request, 'content/services.html', {'services': service_list})
+    return render(request, 'content/services.html', {'services': public_services()})
 
 
-def works(request):
-    return render(request, 'content/works.html', {'works': WORKS})
+def service_detail(request, slug):
+    service = find_service(slug)
+    if service is None:
+        raise Http404('Услуга не найдена.')
+    return render(request, 'content/service_detail.html', {'service': service})
 
 
-def work_detail(request, slug):
-    work = next((item for item in WORKS if item['slug'] == slug), None)
-    if work is None:
-        return render(request, 'core/404.html', status=404)
-    return render(request, 'content/work_detail.html', {'work': work})
+def templates(request):
+    category = request.GET.get('category', '').strip()
+    return render(request, 'content/templates.html', catalog_context(category))
+
+
+def reviews(request):
+    return render(request, 'content/reviews.html', {'testimonials': (), 'review_form': None})
+
+
+def template_demo(request, slug):
+    if find_template(slug) is None:
+        raise Http404('Пример сайта не найден.')
+    return redirect('template-site-demo', slug=slug)
+
+
+def template_site_demo(request, slug):
+    if find_template(slug) is None:
+        raise Http404('Пример сайта не найден.')
+    demo = settings.BASE_DIR / 'core' / 'static' / 'demos' / slug / 'index.html'
+    if not demo.is_file():
+        raise Http404('Пример сайта не найден.')
+    return redirect(f'/assets/demos/{slug}/index.html')
