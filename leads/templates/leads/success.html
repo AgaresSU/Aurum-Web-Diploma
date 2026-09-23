@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Заявка отправлена - AurumWeb{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="wrap form-wrap">
+        <p class="small-title">Готово</p>
+        <h1>Заявка отправлена</h1>
+        <p class="page-intro">Я посмотрю описание и свяжусь с вами по указанному email.</p>
+        <div class="actions">
+            <a class="button" href="{% url 'home' %}">На главную</a>
+            <a class="text-link" href="{% url 'works' %}">Посмотреть примеры</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,29 +1,29 @@
 {% extends 'core/base.html' %}
-{% load static %}
-
-{% block title %}{{ work.name }} - AurumWeb{% endblock %}
+{% block title %}{{ work.title }} - AurumWeb{% endblock %}
 
 {% block content %}
 <section class="section">
     <div class="wrap project-detail">
         <div>
             <p class="small-title">{{ work.category }}</p>
-            <h1>{{ work.name }}</h1>
-            <p class="page-intro">{{ work.text }}</p>
+            <h1>{{ work.title }}</h1>
+            <p class="page-intro">{{ work.description|default:work.short_description }}</p>
             <ul class="check-list detail-list">
-                {% for feature in work.features %}
+                {% for feature in work.feature_list %}
                 <li>{{ feature }}</li>
                 {% endfor %}
             </ul>
             <div class="actions">
-                <a class="button" href="{% static work.demo %}" target="_blank" rel="noopener">Открыть сайт</a>
+                {% if work.demo_url %}<a class="button" href="{{ work.demo_url }}" target="_blank" rel="noopener">Открыть сайт</a>{% endif %}
                 <a class="text-link" href="{% url 'brief' %}?project={{ work.slug }}">Хочу похожий сайт</a>
                 <a class="text-link" href="{% url 'works' %}">Вернуться к примерам</a>
             </div>
         </div>
-        <a class="project-preview" href="{% static work.demo %}" target="_blank" rel="noopener" title="Открыть сайт">
-            <img src="{% static work.image %}" alt="Пример: {{ work.name }}">
+        {% if work.preview_url %}
+        <a class="project-preview" href="{{ work.demo_url|default:work.preview_url }}"{% if work.demo_url %} target="_blank" rel="noopener"{% endif %} title="Открыть сайт">
+            <img src="{{ work.preview_url }}" alt="Пример: {{ work.title }}">
         </a>
+        {% endif %}
     </div>
 </section>
 {% endblock %}

@@ -8,20 +8,18 @@
         <p class="small-title">Новый проект</p>
         <h1>Расскажите о своей задаче</h1>
         <p class="page-intro">Напишите в свободной форме, что хотите сделать. Подробности обсудим позже.</p>
+        {% if work %}<p class="selected-work">Выбранный пример: <strong>{{ work.title }}</strong></p>{% endif %}
         <form method="post" class="brief-form">
             {% csrf_token %}
+            {% if work %}<input type="hidden" name="project" value="{{ work.slug }}">{% endif %}
+            {{ form.non_field_errors }}
+            {% for field in form %}
             <p>
-                <label>Ваше имя</label>
-                <input type="text" name="name" required>
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {{ field.errors }}
             </p>
-            <p>
-                <label>Email</label>
-                <input type="email" name="email" required>
-            </p>
-            <p>
-                <label>Что нужно сделать</label>
-                <textarea name="message" rows="6">{% if request.GET.service == 'telegram' %}Нужен Telegram-бот для {% elif request.GET.project %}Интересует похожий проект: {{ request.GET.project }}{% endif %}</textarea>
-            </p>
+            {% endfor %}
             <button class="button" type="submit">Отправить заявку</button>
         </form>
     </div>
