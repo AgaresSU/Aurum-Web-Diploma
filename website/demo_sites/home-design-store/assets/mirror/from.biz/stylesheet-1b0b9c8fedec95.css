@@ -1,0 +1,32 @@
+/* philosopher-regular - cyrillic_latin */
+@font-face {
+    font-display: swap;
+  font-family: 'Philosopher';
+  font-style: normal;
+  font-weight: 400;
+  src: url('philosopher-v21-cyrillic_latin-reg-fc283557854c1e.woff2') format('woff2');
+}
+/* philosopher-italic - cyrillic_latin */
+@font-face {
+    font-display: swap;
+  font-family: 'Philosopher';
+  font-style: italic;
+  font-weight: 400;
+  src: url('philosopher-v21-cyrillic_latin-ita-50b9643031277a.woff2') format('woff2');
+}
+/* philosopher-700 - cyrillic_latin */
+@font-face {
+    font-display: swap;
+  font-family: 'Philosopher';
+  font-style: normal;
+  font-weight: 700;
+  src: url('philosopher-v21-cyrillic_latin-700-7879546c657c2f.woff2') format('woff2');
+}
+/* philosopher-700italic - cyrillic_latin */
+@font-face {
+    font-display: swap;
+  font-family: 'Philosopher';
+  font-style: italic;
+  font-weight: 700;
+  src: url('philosopher-v21-cyrillic_latin-700-5eb6c71d394135.woff2') format('woff2');
+}

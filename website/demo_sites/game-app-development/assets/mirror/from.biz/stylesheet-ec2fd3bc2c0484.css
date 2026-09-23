@@ -1,0 +1,249 @@
+/* rubik-300 - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-300-5d0b6074f4e878.woff2') format('woff2');
+
+    font-weight: 300;
+
+    font-style: normal;
+
+}
+
+
+
+/* rubik-300italic - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-300italic-c8a9b69dd0b678.woff2') format('woff2');
+
+    font-weight: 300;
+
+    font-style: italic;
+
+}
+
+
+
+/* rubik-regular - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-regular-4f4f87fa7d579a.woff2') format('woff2');
+
+    font-weight: 400;
+
+    font-style: normal;
+
+}
+
+
+
+/* rubik-italic - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-italic-637833409f519c.woff2') format('woff2');
+
+    font-weight: 400;
+
+    font-style: italic;
+
+}
+
+
+
+/* rubik-500 - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-500-55d5516df1fa0a.woff2') format('woff2');
+
+    font-weight: 500;
+
+    font-style: normal;
+
+}
+
+
+
+/* rubik-500italic - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-500italic-2809b5de8f1972.woff2') format('woff2');
+
+    font-weight: 500;
+
+    font-style: italic;
+
+}
+
+
+
+/* rubik-600 - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-600-deac567acde2a7.woff2') format('woff2');
+
+    font-weight: 600;
+
+    font-style: normal;
+
+}
+
+
+
+/* rubik-600italic - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-600italic-eb4d1f3fe21ddb.woff2') format('woff2');
+
+    font-weight: 600;
+
+    font-style: italic;
+
+}
+
+
+
+/* rubik-700 - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-700-44df99c0d787b5.woff2') format('woff2');
+
+    font-weight: 700;
+
+    font-style: normal;
+
+}
+
+
+
+/* rubik-700italic - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-700italic-e87ffeda186c2e.woff2') format('woff2');
+
+    font-weight: 700;
+
+    font-style: italic;
+
+}
+
+
+
+/* rubik-800 - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-800-a1eec9bc657ef4.woff2') format('woff2');
+
+    font-weight: 800;
+
+    font-style: normal;
+
+}
+
+
+
+/* rubik-800italic - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-800italic-28da4c4bc95834.woff2') format('woff2');
+
+    font-weight: 800;
+
+    font-style: italic;
+
+}
+
+
+
+/* rubik-900 - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-900-761da8c21120da.woff2') format('woff2');
+
+    font-weight: 900;
+
+    font-style: normal;
+
+}
+
+
+
+/* rubik-900italic - cyrillic_latin */
+
+@font-face {
+
+    font-display: swap; 
+
+    font-family: 'Rubik';
+
+    src: url('rubik-v31-cyrillic_latin-900italic-f8ea4e3119f46c.woff2') format('woff2');
+
+    font-weight: 900;
+
+    font-style: italic;
+
+}

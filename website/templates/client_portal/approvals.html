@@ -1,0 +1,45 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}Согласования — AurumWeb{% endblock %}
+{% block eyebrow %}решения по проектам{% endblock %}
+{% block heading %}Согласования{% endblock %}
+
+{% block content %}
+  <section class="client-panel">
+    <div class="panel-head"><h2>Ждут вашего решения</h2></div>
+    <div class="approval-list">
+      {% for stage in pending_approvals %}
+        <article class="approval-card">
+          <div>
+            <a href="{% url 'client_portal:project-detail' stage.project.public_id %}#approvals">{{ stage.project.title }}</a>
+            <h3>{{ stage.title }}</h3>
+            <p>{{ stage.result_summary|default:stage.description|default:"Результат готов к проверке." }}</p>
+            {% if stage.result_url %}<a class="approval-result-link" href="{{ stage.result_url }}" target="_blank" rel="noopener">Открыть результат</a>{% endif %}
+            {% for file in stage.visible_result_files %}<a class="approval-result-link" href="{% url 'projects:file-download' file.public_id %}">{{ file.title }}</a>{% endfor %}
+            {% if stage.due_at %}<small>Решение желательно до {{ stage.due_at|date:"d.m.Y" }}</small>{% endif %}
+          </div>
+          <form method="post" class="approval-form">
+            {% csrf_token %}<input type="hidden" name="stage_id" value="{{ stage.pk }}">
+            <label for="approval-comment-{{ stage.pk }}">Комментарий, если нужны изменения</label>
+            <textarea id="approval-comment-{{ stage.pk }}" name="comment" rows="3" maxlength="2000" placeholder="Что нужно поправить"></textarea>
+            <div><button type="submit" name="action" value="approve_stage">Согласовать</button><button class="client-button--secondary" type="submit" name="action" value="request_stage_changes">Вернуть с комментарием</button></div>
+          </form>
+        </article>
+      {% empty %}<p class="empty-state">Сейчас решений от вас не требуется.</p>{% endfor %}
+    </div>
+  </section>
+
+  {% if approval_history %}
+    <section class="client-panel approval-history">
+      <div class="panel-head"><h2>Принятые решения</h2></div>
+      {% for stage in approval_history %}
+        <a href="{% url 'client_portal:project-detail' stage.project.public_id %}#history">
+          <span>{{ stage.approval_decided_at|date:"d.m.Y H:i" }}</span>
+          <strong>{{ stage.title }}</strong>
+          <em>{{ stage.get_approval_state_display }}</em>
+          {% if stage.approval_comment %}<p>{{ stage.approval_comment }}</p>{% endif %}
+        </a>
+      {% endfor %}
+    </section>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}Мои счета — AurumWeb{% endblock %}
+{% block heading %}Мои счета{% endblock %}
+
+{% block content %}
+  <section class="client-panel">
+    <div class="panel-head">
+      <h2>Счета и оплата</h2>
+      <a href="{% url 'client_portal:create-request' %}">Создать новую задачу</a>
+    </div>
+    <div class="client-list client-list--table">
+      {% for invoice in invoices %}
+        <a href="{% url 'client_portal:invoice-detail' invoice.public_token %}">
+          <strong>{{ invoice.title }}</strong>
+          <span>{{ invoice.amount }} ₽</span>
+          <span class="client-status client-status--{{ invoice.status }}">{{ invoice.get_status_display }}</span>
+        </a>
+      {% empty %}
+        <p class="empty-state">Счетов пока нет. После согласования состава работ менеджер подготовит счет в кабинете.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

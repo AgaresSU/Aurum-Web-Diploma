@@ -1,0 +1,64 @@
+/* lora-regular - cyrillic_latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  src: url('lora-v37-cyrillic_latin-regular-8a75493dadccad.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* lora-italic - cyrillic_latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  src: url('lora-v37-cyrillic_latin-italic-7473b8f947ad2a.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* lora-500 - cyrillic_latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 500;
+  src: url('lora-v37-cyrillic_latin-500-f58a8ab627f6a4.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* lora-500italic - cyrillic_latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 500;
+  src: url('lora-v37-cyrillic_latin-500italic-82b8b0625765b4.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* lora-600 - cyrillic_latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  src: url('lora-v37-cyrillic_latin-600-20c54485b59be6.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* lora-600italic - cyrillic_latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 600;
+  src: url('lora-v37-cyrillic_latin-600italic-f48db7a73d29ab.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* lora-700 - cyrillic_latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  src: url('lora-v37-cyrillic_latin-700-d50a248f2a7ed3.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* lora-700italic - cyrillic_latin */
+@font-face {
+  font-display: swap;
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 700;
+  src: url('lora-v37-cyrillic_latin-700italic-694abc006e6f66.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}

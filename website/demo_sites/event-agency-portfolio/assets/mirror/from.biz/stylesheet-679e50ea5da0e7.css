@@ -1,0 +1,127 @@
+/* unbounded-200 - cyrillic_latin */
+
+@font-face {
+
+  font-display: swap;
+
+  font-family: 'Unbounded';
+
+  font-style: normal;
+
+  font-weight: 200;
+
+  src: url('unbounded-v12-cyrillic_latin-200-d70ad556f31c43.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+
+}
+
+/* unbounded-300 - cyrillic_latin */
+
+@font-face {
+
+  font-display: swap;
+
+  font-family: 'Unbounded';
+
+  font-style: normal;
+
+  font-weight: 300;
+
+  src: url('unbounded-v12-cyrillic_latin-300-79acce6147ffe9.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+
+}
+
+/* unbounded-regular - cyrillic_latin */
+
+@font-face {
+
+  font-display: swap;
+
+  font-family: 'Unbounded';
+
+  font-style: normal;
+
+  font-weight: 400;
+
+  src: url('unbounded-v12-cyrillic_latin-regular-a21687c058f626.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+
+}
+
+/* unbounded-500 - cyrillic_latin */
+
+@font-face {
+
+  font-display: swap;
+
+  font-family: 'Unbounded';
+
+  font-style: normal;
+
+  font-weight: 500;
+
+  src: url('unbounded-v12-cyrillic_latin-500-db96636c0c2d08.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+
+}
+
+/* unbounded-600 - cyrillic_latin */
+
+@font-face {
+
+  font-display: swap;
+
+  font-family: 'Unbounded';
+
+  font-style: normal;
+
+  font-weight: 600;
+
+  src: url('unbounded-v12-cyrillic_latin-600-46614359960d9a.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+
+}
+
+/* unbounded-700 - cyrillic_latin */
+
+@font-face {
+
+  font-display: swap;
+
+  font-family: 'Unbounded';
+
+  font-style: normal;
+
+  font-weight: 700;
+
+  src: url('unbounded-v12-cyrillic_latin-700-d944d0b64bb785.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+
+}
+
+/* unbounded-800 - cyrillic_latin */
+
+@font-face {
+
+  font-display: swap;
+
+  font-family: 'Unbounded';
+
+  font-style: normal;
+
+  font-weight: 800;
+
+  src: url('unbounded-v12-cyrillic_latin-800-99708ba958f567.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+
+}
+
+/* unbounded-900 - cyrillic_latin */
+
+@font-face {
+
+  font-display: swap;
+
+  font-family: 'Unbounded';
+
+  font-style: normal;
+
+  font-weight: 900;
+
+  src: url('unbounded-v12-cyrillic_latin-900-41f2935f34000d.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+
+}

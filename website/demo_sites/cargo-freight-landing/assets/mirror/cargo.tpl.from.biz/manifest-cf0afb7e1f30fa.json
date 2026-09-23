@@ -1,0 +1,14 @@
+{
+    "name": "ГРУЗОПЕРЕВОЗКИ",
+    "short_name": "cargo.tpl.from.biz",
+    "start_url": "https://cargo.tpl.from.biz/",
+    "display": "minimal-ui",
+    "background_color": "#FFFFFF",
+    "icons": [
+        {
+            "src": "https://cargo.tpl.from.biz/uploads/files/2023%2F08%2F18%2Fsign-FROM-on-white_63b365e0a77d9_64df139dbdb1e.svg",
+            "sizes": "140x93",
+            "type": "image/svg+xml"
+        }
+    ]
+}

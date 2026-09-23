@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.http import Http404
 from django.shortcuts import redirect, render
+from django.views.static import serve
 
 from .public_data import catalog_context, find_service, find_template, services as public_services
 
@@ -34,7 +35,7 @@ def template_demo(request, slug):
 def template_site_demo(request, slug):
     if find_template(slug) is None:
         raise Http404('Пример сайта не найден.')
-    demo = settings.BASE_DIR / 'core' / 'static' / 'demos' / slug / 'index.html'
-    if not demo.is_file():
+    demo_root = settings.BASE_DIR / 'website' / 'demo_sites' / slug
+    if not (demo_root / 'index.html').is_file():
         raise Http404('Пример сайта не найден.')
-    return redirect(f'/assets/demos/{slug}/index.html')
+    return serve(request, 'index.html', document_root=demo_root)

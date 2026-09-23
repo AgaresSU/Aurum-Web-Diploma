@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Подтверждение email — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Подтверждение email для личного кабинета AurumWeb.">
+{% endblock %}
+{% block meta_robots %}<meta name="robots" content="noindex,nofollow,noarchive">{% endblock %}
+{% block og_title %}Подтверждение email — AurumWeb{% endblock %}
+
+{% block content %}
+  <div class="lead-panel">
+    <div>
+      <p class="eyebrow">подтверждение аккаунта</p>
+      <h1>Введите код из письма</h1>
+      <p>
+        Мы отправили 6-значный код на {{ email }}. После подтверждения откроется
+        личный кабинет с диалогами, задачами, сайтами и счетами.
+      </p>
+    </div>
+    <form class="lead-form" method="post">
+      {% csrf_token %}
+      {% include "accounts/_messages.html" %}
+      {{ form.as_p }}
+      <button class="button button--primary" type="submit">Подтвердить email</button>
+      <button
+        class="button button--dark"
+        type="submit"
+        formaction="{% url 'accounts:resend_email_verification' %}"
+        formnovalidate
+      >
+        Отправить код еще раз
+      </button>
+      <a class="button button--ghost" href="{% url 'accounts:login' %}">Назад ко входу</a>
+    </form>
+  </div>
+{% endblock %}

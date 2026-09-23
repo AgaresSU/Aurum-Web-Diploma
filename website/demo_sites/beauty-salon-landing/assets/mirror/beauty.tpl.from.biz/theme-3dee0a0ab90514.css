@@ -1,0 +1,84 @@
+/* celestra font */
+html, body {font-family: 'Roboto', sans-serif; font-size: 20px;}
+
+@media screen and (max-width: 480px) {html, body {font-size:16px;}}
+h1,h2,h3,h4,h5,h6, .h1,.h2,.h3,.h4,.h5,.h6,.digit {font-weight:500;}
+body, .btn {font-weight: 400;}
+
+.fw-bold {font-weight:500 !important;}
+
+.navbar-nav {font-weight: 500;}
+.navbar .btn {font-weight: 500;}
+
+
+/* from.biz color scheme */
+:root {
+--body-color: #2D0A24;
+--primary: #E6207A;
+--primary-active: #cf1d6e;
+--primary-rgb: 230, 32, 122;
+--secondary: #4C1D42;
+--secondary-active: #441a3b;
+--secondary-rgb: 76, 29, 66;
+--warning: #F59E0B;
+--warning-active: #dd8e0a;
+--warning-rgb: 245, 158, 11;
+--info: #A7FFE4;
+--info-active: #96e6cd;
+--info-rgb: 167, 255, 228;
+--success: #059669;
+--success-active: #05875f;
+--success-rgb: 5, 150, 105;
+--light: #FAF9F8;
+--light-active: #eeedec;
+--light-rgb: 250, 249, 248;
+--dark: #2D0A24;
+--dark-active: #290920;
+--dark-rgb: 45, 10, 36;
+--danger: #BE123C;
+--danger-active: #ab1036;
+--danger-rgb: 190, 18, 60;
+--section-p: 90px;
+--header-height: 128px;
+--navbar-font-size: 14px;
+--navbar-height-fixed: 70px;
+--navbar-height-static: 70px;
+--fm-navbar-width: 1440px;
+--fm-body-width: 1320px;
+--navbar-hover-bg: var(--body-bg);
+}
+.btn-primary {border-color:#E6207A !important; background-color:#E6207A !important}
+.btn-primary:hover {border-color:#cf1d6e !important; background-color:#cf1d6e !important}
+.btn-primary.active {border-color:#cf1d6e !important; background-color:#cf1d6e !important}
+.bg-primary .btn-primary {border-color:#cf1d6e !important; background-color:#cf1d6e !important}
+.bg-primary .btn-primary:hover {border-color:#ba1a63 !important; background-color:#ba1a63 !important}
+.btn-secondary {border-color:#4C1D42 !important; background-color:#4C1D42 !important}
+.btn-secondary:hover {border-color:#441a3b !important; background-color:#441a3b !important}
+.btn-secondary.active {border-color:#441a3b !important; background-color:#441a3b !important}
+.btn-warning {border-color:#F59E0B !important; background-color:#F59E0B !important}
+.btn-warning:hover {border-color:#dd8e0a !important; background-color:#dd8e0a !important}
+.btn-warning.active {border-color:#dd8e0a !important; background-color:#dd8e0a !important}
+.btn-info {border-color:#A7FFE4 !important; background-color:#A7FFE4 !important}
+.btn-info:hover {border-color:#96e6cd !important; background-color:#96e6cd !important}
+.btn-info.active {border-color:#96e6cd !important; background-color:#96e6cd !important}
+.bg-info .btn-info {border-color:#96e6cd !important; background-color:#96e6cd !important}
+.bg-info .btn-info:hover {border-color:#87cfb9 !important; background-color:#87cfb9 !important}
+.btn-success {border-color:#059669 !important; background-color:#059669 !important}
+.btn-success:hover {border-color:#05875f !important; background-color:#05875f !important}
+.btn-success.active {border-color:#05875f !important; background-color:#05875f !important}
+.btn-light {border-color:#FAF9F8 !important; background-color:#FAF9F8 !important}
+.btn-light:hover {border-color:#e1e0df !important; background-color:#e1e0df !important}
+.btn-light.active {border-color:#e1e0df !important; background-color:#e1e0df !important}
+.bg-light .btn-light {border-color:#eeedec !important; background-color:#eeedec !important}
+.bg-light .btn-light:hover {border-color:#d6d5d4 !important; background-color:#d6d5d4 !important}
+.bg-light .btn-light.active {border-color:#d6d5d4 !important; background-color:#d6d5d4 !important}
+.btn-dark {border-color:#2D0A24 !important; background-color:#2D0A24 !important}
+.btn-dark:hover {border-color:#290920 !important; background-color:#290920 !important}
+.btn-dark.active {border-color:#290920 !important; background-color:#290920 !important}
+.btn-danger {border-color:#BE123C !important; background-color:#BE123C !important}
+.btn-danger:hover {border-color:#ab1036 !important; background-color:#ab1036 !important}
+.btn-danger.active {border-color:#ab1036 !important; background-color:#ab1036 !important}
+
+
+
+/* Preloader */

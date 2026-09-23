@@ -1,0 +1,85 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}Личный кабинет — AurumWeb{% endblock %}
+{% block heading %}Главная{% endblock %}
+
+{% block content %}
+  <section class="client-panel project-overview">
+    <div class="project-overview__main">
+      <p class="project-overview__label">{% if active_project %}текущий проект{% else %}начало работы{% endif %}</p>
+      <h2>{{ project_summary.headline }}</h2>
+      <p>{{ project_summary.detail }}</p>
+      {% if active_project %}
+        <a class="client-text-link" href="{% url 'client_portal:project-detail' active_project.public_id %}">Открыть проект</a>
+      {% endif %}
+    </div>
+    <div class="project-next-action">
+      <span>сейчас нужно</span>
+      <strong>{{ next_action.title }}</strong>
+      <p>{{ next_action.text }}</p>
+      <a class="client-button client-button--inline" href="{{ next_action.url }}">{{ next_action.label }}</a>
+    </div>
+</section>
+  {% if project_summary.steps %}
+    <section class="project-timeline" aria-label="Этапы текущего проекта">
+      {% for step in project_summary.steps %}
+        <article class="project-step project-step--{{ step.state }}">
+          <span>{{ forloop.counter|stringformat:"02d" }}</span>
+          <strong>{{ step.label }}</strong>
+          <p>{{ step.caption }}</p>
+        </article>
+      {% endfor %}
+    </section>
+  {% endif %}
+
+  <section class="client-metrics client-metrics--three">
+    <article><span>проекты</span><strong>{{ project_count }}</strong></article>
+    <a href="{% url 'client_portal:approvals' %}"><span>ждут решения</span><strong>{{ pending_approval_count }}</strong></a>
+    <article><span>счета к оплате</span><strong>{{ open_invoices }}</strong></article>
+  </section>
+
+  <section class="client-dashboard-grid">
+    <article class="client-panel client-panel--wide">
+      <div class="panel-head">
+        <h2>Проекты</h2>
+        <a href="{% url 'client_portal:projects' %}">Все проекты</a>
+      </div>
+      <div class="client-list">
+        {% for project in projects %}
+          <a href="{% url 'client_portal:project-detail' project.public_id %}">
+            <strong>{{ project.title }}</strong>
+            <span>{{ project.get_status_display }}{% if project.due_at %} · до {{ project.due_at|date:"d.m.Y" }}{% endif %}</span>
+          </a>
+        {% empty %}
+          <p class="empty-state">Создайте первую задачу, чтобы начать проект.</p>
+        {% endfor %}
+      </div>
+    </article>
+
+    <div class="dashboard-side-stack">
+      <article class="client-panel">
+        <div class="panel-head"><h2>Сообщения</h2><a href="{% url 'client_portal:conversations' %}">Все</a></div>
+        <div class="client-list">
+          {% for conversation in conversations %}
+            <a href="{% url 'client_portal:conversation-detail' conversation.public_token %}">
+              <strong>{{ conversation.title }}</strong>
+              <span>{{ conversation.get_status_display }}{% if conversation.client_unread_count %} · новых: {{ conversation.client_unread_count }}{% endif %}</span>
+            </a>
+          {% empty %}<p class="empty-state">Новых сообщений нет.</p>{% endfor %}
+        </div>
+      </article>
+
+      <article class="client-panel">
+        <div class="panel-head"><h2>Оплаты</h2><a href="{% url 'client_portal:invoices' %}">Все</a></div>
+        <div class="client-list">
+          {% for invoice in invoices %}
+            <a href="{% url 'client_portal:invoice-detail' invoice.public_token %}">
+              <strong>{{ invoice.title }}</strong>
+              <span>{{ invoice.amount }} ₽ · {{ invoice.get_status_display }}</span>
+            </a>
+          {% empty %}<p class="empty-state">Счетов пока нет.</p>{% endfor %}
+        </div>
+      </article>
+    </div>
+  </section>
+{% endblock %}

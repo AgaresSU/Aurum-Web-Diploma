@@ -22,10 +22,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('content/', include('content.urls')),
     path('accounts/', include('accounts.urls')),
+    path('client/', include('client_portal.urls')),
 ]
 
 if settings.DEBUG:
     urlpatterns += [
+        re_path(
+            r'^template-demos/(?P<path>.+)$',
+            serve,
+            {'document_root': settings.BASE_DIR / 'website' / 'demo_sites'},
+        ),
         re_path(
             r'^assets/(?P<path>.*)$',
             serve,

@@ -1,0 +1,14 @@
+{
+    "name": "КОФЕЙНЯ",
+    "short_name": "coffee-house.tpl.from.biz",
+    "start_url": "https://coffee-house.tpl.from.biz/",
+    "display": "minimal-ui",
+    "background_color": "#FFFFFF",
+    "icons": [
+        {
+            "src": "https://coffee-house.tpl.from.biz/uploads/files/2023%2F08%2F18%2Fsign-FROM-on-white_63b365e0a77d9_64df126e7cd72.svg",
+            "sizes": "140x93",
+            "type": "image/svg+xml"
+        }
+    ]
+}

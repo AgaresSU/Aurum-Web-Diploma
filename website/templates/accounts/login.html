@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Вход — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Вход в личный кабинет AurumWeb для клиентов и администратора проекта.">
+{% endblock %}
+{% block meta_robots %}<meta name="robots" content="noindex,nofollow,noarchive">{% endblock %}
+{% block og_title %}Вход — AurumWeb{% endblock %}
+
+{% block content %}
+  <div class="lead-panel">
+    <div>
+      <p class="eyebrow">личный доступ</p>
+      <h1>Вход в кабинет</h1>
+      <p>
+        Кабинет помогает вести проект в одном месте: сообщения, задачи,
+        счета, материалы и история работы остаются под рукой.
+      </p>
+    </div>
+    <form class="lead-form" method="post">
+      {% csrf_token %}
+      {% include "accounts/_messages.html" %}
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+      {% endif %}
+      {{ form.as_p }}
+      <button class="button button--primary" type="submit">Войти</button>
+      <a class="button button--dark" href="{% url 'accounts:register' %}">Зарегистрироваться</a>
+      <a class="button button--ghost" href="{% url 'accounts:password_reset' %}">Восстановить пароль</a>
+    </form>
+  </div>
+{% endblock %}

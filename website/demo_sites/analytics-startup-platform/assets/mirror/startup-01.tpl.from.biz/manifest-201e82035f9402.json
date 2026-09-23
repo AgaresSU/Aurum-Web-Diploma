@@ -1,0 +1,14 @@
+{
+    "name": "СТАРТАП",
+    "short_name": "startup-01.tpl.from.biz",
+    "start_url": "https://startup-01.tpl.from.biz/",
+    "display": "minimal-ui",
+    "background_color": "#FFFFFF",
+    "icons": [
+        {
+            "src": "https://startup-01.tpl.from.biz/uploads/files/2023%2F08%2F18%2Fsign-FROM-on-white_63b365e0a77d9_64df1338aaa78.svg",
+            "sizes": "140x93",
+            "type": "image/svg+xml"
+        }
+    ]
+}

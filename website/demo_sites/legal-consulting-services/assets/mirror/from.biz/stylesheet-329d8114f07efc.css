@@ -1,0 +1,84 @@
+@font-face {
+  font-family: 'TildaSans';
+  font-style: normal;
+  font-weight: 250 1000;
+  src: url('../static.tildacdn.com/TildaSans-VF-82dfbbc0c833d4.woff2') format('woff2-variations'),
+       url('../static.tildacdn.com/TildaSans-VF-3ab44ed29919bf.woff') format('woff-variations');     
+}
+@font-face {
+  font-family: 'TildaSans';
+  font-style: normal;
+  font-weight: 300;
+  src: url('../static.tildacdn.com/TildaSans-Light-0018af7cbff148.eot');
+  src: url('../static.tildacdn.com/TildaSans-Light-0018af7cbff148.eot#iefix') format('embedded-opentype'),
+       url('../static.tildacdn.com/TildaSans-VF-82dfbbc0c833d4.woff2') format('woff2-variations'),
+       url('../static.tildacdn.com/TildaSans-VF-3ab44ed29919bf.woff') format('woff-variations'),
+       url('../static.tildacdn.com/TildaSans-Light-dda279cd5cbe7f.woff2') format('woff2'),
+       url('../static.tildacdn.com/TildaSans-Light-2308c423ddecf2.woff') format('woff');
+}
+@font-face {
+  font-family: 'TildaSans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../static.tildacdn.com/TildaSans-Regular-f6dc8744bcb415.eot');
+  src: url('../static.tildacdn.com/TildaSans-Regular-f6dc8744bcb415.eot#iefix') format('embedded-opentype'),
+       url('../static.tildacdn.com/TildaSans-VF-82dfbbc0c833d4.woff2') format('woff2-variations'),
+       url('../static.tildacdn.com/TildaSans-VF-3ab44ed29919bf.woff') format('woff-variations'),  
+       url('../static.tildacdn.com/TildaSans-Regular-b7c8a0f6448e05.woff2') format('woff2'),
+       url('../static.tildacdn.com/TildaSans-Regular-238ad1d3b9195c.woff') format('woff');
+}
+@font-face {
+  font-family: 'TildaSans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../static.tildacdn.com/TildaSans-Medium-e626ccc28909c1.eot');
+  src: url('../static.tildacdn.com/TildaSans-Medium-e626ccc28909c1.eot#iefix') format('embedded-opentype'),
+       url('../static.tildacdn.com/TildaSans-VF-82dfbbc0c833d4.woff2') format('woff2-variations'),
+       url('../static.tildacdn.com/TildaSans-VF-3ab44ed29919bf.woff') format('woff-variations'),  
+       url('../static.tildacdn.com/TildaSans-Medium-0ab8b35cd9606e.woff2') format('woff2'),
+       url('../static.tildacdn.com/TildaSans-Medium-8f51a0db9a873c.woff') format('woff');
+}
+@font-face {
+  font-family: 'TildaSans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../static.tildacdn.com/TildaSans-Semibold-c8a45822a594b5.eot');
+  src: url('../static.tildacdn.com/TildaSans-Semibold-c8a45822a594b5.eot#iefix') format('embedded-opentype'),
+       url('../static.tildacdn.com/TildaSans-VF-82dfbbc0c833d4.woff2') format('woff2-variations'),
+       url('../static.tildacdn.com/TildaSans-VF-3ab44ed29919bf.woff') format('woff-variations'),  
+       url('../static.tildacdn.com/TildaSans-Semibold-ec2726b753976e.woff2') format('woff2'),
+       url('../static.tildacdn.com/TildaSans-Semibold-5292e25ea2929b.woff') format('woff');
+}
+@font-face {
+  font-family: 'TildaSans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../static.tildacdn.com/TildaSans-Bold-0eeffa4a7a625e.eot');
+  src: url('../static.tildacdn.com/TildaSans-Bold-0eeffa4a7a625e.eot#iefix') format('embedded-opentype'),
+       url('../static.tildacdn.com/TildaSans-VF-82dfbbc0c833d4.woff2') format('woff2-variations'),
+       url('../static.tildacdn.com/TildaSans-VF-3ab44ed29919bf.woff') format('woff-variations'),  
+       url('../static.tildacdn.com/TildaSans-Bold-aaa9f5f3080fb9.woff2') format('woff2'),
+       url('../static.tildacdn.com/TildaSans-Bold-8bb449c05b3e99.woff') format('woff');
+}
+@font-face {
+  font-family: 'TildaSans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../static.tildacdn.com/TildaSans-Extrabold-f4a96cdac24818.eot');
+  src: url('../static.tildacdn.com/TildaSans-Extrabold-f4a96cdac24818.eot#iefix') format('embedded-opentype'),
+       url('../static.tildacdn.com/TildaSans-VF-82dfbbc0c833d4.woff2') format('woff2-variations'),
+       url('../static.tildacdn.com/TildaSans-VF-3ab44ed29919bf.woff') format('woff-variations'),  
+       url('../static.tildacdn.com/TildaSans-Extrabold-35bed29ddae3de.woff2') format('woff2'),
+       url('../static.tildacdn.com/TildaSans-Extrabold-24a2ed487a9fec.woff') format('woff');
+}
+@font-face {
+  font-family: 'TildaSans';
+  font-style: normal;
+  font-weight: 900;
+  src: url('../static.tildacdn.com/TildaSans-Black-dc378e58cf4f20.eot');
+  src: url('../static.tildacdn.com/TildaSans-Black-dc378e58cf4f20.eot#iefix') format('embedded-opentype'),
+       url('../static.tildacdn.com/TildaSans-VF-82dfbbc0c833d4.woff2') format('woff2-variations'),
+       url('../static.tildacdn.com/TildaSans-VF-3ab44ed29919bf.woff') format('woff-variations'),  
+       url('../static.tildacdn.com/TildaSans-Black-ad7ae39fcc692d.woff2') format('woff2'),
+       url('../static.tildacdn.com/TildaSans-Black-1d69b08945d202.woff') format('woff');
+}

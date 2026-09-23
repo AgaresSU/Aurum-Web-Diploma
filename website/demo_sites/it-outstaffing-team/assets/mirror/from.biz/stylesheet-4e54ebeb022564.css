@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Gilroy-Bold-56b2bd2d521049.woff2') format('woff2'),
+        url('Gilroy-Bold-c5d515e5c9dbd8.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Gilroy-Black-42c51cf17ac460.woff2') format('woff2'),
+        url('Gilroy-Black-486de2ef1776b1.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Gilroy-Semibold-7a494f1e655d29.woff2') format('woff2'),
+        url('Gilroy-Semibold-994174bb77fa65.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Gilroy-Regular-c0a33dfa14e0a8.woff2') format('woff2'),
+        url('Gilroy-Regular-76b878c57a715b.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Gilroy-Heavy-c2b5cf9a689fda.woff2') format('woff2'),
+        url('Gilroy-Heavy-479e177fa3344f.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Gilroy-Medium-484ec1397de7a2.woff2') format('woff2'),
+        url('Gilroy-Medium-f1232d34725407.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gilroy';
+    src: url('Gilroy-Light-17231dd1922a60.woff2') format('woff2'),
+        url('Gilroy-Light-ff3589946b178a.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+

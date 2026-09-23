@@ -1,0 +1,41 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}Мои проекты — AurumWeb{% endblock %}
+{% block eyebrow %}проекты{% endblock %}
+{% block heading %}Мои проекты{% endblock %}
+
+{% block content %}
+  <section class="client-panel">
+    <div class="panel-head">
+      <h2>Все работы</h2>
+      <a href="{% url 'client_portal:create-request' %}">Новая задача</a>
+    </div>
+    <form class="client-filter" method="get">
+      <label for="project-status">Статус</label>
+      <select id="project-status" name="status">
+        <option value="">Все</option>
+        {% for value, label in statuses %}<option value="{{ value }}"{% if selected_status == value %} selected{% endif %}>{{ label }}</option>{% endfor %}
+      </select>
+      <button type="submit">Показать</button>
+    </form>
+    <div class="project-list-grid">
+      {% for project in projects %}
+        <a class="project-list-item" href="{% url 'client_portal:project-detail' project.public_id %}">
+          <span class="client-status client-status--{{ project.status }}">{{ project.get_status_display }}</span>
+          <h2>{{ project.title }}</h2>
+          <p>{{ project.summary|default:project.service_type|default:"Работа ведется в личном кабинете." }}</p>
+          <dl>
+            <div><dt>Следующий шаг</dt><dd>{{ project.next_action|default:"Откройте проект, чтобы увидеть подробности" }}</dd></div>
+            <div><dt>Срок</dt><dd>{% if project.due_at %}{{ project.due_at|date:"d.m.Y" }}{% else %}уточняется{% endif %}</dd></div>
+          </dl>
+        </a>
+      {% empty %}
+        <div class="empty-state empty-state--large">
+          <strong>Проектов пока нет</strong>
+          <p>Опишите задачу, и она появится здесь после отправки.</p>
+          <a class="client-button client-button--inline" href="{% url 'client_portal:create-request' %}">Создать задачу</a>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

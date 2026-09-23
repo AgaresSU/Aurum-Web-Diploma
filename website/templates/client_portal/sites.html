@@ -1,0 +1,31 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}Мои сайты — AurumWeb{% endblock %}
+{% block heading %}Мои сайты{% endblock %}
+{% block eyebrow %}сайты и поддержка{% endblock %}
+
+{% block content %}
+  <section class="client-panel">
+    <div class="panel-head">
+      <h2>Сайты, домены и поддержка</h2>
+      <a href="{% url 'client_portal:create-request' %}">Создать новую задачу</a>
+    </div>
+    <div class="site-card-grid site-card-grid--list">
+      {% for site in sites %}
+        <a class="site-card" href="{% url 'client_portal:site-detail' site.pk %}">
+          <span class="site-status site-status--{{ site.status }}">{{ site.get_status_display }}</span>
+          <h3>{{ site.title }}</h3>
+          <p>{{ site.domain_name|default:site.url|default:"домен пока не привязан" }}</p>
+          <div class="site-mini-grid">
+            <span>Домен: {{ site.domain_expires_at|date:"d.m.Y"|default:"не указан" }}</span>
+            <span>Размещение: {{ site.hosting_expires_at|date:"d.m.Y"|default:"не указано" }}</span>
+            <span>Защита сайта: {{ site.ssl_expires_at|date:"d.m.Y"|default:"не указана" }}</span>
+            <span>Поддержка: {{ site.support_until|date:"d.m.Y"|default:"не указана" }}</span>
+          </div>
+        </a>
+      {% empty %}
+        <p class="empty-state">Сайтов пока нет. Когда проект будет запущен, здесь появится карточка сайта.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}{{ order.title }} — AurumWeb{% endblock %}
+{% block heading %}{{ order.title }}{% endblock %}
+{% block eyebrow %}{{ order.get_status_display }}{% endblock %}
+
+{% block content %}
+  <section class="client-grid">
+    <article class="client-panel client-panel--wide">
+      <div class="order-status-card">
+        <span>статус заказа</span>
+        <h2>{{ order.get_status_display }}</h2>
+        <p>
+          {% if order.starts_at %}Старт: {{ order.starts_at|date:"d.m.Y" }}.{% endif %}
+          {% if order.due_at %} Плановый срок: {{ order.due_at|date:"d.m.Y" }}.{% endif %}
+          {% if not order.starts_at and not order.due_at %}Сроки будут зафиксированы после согласования состава работ.{% endif %}
+        </p>
+      </div>
+
+      <div class="client-note">
+        <span>Состав работ</span>
+        <p>{{ order.scope|linebreaksbr|default:"Состав работ пока уточняется в диалоге с менеджером." }}</p>
+      </div>
+
+      <div class="client-note">
+        <span>Оценка бюджета</span>
+        <p>
+          {% if order.estimated_amount_min or order.estimated_amount_max %}
+            {{ order.estimated_amount_min|default:"" }}{% if order.estimated_amount_min and order.estimated_amount_max %} - {% endif %}{{ order.estimated_amount_max|default:"" }} ₽
+          {% else %}
+            Стоимость фиксируется после разбора задачи и согласования счета.
+          {% endif %}
+        </p>
+      </div>
+    </article>
+
+    <aside class="client-panel">
+      <h2>Связанные разделы</h2>
+      <div class="client-steps">
+        <p><span>{% if order.lead %}готово{% else %}ждем{% endif %}</span> Заявка и описание задачи</p>
+        <p><span>{% if order.invoice %}готово{% else %}ждем{% endif %}</span> Счет на оплату</p>
+        <p><span>{% if sites %}готово{% else %}ждем{% endif %}</span> Карточка сайта и поддержка</p>
+      </div>
+      {% if order.invoice %}
+        <a class="client-button" href="{% url 'client_portal:invoice-detail' order.invoice.public_token %}">Открыть счет</a>
+      {% endif %}
+      {% for site in sites %}
+        <a class="client-button client-button--secondary" href="{% url 'client_portal:site-detail' site.pk %}">Открыть сайт</a>
+      {% endfor %}
+      <a class="client-button client-button--secondary" href="{% url 'client_portal:conversations' %}">Написать менеджеру</a>
+    </aside>
+  </section>
+{% endblock %}

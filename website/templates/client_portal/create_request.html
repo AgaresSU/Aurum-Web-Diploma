@@ -1,0 +1,39 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}Создать новую задачу — AurumWeb{% endblock %}
+{% block heading %}Создать новую задачу{% endblock %}
+{% block eyebrow %}описание задачи{% endblock %}
+
+{% block content %}
+  <section class="client-grid">
+    <article class="client-panel client-panel--wide">
+      <h2>Опишите, что нужно получить</h2>
+      {% if selected_template %}
+        <div class="selected-template-card">
+          <span>выбранный пример</span>
+          <h3>{{ selected_template.title }}</h3>
+          <p>{{ selected_template.short_description }}</p>
+          <div>
+            {% if selected_template.category %}<strong>{{ selected_template.category }}</strong>{% endif %}
+            {% if selected_template.industry %}<strong>{{ selected_template.industry }}</strong>{% endif %}
+          </div>
+          <a href="{% url 'template-site-demo' selected_template.slug %}" target="_blank">Открыть пример сайта</a>
+        </div>
+      {% endif %}
+      <form class="client-form" method="post" data-mobile-content-form>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить задачу</button>
+      </form>
+    </article>
+    <aside class="client-panel">
+      <h2>Что будет дальше</h2>
+      <div class="client-steps">
+        <p><span>01</span> Менеджер получит задачу в рабочем кабинете.</p>
+        <p><span>02</span> Диалог появится в вашем кабинете.</p>
+        <p><span>03</span> Если это сайт или поддержка, появится карточка сайта с доменом, защитой, размещением и задачами.</p>
+        <p><span>04</span> После оценки будет выставлен счет.</p>
+      </div>
+    </aside>
+  </section>
+{% endblock %}

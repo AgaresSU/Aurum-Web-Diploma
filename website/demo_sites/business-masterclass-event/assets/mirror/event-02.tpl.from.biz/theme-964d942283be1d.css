@@ -1,0 +1,143 @@
+/* celestra font */
+html, body {font-family: 'Gilroy', sans-serif; font-size: 18px;}
+
+@media screen and (max-width: 480px) {html, body {font-size:16px;}}
+h1,h2,h3,h4,h5,h6, .h1,.h2,.h3,.h4,.h5,.h6,.digit {font-weight:700;}
+
+body, .btn, .lead {font-weight: 300;}
+
+.navbar-nav {font-weight: 500;}
+
+.navbar .btn {font-weight: 500;}
+
+
+
+.fw-bold {font-weight:700 !important;}
+
+
+
+.opacity-5, .opacity-7 {
+
+    opacity: .7  !important;
+
+}
+body, .btn {line-height: 1.6;}
+
+h1, h2, .h1, .h2 {margin-bottom:2rem;}
+
+.mb-3 {margin-bottom:2rem !important;}
+
+.lightbox .mb-3 {margin-bottom:1rem !important;}
+
+
+
+p.lead {margin-bottom:2rem;}
+
+
+
+.article-body p {margin-bottom: 1rem;}
+
+.article-body h2 {margin-bottom: 1rem; font-size: 1.5rem;}
+
+.article-body h3 {margin-bottom: 1rem; font-size: 1.25rem;}
+
+
+
+:root {
+
+    --list-gutter: 2rem;
+
+    --fm-gutter-x: 2rem;
+
+}
+
+.h-underline-1 {
+
+    margin-bottom: 4rem;
+
+}
+
+@media (min-width: 1200px) {
+
+  .h1, h1 {
+
+    font-size: 3rem;
+
+  }
+
+}
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, #header .header-nav-main nav > ul > li > a, #footer .footer-nav nav > ul > li > a {letter-spacing: inherit;}
+
+
+/* from.biz color scheme */
+:root {
+--body-color: #212529;
+--primary: #6c757d;
+--primary-active: #616971;
+--primary-rgb: 108, 117, 125;
+--secondary: #495057;
+--secondary-active: #42484e;
+--secondary-rgb: 73, 80, 87;
+--warning: #FFC107;
+--warning-active: #e6ae06;
+--warning-rgb: 255, 193, 7;
+--info: #E9ECEF;
+--info-active: #d2d4d7;
+--info-rgb: 233, 236, 239;
+--success: #198754;
+--success-active: #177a4c;
+--success-rgb: 25, 135, 84;
+--light: #F8F9FA;
+--light-active: #ecedee;
+--light-rgb: 248, 249, 250;
+--dark: #212529;
+--dark-active: #1e2125;
+--dark-rgb: 33, 37, 41;
+--danger: #DC3545;
+--danger-active: #c6303e;
+--danger-rgb: 220, 53, 69;
+--section-p: 80px;
+--header-height: 128px;
+--navbar-font-size: 14px;
+--navbar-height-fixed: 80px;
+--navbar-height-static: 80px;
+--fm-navbar-width: 1620px;
+--fm-body-width: 1440px;
+--navbar-hover-bg: var(--primary);
+--navbar-hover-color: #ffffff;
+}
+.btn-primary {border-color:#6c757d !important; background-color:#6c757d !important}
+.btn-primary:hover {border-color:#616971 !important; background-color:#616971 !important}
+.btn-primary.active {border-color:#616971 !important; background-color:#616971 !important}
+.bg-primary .btn-primary {border-color:#616971 !important; background-color:#616971 !important}
+.bg-primary .btn-primary:hover {border-color:#575f66 !important; background-color:#575f66 !important}
+.btn-secondary {border-color:#495057 !important; background-color:#495057 !important}
+.btn-secondary:hover {border-color:#42484e !important; background-color:#42484e !important}
+.btn-secondary.active {border-color:#42484e !important; background-color:#42484e !important}
+.btn-warning {border-color:#FFC107 !important; background-color:#FFC107 !important}
+.btn-warning:hover {border-color:#e6ae06 !important; background-color:#e6ae06 !important}
+.btn-warning.active {border-color:#e6ae06 !important; background-color:#e6ae06 !important}
+.btn-info {border-color:#E9ECEF !important; background-color:#E9ECEF !important}
+.btn-info:hover {border-color:#d2d4d7 !important; background-color:#d2d4d7 !important}
+.btn-info.active {border-color:#d2d4d7 !important; background-color:#d2d4d7 !important}
+.bg-info .btn-info {border-color:#d2d4d7 !important; background-color:#d2d4d7 !important}
+.bg-info .btn-info:hover {border-color:#bdbfc2 !important; background-color:#bdbfc2 !important}
+.btn-success {border-color:#198754 !important; background-color:#198754 !important}
+.btn-success:hover {border-color:#177a4c !important; background-color:#177a4c !important}
+.btn-success.active {border-color:#177a4c !important; background-color:#177a4c !important}
+.btn-light {border-color:#F8F9FA !important; background-color:#F8F9FA !important}
+.btn-light:hover {border-color:#dfe0e1 !important; background-color:#dfe0e1 !important}
+.btn-light.active {border-color:#dfe0e1 !important; background-color:#dfe0e1 !important}
+.bg-light .btn-light {border-color:#ecedee !important; background-color:#ecedee !important}
+.bg-light .btn-light:hover {border-color:#d4d5d6 !important; background-color:#d4d5d6 !important}
+.bg-light .btn-light.active {border-color:#d4d5d6 !important; background-color:#d4d5d6 !important}
+.btn-dark {border-color:#212529 !important; background-color:#212529 !important}
+.btn-dark:hover {border-color:#1e2125 !important; background-color:#1e2125 !important}
+.btn-dark.active {border-color:#1e2125 !important; background-color:#1e2125 !important}
+.btn-danger {border-color:#DC3545 !important; background-color:#DC3545 !important}
+.btn-danger:hover {border-color:#c6303e !important; background-color:#c6303e !important}
+.btn-danger.active {border-color:#c6303e !important; background-color:#c6303e !important}
+
+
+
+/* Preloader */

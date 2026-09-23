@@ -1,0 +1,71 @@
+/* ubuntu-300 - cyrillic_latin */
+@font-face {
+    font-display: swap; 
+    font-family: 'Ubuntu';
+    src: url('ubuntu-v21-cyrillic_latin-300-855d9db84a44ec.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+}
+
+/* ubuntu-300italic - cyrillic_latin */
+@font-face {
+    font-display: swap; 
+    font-family: 'Ubuntu';
+    src: url('ubuntu-v21-cyrillic_latin-300italic-ee8d8afb92a77e.woff2') format('woff2');
+    font-weight: 300;
+    font-style: italic;
+}
+
+/* ubuntu-regular - cyrillic_latin */
+@font-face {
+    font-display: swap; 
+    font-family: 'Ubuntu';
+    src: url('ubuntu-v21-cyrillic_latin-regular-f5bbdada73366e.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* ubuntu-italic - cyrillic_latin */
+@font-face {
+    font-display: swap; 
+    font-family: 'Ubuntu';
+    src: url('ubuntu-v21-cyrillic_latin-italic-8abd840d816293.woff2') format('woff2');
+    font-weight: 400;
+    font-style: italic;
+}
+
+/* ubuntu-500 - cyrillic_latin */
+@font-face {
+    font-display: swap; 
+    font-family: 'Ubuntu';
+    src: url('ubuntu-v21-cyrillic_latin-500-607e5a9d1590a7.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+}
+
+/* ubuntu-500italic - cyrillic_latin */
+@font-face {
+    font-display: swap; 
+    font-family: 'Ubuntu';
+    src: url('ubuntu-v21-cyrillic_latin-500italic-f3e22522a8c91f.woff2') format('woff2');
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* ubuntu-700 - cyrillic_latin */
+@font-face {
+    font-display: swap; 
+    font-family: 'Ubuntu';
+    src: url('ubuntu-v21-cyrillic_latin-700-dc65b17ad39e3e.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+/* ubuntu-700italic - cyrillic_latin */
+@font-face {
+    font-display: swap; 
+    font-family: 'Ubuntu';
+    src: url('ubuntu-v21-cyrillic_latin-700italic-92b132447fefec.woff2') format('woff2');
+    font-weight: 700;
+    font-style: italic;
+}

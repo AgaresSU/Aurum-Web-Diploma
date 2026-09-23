@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Кабинет — AurumWeb{% endblock %}</title>
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/brand/aurumweb-favicon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/assets/brand/aurumweb-apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/client.css?v=20260723-approval-results-2">
+  </head>
+  <body class="client-body">
+    <div class="client-shell">
+      <aside class="client-sidebar" aria-label="Навигация личного кабинета">
+        <header class="client-header">
+          <a class="client-brand" href="{% url 'client_portal:dashboard' %}">
+            <img src="/assets/brand/aurumweb-mark-squircle-new-128.webp" alt="AurumWeb" width="42" height="42">
+            <strong>AurumWeb</strong>
+          </a>
+
+          <section class="client-account" aria-label="Аккаунт клиента">
+            <span>Аккаунт</span>
+            <strong>{{ request.user.get_full_name|default:request.user.username }}</strong>
+            <form method="post" action="{% url 'accounts:logout' %}">
+              {% csrf_token %}
+              <button type="submit">Выйти</button>
+            </form>
+          </section>
+
+          <nav class="client-nav" data-client-nav aria-label="Кабинет клиента">
+            <a class="client-nav__primary {% if request.resolver_match.url_name == 'create-request' %}is-active{% endif %}" href="{% url 'client_portal:create-request' %}"><strong>Новая задача</strong><span>начать работу</span></a>
+            <a class="{% if request.resolver_match.url_name == 'dashboard' %}is-active{% endif %}" href="{% url 'client_portal:dashboard' %}"><strong>Главная</strong><span>что важно сейчас</span></a>
+            <a class="{% if request.resolver_match.url_name == 'projects' or request.resolver_match.url_name == 'project-detail' or request.resolver_match.url_name == 'orders' or request.resolver_match.url_name == 'order-detail' or request.resolver_match.url_name == 'sites' or request.resolver_match.url_name == 'site-detail' %}is-active{% endif %}" href="{% url 'client_portal:projects' %}"><strong>Проекты {% if client_unread_events %}<b class="nav-count">{{ client_unread_events }}</b>{% endif %}</strong><span>этапы и результаты</span></a>
+            <a class="{% if request.resolver_match.url_name == 'approvals' %}is-active{% endif %}" href="{% url 'client_portal:approvals' %}"><strong>Согласования {% if client_pending_approvals %}<b class="nav-count">{{ client_pending_approvals }}</b>{% endif %}</strong><span>решения по этапам</span></a>
+            <a class="{% if request.resolver_match.url_name == 'conversations' or request.resolver_match.url_name == 'conversation-detail' %}is-active{% endif %}" href="{% url 'client_portal:conversations' %}"><strong>Сообщения {% if client_unread_messages %}<b class="nav-count">{{ client_unread_messages }}</b>{% endif %}</strong><span>переписка с менеджером</span></a>
+            <a class="{% if request.resolver_match.url_name == 'invoices' or request.resolver_match.url_name == 'invoice-detail' %}is-active{% endif %}" href="{% url 'client_portal:invoices' %}"><strong>Оплаты</strong><span>счета и история</span></a>
+            <a class="{% if request.resolver_match.url_name == 'profile' %}is-active{% endif %}" href="{% url 'client_portal:profile' %}"><strong>Профиль</strong><span>контакты и Telegram</span></a>
+          </nav>
+        </header>
+      </aside>
+
+      <main class="client-main" id="client-content" tabindex="-1">
+        {% if messages %}
+          <div class="client-messages">
+            {% for message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <section class="client-title">
+          <p>{% block eyebrow %}личный кабинет{% endblock %}</p>
+          <h1>{% block heading %}Кабинет клиента{% endblock %}</h1>
+        </section>
+
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+    <script src="/assets/client.js?v=20260722-project-workspace-3"></script>
+  </body>
+</html>

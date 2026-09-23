@@ -1,0 +1,14 @@
+{
+    "name": "ПРАКТИКА",
+    "short_name": "event-02.tpl.from.biz",
+    "start_url": "https://event-02.tpl.from.biz/",
+    "display": "minimal-ui",
+    "background_color": "#FFFFFF",
+    "icons": [
+        {
+            "src": "https://event-02.tpl.from.biz/uploads/files/2023%2F08%2F18%2Fsign-FROM-on-white_63b365e0a77d9_64df12ed3a000.svg",
+            "sizes": "140x93",
+            "type": "image/svg+xml"
+        }
+    ]
+}

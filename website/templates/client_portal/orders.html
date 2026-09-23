@@ -1,0 +1,25 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}Мои заказы — AurumWeb{% endblock %}
+{% block heading %}Мои заказы{% endblock %}
+{% block eyebrow %}этапы работ{% endblock %}
+
+{% block content %}
+  <section class="client-panel">
+    <div class="panel-head">
+      <h2>Работы и статусы</h2>
+      <a href="{% url 'client_portal:create-request' %}">Создать новую задачу</a>
+    </div>
+    <div class="client-list client-list--table">
+      {% for order in orders %}
+        <a href="{% url 'client_portal:order-detail' order.pk %}">
+          <strong>{{ order.title }}</strong>
+          <span>{{ order.get_status_display }}</span>
+          <span>{% if order.invoice %}счет #{{ order.invoice.pk }}{% else %}счет готовится{% endif %}</span>
+        </a>
+      {% empty %}
+        <p class="empty-state">Заказов пока нет. После разбора задачи менеджер откроет заказ и он появится здесь.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

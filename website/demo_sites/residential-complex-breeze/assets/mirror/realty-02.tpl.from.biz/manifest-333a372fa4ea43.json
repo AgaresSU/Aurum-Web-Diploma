@@ -1,0 +1,14 @@
+{
+    "name": "ЖК «ВЕСЕННИЙ БРИЗ»",
+    "short_name": "realty-02.tpl.from.biz",
+    "start_url": "https://realty-02.tpl.from.biz/",
+    "display": "minimal-ui",
+    "background_color": "#FFFFFF",
+    "icons": [
+        {
+            "src": "https://realty-02.tpl.from.biz/uploads/files/2023%2F08%2F18%2Fsign-FROM-on-white_63b365e0a77d9_64df12502611f.svg",
+            "sizes": "140x93",
+            "type": "image/svg+xml"
+        }
+    ]
+}

@@ -1,0 +1,127 @@
+/* AurumWeb palette adjustment: only colors, original layout/assets are preserved. */
+:root {
+  --primary: #7f62d9;
+  --primary-active: #111827;
+  --primary-rgb: 127, 98, 217;
+  --secondary: #111827;
+  --secondary-active: #111827;
+  --secondary-rgb: 17, 24, 39;
+  --warning: #36c2ff;
+  --warning-active: #36c2ff;
+  --warning-rgb: 54, 194, 255;
+  --success: #7f62d9;
+  --success-active: #111827;
+  --success-rgb: 127, 98, 217;
+  --light: #f5f3ff;
+  --light-active: #f5f3ff;
+  --light-rgb: 245, 243, 255;
+  --dark: #111827;
+  --dark-active: #111827;
+  --dark-rgb: 17, 24, 39;
+}
+.btn-primary, .bg-primary { border-color: #7f62d9 !important; background-color: #7f62d9 !important; }
+.btn-primary:hover, .btn-primary.active { border-color: #111827 !important; background-color: #111827 !important; }
+.btn-warning, .bg-warning { border-color: #36c2ff !important; background-color: #36c2ff !important; }
+.text-primary { color: #7f62d9 !important; }
+.border-primary { border-color: #7f62d9 !important; }
+a:not(.btn):hover { color: #7f62d9; }
+
+/* AurumWeb demo cleanup: keep device preview controls, remove foreign builder CTA. */
+.aurum-device-toolbar {
+  left: 50% !important;
+  right: auto !important;
+  bottom: 18px !important;
+  width: auto !important;
+  max-width: calc(100vw - 32px);
+  transform: translateX(-50%);
+  padding: 10px 12px !important;
+  gap: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 999px;
+  background: rgba(9, 22, 15, 0.92) !important;
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.36);
+  backdrop-filter: blur(18px);
+}
+
+.aurum-device-toolbar::before {
+  content: "Посмотреть как на устройстве";
+  color: rgba(255, 248, 230, 0.78);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.aurum-device-toolbar > div {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.aurum-device-toolbar .aurum-device-icon {
+  display: block;
+  width: 17px;
+  height: 17px;
+}
+
+.aurum-device-toolbar .aurum-device-text {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.aurum-device-toolbar label[for="pc_screen"],
+.aurum-device-toolbar label[for="tablet_screen"],
+.aurum-device-toolbar label[for="mobile_screen"] {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-width: 0;
+  min-height: 42px;
+  margin: 0 !important;
+  padding: 0 16px !important;
+  border: 1px solid rgba(255, 248, 230, 0.24) !important;
+  border-radius: 999px !important;
+  color: rgba(255, 248, 230, 0.86) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  box-shadow: none !important;
+}
+
+.aurum-device-toolbar #pc_screen:checked + label[for="pc_screen"],
+.aurum-device-toolbar #tablet_screen:checked + label[for="tablet_screen"],
+.aurum-device-toolbar #mobile_screen:checked + label[for="mobile_screen"],
+.aurum-device-toolbar label.active {
+  color: #07110b !important;
+  border-color: #e5bd5c !important;
+  background: linear-gradient(135deg, #f8df8f 0%, #c9972e 100%) !important;
+}
+
+html.aurum-embedded-device-preview .aurum-device-toolbar {
+  display: none !important;
+}
+
+@media (max-width: 720px) {
+  .aurum-device-toolbar {
+    bottom: 10px !important;
+    flex-wrap: wrap;
+    justify-content: center !important;
+    border-radius: 22px;
+  }
+
+  .aurum-device-toolbar::before {
+    width: 100%;
+    text-align: center;
+  }
+
+  .aurum-device-toolbar label[for="pc_screen"],
+  .aurum-device-toolbar label[for="tablet_screen"],
+  .aurum-device-toolbar label[for="mobile_screen"] {
+    min-height: 38px;
+    padding: 0 12px !important;
+  }
+
+  .aurum-device-toolbar .aurum-device-text {
+    font-size: 12px;
+  }
+}

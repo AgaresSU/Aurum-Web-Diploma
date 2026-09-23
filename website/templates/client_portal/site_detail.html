@@ -1,0 +1,58 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}{{ site.title }} — AurumWeb{% endblock %}
+{% block heading %}{{ site.title }}{% endblock %}
+{% block eyebrow %}карточка сайта{% endblock %}
+
+{% block content %}
+  <section class="client-grid">
+    <article class="client-panel client-panel--wide">
+      <div class="site-detail-head">
+        <div>
+          <span class="site-status site-status--{{ site.status }}">{{ site.get_status_display }}</span>
+          <h2>{{ site.domain_name|default:"Домен пока не привязан" }}</h2>
+          {% if site.url %}<a class="client-button client-button--inline" href="{{ site.url }}" target="_blank">Открыть сайт</a>{% endif %}
+        </div>
+      </div>
+
+      <div class="site-check-grid">
+        <article class="site-check site-check--{{ site.domain_state }}">
+          <span>Домен</span>
+          <strong>{{ site.domain_expires_at|date:"d.m.Y"|default:"не указан" }}</strong>
+          <p>{{ site.domain_registrar|default:"регистратор не указан" }}</p>
+        </article>
+        <article class="site-check site-check--{{ site.hosting_state }}">
+          <span>Размещение</span>
+          <strong>{{ site.hosting_expires_at|date:"d.m.Y"|default:"не указано" }}</strong>
+          <p>{{ site.hosting_provider|default:"площадка не указана" }}{% if site.hosting_plan %} · {{ site.hosting_plan }}{% endif %}</p>
+        </article>
+        <article class="site-check site-check--{{ site.ssl_state }}">
+          <span>Защита сайта</span>
+          <strong>{{ site.ssl_expires_at|date:"d.m.Y"|default:"не указан" }}</strong>
+          <p>{{ site.ssl_provider|default:"центр выпуска не указан" }}{% if site.ssl_auto_renew %} · автообновление{% endif %}</p>
+        </article>
+        <article class="site-check site-check--{{ site.support_state }}">
+          <span>Поддержка</span>
+          <strong>{{ site.support_until|date:"d.m.Y"|default:"не указана" }}</strong>
+          <p>{{ site.get_support_plan_display }}</p>
+        </article>
+      </div>
+
+      <div class="client-note">
+        <span>Контроль качества</span>
+        <p>Резервные копии: {{ site.backup_frequency|default:"не указано" }} · последняя: {{ site.last_backup_at|date:"d.m.Y H:i"|default:"пока не отмечена" }}</p>
+        <p>Последняя проверка сайта: {{ site.last_health_check_at|date:"d.m.Y H:i"|default:"пока не отмечена" }}</p>
+      </div>
+    </article>
+
+    <aside class="client-panel">
+      <h2>Что подключено</h2>
+      <div class="client-steps">
+        <p><span>{% if site.analytics_connected %}готово{% else %}ждем{% endif %}</span> Аналитика и события заявок</p>
+        <p><span>{% if site.seo_baseline_ready %}готово{% else %}ждем{% endif %}</span> Базовая подготовка для поиска</p>
+        <p><span>{% if site.ssl_auto_renew %}готово{% else %}ждем{% endif %}</span> Автообновление защиты сайта</p>
+      </div>
+      <a class="client-button" href="{% url 'client_portal:create-request' %}">Запросить доработку</a>
+    </aside>
+  </section>
+{% endblock %}

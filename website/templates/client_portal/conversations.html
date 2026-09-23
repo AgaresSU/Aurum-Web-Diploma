@@ -1,0 +1,24 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}Диалоги — AurumWeb{% endblock %}
+{% block heading %}Диалоги с менеджером{% endblock %}
+
+{% block content %}
+  <section class="client-panel">
+    <div class="panel-head">
+      <h2>Рабочие диалоги</h2>
+      <a href="{% url 'client_portal:create-request' %}">Создать новую задачу</a>
+    </div>
+    <div class="client-list client-list--table">
+      {% for conversation in conversations %}
+        <a href="{% url 'client_portal:conversation-detail' conversation.public_token %}">
+          <strong>{{ conversation.title }}</strong>
+          <span>{{ conversation.get_status_display }}</span>
+          <span>{{ conversation.updated_at|date:"d.m.Y H:i" }}</span>
+        </a>
+      {% empty %}
+        <p class="empty-state">Диалогов пока нет. Создайте задачу, и здесь появится переписка с менеджером.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

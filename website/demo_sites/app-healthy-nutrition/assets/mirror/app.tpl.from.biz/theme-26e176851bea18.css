@@ -1,0 +1,107 @@
+/* celestra font */
+html, body {font-family: 'Ubuntu', sans-serif; font-size: 18px;}
+
+@media screen and (max-width: 480px) {html, body {font-size:16px;}}
+h1,h2,h3,h4,h5,h6, .h1,.h2,.h3,.h4,.h5,.h6,.digit {font-weight:700;}
+body, .btn, .lead {font-weight: 300;}
+.navbar-nav {font-weight: 500;}
+.navbar .btn {font-weight: 500;}
+
+.fw-bold {font-weight:700 !important;}
+
+.opacity-5, .opacity-7 {
+    opacity: .7  !important;
+}
+body, .btn {line-height: 1.6;}
+h1, h2, .h1, .h2 {margin-bottom:2rem;}
+.mb-3 {margin-bottom:2rem !important;}
+.lightbox .mb-3 {margin-bottom:1rem !important;}
+
+p.lead {margin-bottom:2rem;}
+
+.article-body p {margin-bottom: 1rem;}
+.article-body h2 {margin-bottom: 1rem; font-size: 1.5rem;}
+.article-body h3 {margin-bottom: 1rem; font-size: 1.25rem;}
+
+:root {
+    --list-gutter: 2rem;
+    --fm-gutter-x: 2rem;
+}
+.h-underline-1 {
+    margin-bottom: 4rem;
+}
+@media (min-width: 1200px) {
+  .h1, h1 {
+    font-size: 3rem;
+  }
+}
+
+
+/* from.biz color scheme */
+:root {
+--body-color: #0A1A18;
+--primary: #155E54;
+--primary-active: #13554c;
+--primary-rgb: 21, 94, 84;
+--secondary: #0F2926;
+--secondary-active: #0e2522;
+--secondary-rgb: 15, 41, 38;
+--warning: #B08968;
+--warning-active: #9e7b5e;
+--warning-rgb: 176, 137, 104;
+--info: #D1DEDC;
+--info-active: #bcc8c6;
+--info-rgb: 209, 222, 220;
+--success: #2D6A4F;
+--success-active: #295f47;
+--success-rgb: 45, 106, 79;
+--light: #E9EFEE;
+--light-active: #dde3e2;
+--light-rgb: 233, 239, 238;
+--dark: #0A1A18;
+--dark-active: #091716;
+--dark-rgb: 10, 26, 24;
+--danger: #9B4444;
+--danger-active: #8c3d3d;
+--danger-rgb: 155, 68, 68;
+--header-height: 128px;
+--navbar-font-size: 14px;
+--fm-navbar-width: 1620px;
+--fm-body-width: 1320px;
+--navbar-hover-bg: var(--body-bg);
+}
+.btn-primary {border-color:#155E54 !important; background-color:#155E54 !important}
+.btn-primary:hover {border-color:#13554c !important; background-color:#13554c !important}
+.btn-primary.active {border-color:#13554c !important; background-color:#13554c !important}
+.bg-primary .btn-primary {border-color:#13554c !important; background-color:#13554c !important}
+.bg-primary .btn-primary:hover {border-color:#114d44 !important; background-color:#114d44 !important}
+.btn-secondary {border-color:#0F2926 !important; background-color:#0F2926 !important}
+.btn-secondary:hover {border-color:#0e2522 !important; background-color:#0e2522 !important}
+.btn-secondary.active {border-color:#0e2522 !important; background-color:#0e2522 !important}
+.btn-warning {border-color:#B08968 !important; background-color:#B08968 !important}
+.btn-warning:hover {border-color:#9e7b5e !important; background-color:#9e7b5e !important}
+.btn-warning.active {border-color:#9e7b5e !important; background-color:#9e7b5e !important}
+.btn-info {border-color:#D1DEDC !important; background-color:#D1DEDC !important}
+.btn-info:hover {border-color:#bcc8c6 !important; background-color:#bcc8c6 !important}
+.btn-info.active {border-color:#bcc8c6 !important; background-color:#bcc8c6 !important}
+.bg-info .btn-info {border-color:#bcc8c6 !important; background-color:#bcc8c6 !important}
+.bg-info .btn-info:hover {border-color:#a9b4b2 !important; background-color:#a9b4b2 !important}
+.btn-success {border-color:#2D6A4F !important; background-color:#2D6A4F !important}
+.btn-success:hover {border-color:#295f47 !important; background-color:#295f47 !important}
+.btn-success.active {border-color:#295f47 !important; background-color:#295f47 !important}
+.btn-light {border-color:#E9EFEE !important; background-color:#E9EFEE !important}
+.btn-light:hover {border-color:#d2d7d6 !important; background-color:#d2d7d6 !important}
+.btn-light.active {border-color:#d2d7d6 !important; background-color:#d2d7d6 !important}
+.bg-light .btn-light {border-color:#dde3e2 !important; background-color:#dde3e2 !important}
+.bg-light .btn-light:hover {border-color:#c7cccb !important; background-color:#c7cccb !important}
+.bg-light .btn-light.active {border-color:#c7cccb !important; background-color:#c7cccb !important}
+.btn-dark {border-color:#0A1A18 !important; background-color:#0A1A18 !important}
+.btn-dark:hover {border-color:#091716 !important; background-color:#091716 !important}
+.btn-dark.active {border-color:#091716 !important; background-color:#091716 !important}
+.btn-danger {border-color:#9B4444 !important; background-color:#9B4444 !important}
+.btn-danger:hover {border-color:#8c3d3d !important; background-color:#8c3d3d !important}
+.btn-danger.active {border-color:#8c3d3d !important; background-color:#8c3d3d !important}
+
+
+
+/* Preloader */

@@ -1,0 +1,46 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}{{ conversation.title }} — AurumWeb{% endblock %}
+{% block heading %}{{ conversation.title }}{% endblock %}
+{% block eyebrow %}{{ conversation.get_status_display }}{% endblock %}
+
+{% block content %}
+  <section class="chat-layout">
+    <article class="client-panel chat-panel-main">
+      {% if selected_template %}
+        <div class="selected-template-card selected-template-card--compact">
+          <span>выбранный пример сайта</span>
+          <h3>{{ selected_template.title }}</h3>
+          <p>{{ selected_template.industry }}{% if selected_template.conversion_focus %} · {{ selected_template.conversion_focus }}{% endif %}</p>
+          <a href="{{ selected_template.demo_url }}" target="_blank">Открыть пример</a>
+        </div>
+      {% endif %}
+      <div class="chat-thread">
+        {% for message in visible_messages %}
+          <p class="chat-message chat-message--{{ message.author_role }}">
+            <span>
+              {% if message.author_role == "system" %}AurumWeb{% else %}{{ message.get_author_role_display }}{% endif %}
+              · {{ message.created_at|date:"d.m.Y H:i" }}
+            </span>
+            {{ message.body|linebreaksbr }}
+          </p>
+        {% empty %}
+          <p class="empty-state">Сообщений пока нет.</p>
+        {% endfor %}
+      </div>
+    </article>
+
+    <aside class="client-panel">
+      <h2>Сообщение менеджеру</h2>
+      <form class="client-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Отправить</button>
+      </form>
+      <div class="client-note">
+        <span>История переписки</span>
+        <p>Все сообщения сохраняются здесь, чтобы можно было вернуться к деталям проекта в любой момент.</p>
+      </div>
+    </aside>
+  </section>
+{% endblock %}

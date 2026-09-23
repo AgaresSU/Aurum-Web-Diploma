@@ -1,0 +1,90 @@
+/* celestra font */
+html, body {font-family: 'Mulish', sans-serif; font-size: 20px;}
+
+@media screen and (max-width: 480px) {html, body {font-size:16px;}}
+h1,h2,h3,h4,h5,h6, .h1,.h2,.h3,.h4,.h5,.h6,.digit {font-weight:500;}
+
+body, .btn {font-weight: 400;}
+
+
+
+.fw-bold {font-weight:500 !important;}
+
+
+
+.navbar-nav {font-weight: 500;}
+
+.navbar .btn {font-weight: 500;}
+
+
+/* from.biz color scheme */
+:root {
+--body-color: #261F1D;
+--primary: #63483f;
+--primary-active: #594139;
+--primary-rgb: 99, 72, 63;
+--secondary: #3D322E;
+--secondary-active: #372d29;
+--secondary-rgb: 61, 50, 46;
+--warning: #BC8A5F;
+--warning-active: #a97c56;
+--warning-rgb: 188, 138, 95;
+--info: #EFE9E6;
+--info-active: #d7d2cf;
+--info-rgb: 239, 233, 230;
+--success: #6B705C;
+--success-active: #606553;
+--success-rgb: 107, 112, 92;
+--light: #F8F6F5;
+--light-active: #eceae9;
+--light-rgb: 248, 246, 245;
+--dark: #261F1D;
+--dark-active: #221c1a;
+--dark-rgb: 38, 31, 29;
+--danger: #965B5B;
+--danger-active: #875252;
+--danger-rgb: 150, 91, 91;
+--section-p: 120px;
+--header-height: 128px;
+--navbar-font-size: 16px;
+--navbar-height-fixed: 96px;
+--navbar-height-static: 96px;
+--fm-navbar-width: 1620px;
+--fm-body-width: 1320px;
+--navbar-hover-bg: var(--body-bg);
+}
+.btn-primary {border-color:#63483f !important; background-color:#63483f !important}
+.btn-primary:hover {border-color:#594139 !important; background-color:#594139 !important}
+.btn-primary.active {border-color:#594139 !important; background-color:#594139 !important}
+.bg-primary .btn-primary {border-color:#594139 !important; background-color:#594139 !important}
+.bg-primary .btn-primary:hover {border-color:#503b33 !important; background-color:#503b33 !important}
+.btn-secondary {border-color:#3D322E !important; background-color:#3D322E !important}
+.btn-secondary:hover {border-color:#372d29 !important; background-color:#372d29 !important}
+.btn-secondary.active {border-color:#372d29 !important; background-color:#372d29 !important}
+.btn-warning {border-color:#BC8A5F !important; background-color:#BC8A5F !important}
+.btn-warning:hover {border-color:#a97c56 !important; background-color:#a97c56 !important}
+.btn-warning.active {border-color:#a97c56 !important; background-color:#a97c56 !important}
+.btn-info {border-color:#EFE9E6 !important; background-color:#EFE9E6 !important}
+.btn-info:hover {border-color:#d7d2cf !important; background-color:#d7d2cf !important}
+.btn-info.active {border-color:#d7d2cf !important; background-color:#d7d2cf !important}
+.bg-info .btn-info {border-color:#d7d2cf !important; background-color:#d7d2cf !important}
+.bg-info .btn-info:hover {border-color:#c2bdba !important; background-color:#c2bdba !important}
+.btn-success {border-color:#6B705C !important; background-color:#6B705C !important}
+.btn-success:hover {border-color:#606553 !important; background-color:#606553 !important}
+.btn-success.active {border-color:#606553 !important; background-color:#606553 !important}
+.btn-light {border-color:#F8F6F5 !important; background-color:#F8F6F5 !important}
+.btn-light:hover {border-color:#dfdddd !important; background-color:#dfdddd !important}
+.btn-light.active {border-color:#dfdddd !important; background-color:#dfdddd !important}
+.bg-light .btn-light {border-color:#eceae9 !important; background-color:#eceae9 !important}
+.bg-light .btn-light:hover {border-color:#d4d3d2 !important; background-color:#d4d3d2 !important}
+.bg-light .btn-light.active {border-color:#d4d3d2 !important; background-color:#d4d3d2 !important}
+.btn-dark {border-color:#261F1D !important; background-color:#261F1D !important}
+.btn-dark:hover {border-color:#221c1a !important; background-color:#221c1a !important}
+.btn-dark.active {border-color:#221c1a !important; background-color:#221c1a !important}
+.btn-danger {border-color:#965B5B !important; background-color:#965B5B !important}
+.btn-danger:hover {border-color:#875252 !important; background-color:#875252 !important}
+.btn-danger.active {border-color:#875252 !important; background-color:#875252 !important}
+
+
+
+/* Preloader */

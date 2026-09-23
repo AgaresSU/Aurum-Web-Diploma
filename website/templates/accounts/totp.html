@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Подтверждение входа — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Подтверждение административного входа AurumWeb одноразовым кодом.">
+{% endblock %}
+{% block meta_robots %}<meta name="robots" content="noindex,nofollow,noarchive">{% endblock %}
+{% block og_title %}Подтверждение входа — AurumWeb{% endblock %}
+
+{% block content %}
+  <div class="lead-panel">
+    <div>
+      <p class="eyebrow">защита входа</p>
+      <h1>Код подтверждения</h1>
+      <p>
+        Введите 6-значный код из приложения для входа или одноразовый
+        резервный код. После нескольких неверных попыток вход временно блокируется.
+      </p>
+    </div>
+    <form class="lead-form" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="button button--primary" type="submit">Подтвердить вход</button>
+      <a class="button button--dark" href="{% url 'accounts:login' %}">Назад ко входу</a>
+    </form>
+  </div>
+{% endblock %}

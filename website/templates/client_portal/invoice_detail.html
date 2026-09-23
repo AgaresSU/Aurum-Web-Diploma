@@ -1,0 +1,51 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}Счет — AurumWeb{% endblock %}
+{% block heading %}{{ invoice.title }}{% endblock %}
+{% block eyebrow %}{{ invoice.get_status_display }}{% endblock %}
+
+{% block content %}
+  <section class="client-grid">
+    <article class="client-panel client-panel--wide">
+      <h2>{{ invoice.amount }} ₽</h2>
+      <p>{{ invoice.description|linebreaksbr }}</p>
+      <div class="client-note">
+        <span>Плательщик</span>
+        <strong>{{ invoice.client_name|default:"не указан" }}</strong>
+        <p>{{ invoice.client_requisites.client_type_display|default:"плательщик не уточнен" }}{% if invoice.client_requisites.inn %} · ИНН {{ invoice.client_requisites.inn }}{% endif %}</p>
+        {% if invoice.client_requisites.billing_address %}
+          <p>{{ invoice.client_requisites.billing_address }}</p>
+        {% endif %}
+      </div>
+      <div class="client-note">
+        <span>Где найти счет</span>
+        <p>Эта страница всегда доступна в разделе “Мои счета”. Если нужно переслать счет бухгалтерии, напишите менеджеру в диалоге.</p>
+      </div>
+    </article>
+    <aside class="client-panel">
+      <h2>Оплата</h2>
+      {% if invoice.status == "paid" %}
+        <div class="client-payment-state client-payment-state--paid">
+          <span>статус</span>
+          <strong>Счет оплачен</strong>
+          <p>Оплата получена и зафиксирована в кабинете.</p>
+        </div>
+      {% elif invoice.status == "cancelled" %}
+        <div class="client-payment-state client-payment-state--muted">
+          <span>статус</span>
+          <strong>Счет отменен</strong>
+          <p>Если нужен новый счет, напишите менеджеру в диалоге.</p>
+        </div>
+      {% else %}
+        <p>Оплата доступна банковской картой, QR-кодом или через СБП по защищенной платежной странице.</p>
+        <div class="site-mini-grid">
+          <span>СБП</span>
+          <span>QR-код</span>
+          <span>Карта</span>
+          <span>Безопасная оплата</span>
+        </div>
+        <a class="client-button" href="{% url 'billing:pay-invoice' invoice.public_token %}">Перейти к оплате счета</a>
+      {% endif %}
+    </aside>
+  </section>
+{% endblock %}

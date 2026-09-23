@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %}Смена аккаунта — AurumWeb{% endblock %}
+{% block meta_robots %}<meta name="robots" content="noindex,nofollow,noarchive">{% endblock %}
+
+{% block content %}
+  <div class="lead-panel">
+    <div>
+      <p class="eyebrow">подтверждение</p>
+      <h1>Сменить аккаунт?</h1>
+      <p>
+        Сейчас выполнен вход как {{ request.user.email|default:request.user.username }}.
+        Для {% if target == "register" %}регистрации другого кабинета{% else %}входа под другой учетной записью{% endif %}
+        нужно сначала завершить текущий сеанс.
+      </p>
+    </div>
+    <form class="lead-form" method="post">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="switch_account">
+      {% for name, value in hidden_fields.items %}
+        <input type="hidden" name="{{ name }}" value="{{ value }}">
+      {% endfor %}
+      <button class="button button--primary" type="submit">Завершить сеанс и продолжить</button>
+      <a class="button button--ghost" href="{{ cancel_url }}">Остаться в кабинете</a>
+    </form>
+  </div>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}Мои реквизиты — AurumWeb{% endblock %}
+{% block heading %}Мои реквизиты{% endblock %}
+{% block eyebrow %}счета и уведомления{% endblock %}
+
+{% block content %}
+  <section class="client-grid">
+    <article class="client-panel client-panel--wide">
+      <h2>Данные плательщика</h2>
+      <p class="client-muted">
+        Заполняйте этот раздел только если нужен счет на ИП, ООО или другой расчетный документ.
+        Для обычной оплаты будут доступны банковская карта, QR-код и СБП.
+      </p>
+      <form class="client-form client-form--requisites" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="save_profile">
+        {{ form.as_p }}
+        <button type="submit">Сохранить реквизиты</button>
+      </form>
+    </article>
+
+    <aside class="client-panel">
+      <h2>Telegram-уведомления</h2>
+      <p class="client-muted">
+        Номер чата вводить не нужно. Нажмите кнопку, откройте бота AurumWeb и запустите его в Telegram.
+      </p>
+      {% if not profile.telegram_linked %}
+        <a class="client-telegram-button" href="{% url 'client_portal:telegram-connect' %}" target="_blank" rel="noopener">
+          Подключить Telegram
+        </a>
+        <div class="client-note">
+          <span>Резервная команда подключения</span>
+          <strong>/start {{ profile.telegram_link_code }}</strong>
+        </div>
+        <div class="client-steps">
+          <p><span>01</span> Нажмите “Подключить Telegram”.</p>
+          <p><span>02</span> В Telegram запустите бота.</p>
+          <p><span>03</span> После привязки включите уведомления и сохраните данные.</p>
+        </div>
+      {% endif %}
+      <div class="client-note">
+        <span>Статус Telegram</span>
+        {% if profile.telegram_linked %}
+          <strong>{% if profile.telegram_notifications_enabled %}уведомления включены{% else %}привязан, уведомления выключены{% endif %}</strong>
+        {% else %}
+          <strong>не привязан</strong>
+        {% endif %}
+      </div>
+      {% if profile.telegram_linked and client_telegram_bot_url %}
+        <a class="client-telegram-button" href="{{ client_telegram_bot_url }}" target="_blank" rel="noopener">
+          Открыть бота
+        </a>
+      {% endif %}
+      {% if not profile.telegram_linked %}
+        <form class="client-form client-form--compact" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="refresh_telegram_code">
+          <button type="submit">Обновить ссылку подключения</button>
+        </form>
+      {% else %}
+        <form class="client-form client-form--compact" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="disconnect_telegram">
+          <button type="submit">Отключить Telegram</button>
+        </form>
+      {% endif %}
+    </aside>
+
+    <aside class="client-panel">
+      <h2>Для чего это нужно</h2>
+      <div class="client-steps">
+        <p><span>01</span> Менеджер собирает состав работ и сумму.</p>
+        <p><span>02</span> Счет получает снимок реквизитов на момент выставления.</p>
+        <p><span>03</span> После оплаты здесь появится статус счета, заказа и проекта.</p>
+      </div>
+      <div class="client-note">
+        <span>Статус</span>
+        {% if profile.requisites_complete %}
+          <strong>Реквизиты готовы для счета</strong>
+        {% else %}
+          <strong>Нужно заполнить обязательные данные</strong>
+        {% endif %}
+      </div>
+    </aside>
+  </section>
+{% endblock %}

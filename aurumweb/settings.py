@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'leads.apps.LeadsConfig',
     'accounts.apps.AccountsConfig',
     'projects.apps.ProjectsConfig',
+    'client_portal.apps.ClientPortalConfig',
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,10 @@ STATICFILES_DIRS = [BASE_DIR / 'website' / 'static']
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/client/'
+LOGOUT_REDIRECT_URL = '/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'AurumWeb <no-reply@localhost>'

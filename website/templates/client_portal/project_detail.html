@@ -1,0 +1,120 @@
+{% extends "client_portal/base.html" %}
+
+{% block title %}{{ project.title }} — AurumWeb{% endblock %}
+{% block eyebrow %}проект{% endblock %}
+{% block heading %}{{ project.title }}{% endblock %}
+
+{% block content %}
+  <section class="client-panel project-hero-compact">
+    <div>
+      <span class="client-status client-status--{{ project.status }}">{{ project.get_status_display }}</span>
+      <p>{{ project.summary|default:"Все сведения о работе собраны на этой странице." }}</p>
+    </div>
+    <dl>
+      <div><dt>Сейчас нужно</dt><dd>{{ project_action.title }}</dd></div>
+      <div><dt>Срок</dt><dd>{% if project.due_at %}{{ project.due_at|date:"d.m.Y" }}{% else %}уточняется{% endif %}</dd></div>
+      <div><dt>Ответственный</dt><dd>{% if project.manager %}{{ project.manager.get_full_name|default:project.manager.username }}{% else %}AurumWeb{% endif %}</dd></div>
+    </dl>
+  </section>
+
+  <nav class="project-tabs" data-project-tabs aria-label="Разделы проекта">
+    <a href="#overview" data-project-tab="overview">Обзор</a>
+    <a href="#stages" data-project-tab="stages">Этапы</a>
+    <a href="#approvals" data-project-tab="approvals">Согласования{% if pending_approvals %} · {{ pending_approvals|length }}{% endif %}</a>
+    <a href="#files" data-project-tab="files">Материалы</a>
+    <a href="#messages" data-project-tab="messages">Сообщения</a>
+    <a href="#payments" data-project-tab="payments">Оплаты</a>
+    <a href="#site" data-project-tab="site">Сайт</a>
+    <a href="#history" data-project-tab="history">История</a>
+  </nav>
+
+  <div class="project-panels" data-project-panels>
+    <section class="client-panel project-tab-panel" data-project-panel="overview">
+      <div class="panel-head"><h2>Что сейчас</h2></div>
+      <div class="project-focus project-focus--{{ project_action.kind }}">
+        <div><span>следующее действие</span><strong>{{ project_action.title }}</strong><p>{{ project_action.text }}</p></div>
+        <a class="client-button client-button--inline" href="{{ project_action.url }}">{{ project_action.label }}</a>
+      </div>
+    </section>
+
+    <section class="client-panel project-tab-panel" data-project-panel="stages" hidden>
+      <div class="panel-head"><h2>Этапы работы</h2></div>
+      <div class="project-stage-list">
+        {% for stage in stages %}
+          <article class="project-stage-row project-stage-row--{{ stage.status }}">
+            <span>{{ forloop.counter|stringformat:"02d" }}</span>
+            <div><strong>{{ stage.title }}</strong><p>{{ stage.description|default:stage.get_status_display }}</p>{% if stage.due_at %}<small>до {{ stage.due_at|date:"d.m.Y" }}</small>{% endif %}</div>
+            {% if stage.approval_state == "pending" %}<a class="project-stage-action" href="#approvals">Проверить</a>
+            {% elif stage.approval_state == "approved" %}<em>Согласовано {{ stage.approved_at|date:"d.m.Y" }}</em>
+            {% elif stage.approval_state == "changes_requested" %}<em>Изменения переданы</em>{% endif %}
+          </article>
+        {% empty %}<p class="empty-state">Этапы пока не добавлены.</p>{% endfor %}
+      </div>
+    </section>
+
+    <section class="client-panel project-tab-panel" data-project-panel="approvals" hidden>
+      <div class="panel-head"><h2>Согласования</h2><a href="{% url 'client_portal:approvals' %}">Все проекты</a></div>
+      <div class="approval-list">
+        {% for stage in pending_approvals %}
+          <article class="approval-card">
+            <div>
+              <span>{{ stage.project.title }}</span><h3>{{ stage.title }}</h3>
+              <p>{{ stage.result_summary|default:stage.description|default:"Результат готов к проверке." }}</p>
+              {% if stage.result_url %}<a class="approval-result-link" href="{{ stage.result_url }}" target="_blank" rel="noopener">Открыть результат</a>{% endif %}
+              {% for file in stage.visible_result_files %}<a class="approval-result-link" href="{% url 'projects:file-download' file.public_id %}">{{ file.title }}</a>{% endfor %}
+              {% if stage.due_at %}<small>Решение желательно до {{ stage.due_at|date:"d.m.Y" }}</small>{% endif %}
+            </div>
+            <form method="post" class="approval-form">
+              {% csrf_token %}<input type="hidden" name="stage_id" value="{{ stage.pk }}">
+              <label for="comment-{{ stage.pk }}">Комментарий, если нужны изменения</label>
+              <textarea id="comment-{{ stage.pk }}" name="comment" rows="3" maxlength="2000" placeholder="Что нужно поправить"></textarea>
+              <div><button type="submit" name="action" value="approve_stage">Согласовать</button><button class="client-button--secondary" type="submit" name="action" value="request_stage_changes">Вернуть с комментарием</button></div>
+            </form>
+          </article>
+        {% empty %}<p class="empty-state">Сейчас решений от вас не требуется.</p>{% endfor %}
+      </div>
+    </section>
+
+    <section class="client-panel project-tab-panel" data-project-panel="files" hidden>
+      <div class="panel-head"><h2>Материалы</h2></div>
+      <div class="project-file-list">
+        {% for item in files %}
+          <a href="{% url 'projects:file-download' item.public_id %}"><strong>{{ item.title }}</strong><span>{{ item.original_name }} · {{ item.created_at|date:"d.m.Y" }}</span></a>
+        {% empty %}<p class="empty-state">Материалов пока нет.</p>{% endfor %}
+      </div>
+      <form class="client-form project-upload-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}<input type="hidden" name="action" value="upload_file">{{ upload_form.as_p }}<button type="submit">Добавить файл</button>
+      </form>
+    </section>
+
+    <section class="client-panel project-tab-panel" data-project-panel="messages" hidden>
+      <div class="panel-head"><h2>Сообщения</h2><a href="{% url 'client_portal:conversations' %}">Все сообщения</a></div>
+      <div class="client-list">
+        {% for conversation in conversations %}<a href="{% url 'client_portal:conversation-detail' conversation.public_token %}"><strong>{{ conversation.title }}</strong><span>{{ conversation.get_status_display }}{% if conversation.client_unread_count %} · новых: {{ conversation.client_unread_count }}{% endif %}</span></a>{% empty %}<p class="empty-state">Диалог по проекту пока не открыт.</p>{% endfor %}
+      </div>
+    </section>
+
+    <section class="client-panel project-tab-panel" data-project-panel="payments" hidden>
+      <div class="panel-head"><h2>Счета и оплаты</h2></div>
+      <div class="client-list">
+        {% for invoice in invoices %}<a href="{% url 'client_portal:invoice-detail' invoice.public_token %}"><strong>{{ invoice.title }}</strong><span>{{ invoice.amount }} ₽ · {{ invoice.get_status_display }}</span></a>{% empty %}<p class="empty-state">Счетов по проекту пока нет.</p>{% endfor %}
+      </div>
+    </section>
+
+    <section class="client-panel project-tab-panel" data-project-panel="site" hidden>
+      <div class="panel-head"><h2>Сайт и поддержка</h2></div>
+      <div class="client-site-summary">
+        {% for item in sites %}<a href="{% url 'client_portal:site-detail' item.pk %}"><strong>{{ item.title }}</strong><span>{{ item.domain_name|default:"домен уточняется" }} · {{ item.get_status_display }}</span><small>Домен: {% if item.domain_expires_at %}до {{ item.domain_expires_at|date:"d.m.Y" }}{% else %}не указан{% endif %} · Размещение: {% if item.hosting_expires_at %}до {{ item.hosting_expires_at|date:"d.m.Y" }}{% else %}не указано{% endif %}</small></a>{% empty %}<p class="empty-state">Сведения о сайте появятся после начала разработки или подключения поддержки.</p>{% endfor %}
+      </div>
+    </section>
+
+    <section class="client-panel project-tab-panel" data-project-panel="history" hidden>
+      <div class="panel-head"><h2>История проекта</h2></div>
+      <div class="project-events">
+        {% for event in events %}
+          <article><time datetime="{{ event.created_at|date:'c' }}">{{ event.created_at|date:"d.m.Y H:i" }}</time><strong>{{ event.title }}</strong>{% if event.description %}<p>{{ event.description }}</p>{% endif %}</article>
+        {% empty %}<p class="empty-state">Записи появятся после начала работы.</p>{% endfor %}
+      </div>
+    </section>
+  </div>
+{% endblock %}

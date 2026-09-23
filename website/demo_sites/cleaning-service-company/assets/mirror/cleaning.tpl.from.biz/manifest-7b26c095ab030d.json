@@ -1,0 +1,14 @@
+{
+    "name": "КЛИНИНГ",
+    "short_name": "cleaning.tpl.from.biz",
+    "start_url": "https://cleaning.tpl.from.biz/",
+    "display": "minimal-ui",
+    "background_color": "#FFFFFF",
+    "icons": [
+        {
+            "src": "https://cleaning.tpl.from.biz/uploads/files/2023%2F08%2F18%2Fsign-FROM-on-white_63b365e0a77d9_64df128011d72.svg",
+            "sizes": "140x93",
+            "type": "image/svg+xml"
+        }
+    ]
+}

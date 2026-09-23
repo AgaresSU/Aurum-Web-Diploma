@@ -1,0 +1,14 @@
+{
+    "name": "АВТОСЕРВИС",
+    "short_name": "car-service.tpl.from.biz",
+    "start_url": "https://car-service.tpl.from.biz/",
+    "display": "minimal-ui",
+    "background_color": "#FFFFFF",
+    "icons": [
+        {
+            "src": "https://car-service.tpl.from.biz/uploads/files/2023%2F08%2F18%2Fsign-FROM-on-white_63b365e0a77d9_64df125e75e9b.svg",
+            "sizes": "140x93",
+            "type": "image/svg+xml"
+        }
+    ]
+}

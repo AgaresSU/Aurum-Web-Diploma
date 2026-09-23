@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Регистрация — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Регистрация клиента AurumWeb для диалога, задач, сайтов, счетов и статусов проекта.">
+{% endblock %}
+{% block meta_robots %}<meta name="robots" content="noindex,nofollow,noarchive">{% endblock %}
+{% block og_title %}Регистрация — AurumWeb{% endblock %}
+
+{% block content %}
+  <div class="lead-panel">
+    <div>
+      <p class="eyebrow">аккаунт клиента</p>
+      <h1>Регистрация</h1>
+      <p>
+        Кабинет нужен для переписки, задач, сайтов, счетов и статусов проекта.
+        Обычная оплата проходит картой, QR-кодом или через СБП. Реквизиты для счета на ИП или ООО можно добавить позже.
+      </p>
+    </div>
+    <form class="lead-form" method="post">
+      {% csrf_token %}
+      {% include "accounts/_messages.html" %}
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}">
+      {% endif %}
+      {% if telegram_registration_token %}
+        <input type="hidden" name="telegram_registration_token" value="{{ telegram_registration_token }}">
+        <div class="notice notice--success">
+          Telegram будет подключен к этому кабинету после регистрации.
+        </div>
+      {% endif %}
+      {{ form.as_p }}
+      <button class="button button--primary" type="submit">Создать аккаунт</button>
+      <a class="button button--dark" href="{% url 'accounts:login' %}">Уже есть аккаунт</a>
+    </form>
+  </div>
+{% endblock %}

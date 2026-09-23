@@ -1,0 +1,19 @@
+{
+    "name": "ПРИЛОЖЕНИЕ",
+    "short_name": "landing-02.tpl.from.biz",
+    "start_url": "https://landing-02.tpl.from.biz/",
+    "display": "minimal-ui",
+    "background_color": "#FFFFFF",
+    "icons": [
+        {
+            "src": "https://landing-02.tpl.from.biz/uploads/files/2024%2F07%2F23%2Fsign-FROM-on-white_63b365e0a77d9.svg",
+            "sizes": "140x93",
+            "type": "image/svg+xml"
+        },
+        {
+            "src": "https://landing-02.tpl.from.biz/uploads/files/2023%2F08%2F18%2Fsign-FROM-on-white_63b365e0a77d9_64df1202ee0d2.svg",
+            "sizes": "140x93",
+            "type": "image/svg+xml"
+        }
+    ]
+}
