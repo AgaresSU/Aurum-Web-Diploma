@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}AurumWeb{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260908">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}?v=20260923">
 </head>
 <body>
 <header class="header">
@@ -16,9 +16,28 @@
             <li><a class="{% if request.resolver_match.url_name == 'services' %}active{% endif %}" href="{% url 'services' %}">Услуги</a></li>
             <li><a class="{% if request.resolver_match.url_name == 'works' or request.resolver_match.url_name == 'work_detail' %}active{% endif %}" href="{% url 'works' %}">Примеры</a></li>
             <li><a class="{% if request.resolver_match.url_name == 'brief' %}active{% endif %}" href="{% url 'brief' %}">Оставить заявку</a></li>
+            {% if user.is_authenticated %}
+            <li><a class="{% if request.resolver_match.namespace == 'accounts' or request.resolver_match.namespace == 'projects' %}active{% endif %}" href="{% url 'accounts:account' %}">Кабинет</a></li>
+            <li>
+                <form class="logout-form" method="post" action="{% url 'accounts:logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Выйти</button>
+                </form>
+            </li>
+            {% else %}
+            <li><a class="{% if request.resolver_match.namespace == 'accounts' %}active{% endif %}" href="{% url 'accounts:login' %}">Войти</a></li>
+            {% endif %}
         </ul>
     </div>
 </header>
+
+{% if messages %}
+<div class="wrap messages">
+    {% for message in messages %}
+    <p class="message">{{ message }}</p>
+    {% endfor %}
+</div>
+{% endif %}
 
 <main>
     {% block content %}
@@ -35,6 +54,7 @@
             <a href="{% url 'services' %}">Услуги</a>
             <a href="{% url 'works' %}">Примеры</a>
             <a href="{% url 'brief' %}">Обсудить проект</a>
+            {% if user.is_authenticated %}<a href="{% url 'accounts:account' %}">Кабинет</a>{% endif %}
         </div>
     </div>
 </footer>

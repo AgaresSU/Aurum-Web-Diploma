@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+
+{% block title %}{{ page_title }} - AurumWeb{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="wrap form-wrap">
+        <p class="small-title">Личный кабинет</p>
+        <h1>{{ page_title }}</h1>
+        <form method="post" class="brief-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="actions">
+                <button class="button" type="submit">Сохранить</button>
+                <a class="text-link" href="{% url 'projects:list' %}">Отмена</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Мои проекты - AurumWeb{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="wrap">
+        <div class="section-heading">
+            <div><p class="small-title">Личный кабинет</p><h1>Мои проекты</h1></div>
+            <a class="button" href="{% url 'projects:create' %}">Добавить проект</a>
+        </div>
+        <form class="search-form" method="get">
+            <input type="search" name="q" value="{{ search_query }}" placeholder="Поиск по проектам">
+            <button class="button button-small" type="submit">Найти</button>
+        </form>
+        <div class="project-list project-list-large">
+            {% for project in projects %}
+            <a class="project-row" href="{% url 'projects:detail' project.pk %}">
+                <span><strong>{{ project.title }}</strong><small>{{ project.service|default:'Услуга не выбрана' }}</small></span>
+                <em>{{ project.get_status_display }}</em>
+            </a>
+            {% empty %}
+            <div class="empty-block"><h2>Проектов пока нет</h2><p>Добавьте первый проект, чтобы проверить работу кабинета.</p></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
