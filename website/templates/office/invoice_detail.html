@@ -1,0 +1,57 @@
+{% extends "office/base.html" %}
+
+{% block title %}Счет #{{ invoice.pk }} — AurumWeb Office{% endblock %}
+{% block heading %}{{ invoice.title }}{% endblock %}
+{% block eyebrow %}{{ invoice.get_status_display }}{% endblock %}
+
+{% block content %}
+  <section class="detail-layout">
+    <article class="office-panel">
+      <h2>Счет</h2>
+      <div class="client-card">
+        <p><span>Клиент</span><strong>{{ invoice.client_name|default:"не указан" }}</strong></p>
+        <p><span>Email</span><strong>{{ invoice.client_email|default:"не указан" }}</strong></p>
+        <p><span>Тип плательщика</span><strong>{{ invoice.client_requisites.client_type_display|default:"не уточнен" }}</strong></p>
+        <p><span>ИНН</span><strong>{{ invoice.client_requisites.inn|default:"не указан" }}</strong></p>
+        <p><span>Адрес</span><strong>{{ invoice.client_requisites.billing_address|default:"не указан" }}</strong></p>
+        <p><span>Сумма</span><strong>{{ invoice.amount }} ₽</strong></p>
+        <p><span>Страница клиента</span><strong>доступна кнопкой ниже</strong></p>
+      </div>
+      <a class="office-button" href="{% url 'billing:invoice-detail' invoice.public_token %}">Открыть счет глазами клиента</a>
+      <a class="office-button office-button--secondary" href="{% url 'billing:pay-invoice' invoice.public_token %}">Открыть оплату</a>
+    </article>
+    <article class="office-panel">
+      <h2>Позиции для чека</h2>
+      <div class="compact-list">
+        {% for item in invoice.items.all %}
+          <p>
+            <strong>{{ item.name }}</strong>
+            <span>
+              {% if item.note %}{{ item.note }} · {% endif %}
+              {{ item.quantity }} × {{ item.unit_price }} ₽ = {{ item.total }} ₽
+            </span>
+          </p>
+        {% empty %}
+          <p class="empty-state">Позиции не заполнены. В чеке будет одна строка на сумму счета.</p>
+        {% endfor %}
+      </div>
+    </article>
+    <aside class="office-panel">
+      <h2>История оплат</h2>
+      <p class="empty-state">Клиент оплачивает выставленный счет банковской картой, QR-кодом или через СБП. После успешной оплаты статус обновится автоматически.</p>
+      <div class="compact-list">
+        {% for payment in invoice.payments.all %}
+          <p>
+            <strong>{{ payment.amount }} ₽</strong>
+            <span>{% if payment.provider == "robokassa" %}Онлайн-оплата{% else %}{{ payment.get_provider_display }}{% endif %} · {{ payment.get_status_display }}</span>
+          </p>
+        {% empty %}
+          <p class="empty-state">Платежей пока нет.</p>
+        {% endfor %}
+      </div>
+      {% if invoice.lead %}
+        <a class="office-button office-button--secondary" href="{% url 'office:lead-detail' invoice.lead.pk %}">Открыть заявку</a>
+      {% endif %}
+    </aside>
+  </section>
+{% endblock %}

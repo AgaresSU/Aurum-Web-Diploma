@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Кабинет менеджера — AurumWeb{% endblock %}</title>
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/brand/aurumweb-favicon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/assets/brand/aurumweb-apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/office.css?v=20260724-branded-calendar-v3">
+  </head>
+  <body class="office-body">
+    <aside class="office-sidebar">
+      <a class="office-brand" href="{% url 'office:dashboard' %}">
+          <img src="/assets/brand/aurumweb-mark-squircle-new-128.webp" alt="AurumWeb" width="42" height="42">
+        <strong>AurumWeb</strong>
+      </a>
+      <section class="office-account" aria-label="Аккаунт администратора">
+        <span>Администратор</span>
+        <strong>{{ request.user.get_full_name|default:request.user.username }}</strong>
+        <form method="post" action="{% url 'accounts:logout' %}">
+          {% csrf_token %}
+          <button type="submit">Выйти</button>
+        </form>
+      </section>
+      <nav class="office-nav" aria-label="Рабочий кабинет">
+        <span class="office-nav__label">Работа</span>
+        <a class="{% if request.resolver_match.url_name == 'dashboard' %}is-active{% endif %}" href="{% url 'office:dashboard' %}"><strong>Обзор</strong><span>очередь и фокус</span></a>
+        <a class="{% if request.resolver_match.url_name == 'inbox' or request.resolver_match.url_name == 'leads' or request.resolver_match.url_name == 'lead-detail' or request.resolver_match.url_name == 'quick-consultations' or request.resolver_match.url_name == 'quick-consultation-detail' %}is-active{% endif %}" href="{% url 'office:inbox' %}"><strong>Входящие</strong><span>сайт и быстрый бот</span></a>
+        <a class="{% if request.resolver_match.url_name == 'projects' or request.resolver_match.url_name == 'project-detail' or request.resolver_match.url_name == 'orders' or request.resolver_match.url_name == 'order-detail' %}is-active{% endif %}" href="{% url 'office:projects' %}"><strong>Проекты {% if office_unread_events %}<b class="nav-count" title="Проектов требуют внимания: {{ office_unread_events }}" aria-label="Проектов требуют внимания: {{ office_unread_events }}">{{ office_unread_events }}</b>{% endif %}</strong><span>этапы, сроки, файлы</span></a>
+        <a class="{% if request.resolver_match.url_name == 'approvals' %}is-active{% endif %}" href="{% url 'office:approvals' %}"><strong>Согласования</strong><span>решения клиентов</span></a>
+        <a class="{% if request.resolver_match.url_name == 'calendar' %}is-active{% endif %}" href="{% url 'office:calendar' %}"><strong>Календарь</strong><span>проекты, счета, сайты</span></a>
+        <a class="{% if request.resolver_match.url_name == 'clients' or request.resolver_match.url_name == 'client-detail' %}is-active{% endif %}" href="{% url 'office:clients' %}"><strong>Клиенты</strong><span>история сотрудничества</span></a>
+        <a class="{% if request.resolver_match.url_name == 'conversations' or request.resolver_match.url_name == 'conversation-detail' or request.resolver_match.url_name == 'conversation-client-preview' %}is-active{% endif %}" href="{% url 'office:conversations' %}"><strong>Диалоги {% if office_unread_messages %}<b class="nav-count" title="Диалогов ждут ответа: {{ office_unread_messages }}" aria-label="Диалогов ждут ответа: {{ office_unread_messages }}">{{ office_unread_messages }}</b>{% endif %}</strong><span>ответы клиентам</span></a>
+        <span class="office-nav__label">Финансы</span>
+        <a class="{% if request.resolver_match.url_name == 'invoices' or request.resolver_match.url_name == 'invoice-detail' or request.resolver_match.url_name == 'create-invoice' %}is-active{% endif %}" href="{% url 'office:invoices' %}"><strong>Счета</strong><span>оплата и статусы</span></a>
+        <a class="{% if request.resolver_match.url_name == 'revenue' %}is-active{% endif %}" href="{% url 'office:revenue' %}"><strong>Доходы</strong><span>платежи и динамика</span></a>
+        <a class="{% if request.resolver_match.url_name == 'service-prices' or request.resolver_match.url_name == 'service-price-detail' %}is-active{% endif %}" href="{% url 'office:service-prices' %}"><strong>Цены</strong><span>услуги и пакеты</span></a>
+        <span class="office-nav__label">Поддержка</span>
+        <a class="{% if request.resolver_match.url_name == 'sites' or request.resolver_match.url_name == 'site-detail' %}is-active{% endif %}" href="{% url 'office:sites' %}"><strong>Сайты</strong><span>сроки и поддержка</span></a>
+        <details class="office-nav__system" {% if request.resolver_match.url_name == 'integrations' or request.resolver_match.url_name == 'security' %}open{% endif %}>
+          <summary>Система</summary>
+          <a class="{% if request.resolver_match.url_name == 'integrations' %}is-active{% endif %}" href="{% url 'office:integrations' %}"><strong>Интеграции</strong><span>связь и платежи</span></a>
+          <a class="{% if request.resolver_match.url_name == 'security' %}is-active{% endif %}" href="{% url 'office:security' %}"><strong>Безопасность</strong><span>пароль и вход</span></a>
+          <a href="/admin/"><strong>Расширенная панель</strong><span>редкие настройки</span></a>
+        </details>
+        <a href="/"><strong>Сайт</strong><span>на главную</span></a>
+      </nav>
+    </aside>
+    <main class="office-main">
+      <header class="office-topbar">
+        <div>
+          <p class="office-eyebrow">{% block eyebrow %}рабочий кабинет{% endblock %}</p>
+          <h1>{% block heading %}AurumWeb Office{% endblock %}</h1>
+        </div>
+        <form class="office-global-search" method="get" action="{% url 'office:search' %}" role="search">
+          <label class="sr-only" for="office-global-search">Поиск</label>
+          <input id="office-global-search" type="search" name="q" value="{{ request.GET.q|default:'' }}" placeholder="Проект, клиент, счет, домен">
+          <button type="submit">Найти</button>
+        </form>
+      </header>
+
+      {% if messages %}
+        <div class="office-messages">
+          {% for message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% block content %}{% endblock %}
+    </main>
+    <script src="/assets/office.js?v=20260724-branded-calendar-v3"></script>
+  </body>
+</html>

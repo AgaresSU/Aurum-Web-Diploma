@@ -1,0 +1,56 @@
+{% extends "office/base.html" %}
+
+{% block title %}{{ service.title }} — цена — AurumWeb Office{% endblock %}
+{% block eyebrow %}управление ценой{% endblock %}
+{% block heading %}{{ service.title }}{% endblock %}
+
+{% block content %}
+  <section class="detail-layout">
+    <article class="office-panel">
+      <div class="panel-head">
+        <div>
+          <h2>Цена на сайте</h2>
+          <p class="muted">После сохранения это значение будет показано на главной, если услуга включена для главной.</p>
+        </div>
+        <a href="{% url 'office:service-prices' %}">Все услуги</a>
+      </div>
+
+      <div class="service-price-preview">
+        <span>{{ service.get_service_type_display }}</span>
+        <h3>{{ service.title }}</h3>
+        <strong>{{ service.price_display }}</strong>
+        {% if service.price_note %}<p>{{ service.price_note }}</p>{% endif %}
+      </div>
+
+      <form class="office-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить цену</button>
+      </form>
+    </article>
+
+    <aside class="office-panel">
+      <h2>Описание услуги</h2>
+      <div class="client-card">
+        <p>
+          <span>Короткое описание</span>
+          <strong>{{ service.short_description }}</strong>
+        </p>
+        <p>
+          <span>Ценность</span>
+          <strong>{{ service.business_value|default:"не указана" }}</strong>
+        </p>
+        <p>
+          <span>Публикация</span>
+          <strong>{% if service.is_published %}услуга опубликована{% else %}услуга не опубликована{% endif %}</strong>
+        </p>
+        <p>
+          <span>Главная</span>
+          <strong>{% if service.is_featured %}показывается на главной{% else %}не показывается на главной{% endif %}</strong>
+        </p>
+      </div>
+      <a class="office-button" href="{{ service.get_absolute_url }}" target="_blank" rel="noopener">Открыть страницу услуги</a>
+      <a class="office-button office-button--secondary" href="/admin/content/service/{{ service.pk }}/change/" target="_blank" rel="noopener">Открыть полную карточку</a>
+    </aside>
+  </section>
+{% endblock %}

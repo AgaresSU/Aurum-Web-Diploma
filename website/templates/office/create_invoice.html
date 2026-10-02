@@ -1,0 +1,38 @@
+{% extends "office/base.html" %}
+
+{% block title %}Создать счет — AurumWeb Office{% endblock %}
+{% block heading %}Создать счет{% endblock %}
+{% block eyebrow %}заявка #{{ lead.pk }}{% endblock %}
+
+{% block content %}
+  <section class="detail-layout">
+    <article class="office-panel">
+      <h2>Черновик счета</h2>
+      <form class="office-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Создать счет и заказ</button>
+      </form>
+    </article>
+    <aside class="office-panel">
+      <h2>Реквизиты плательщика</h2>
+      <div class="client-card">
+        <p><span>Тип</span><strong>{{ client_requisites.client_type_display|default:"не уточнен" }}</strong></p>
+        <p><span>Плательщик</span><strong>{{ client_requisites.payer_name|default:lead.name|default:"не указан" }}</strong></p>
+        <p><span>ИНН</span><strong>{{ client_requisites.inn|default:"не указан" }}</strong></p>
+        <p><span>Контакт</span><strong>{{ client_requisites.contract_contact|default:lead.email|default:"не указан" }}</strong></p>
+      </div>
+      {% if not client_requisites.complete %}
+        <p class="empty-state">Реквизиты неполные. Для финального счета попросите клиента зарегистрироваться и заполнить раздел “Реквизиты”.</p>
+      {% endif %}
+    </aside>
+  </section>
+
+  <section class="detail-layout detail-layout--secondary">
+    <aside class="office-panel">
+      <h2>Исходная задача</h2>
+      <p>{{ lead.task }}</p>
+      <p class="muted">{{ lead.email }}</p>
+    </aside>
+  </section>
+{% endblock %}

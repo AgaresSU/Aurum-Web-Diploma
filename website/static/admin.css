@@ -1,0 +1,162 @@
+/*
+  AurumWeb Django admin stylesheet
+  Sections: premium velvet theme, navigation, modules, forms, changelists,
+  inline blocks, buttons, responsive fixes.
+*/
+
+:root {
+  --primary: #0d2118;
+  --secondary: #10231a;
+  --accent: #d8b76c;
+  --primary-fg: #f8f0dd;
+  --body-fg: #f8f0dd;
+  --body-bg: #07130f;
+  --body-quiet-color: rgba(221, 232, 222, 0.68);
+  --body-medium-color: rgba(221, 232, 222, 0.78);
+  --header-color: #f8f0dd;
+  --header-branding-color: #f1d891;
+  --header-bg: #06100c;
+  --breadcrumbs-fg: rgba(248, 240, 221, 0.72);
+  --breadcrumbs-bg: #0d2118;
+  --link-fg: #f1d891;
+  --link-hover-color: #ffffff;
+  --link-selected-fg: #d8b76c;
+  --hairline-color: rgba(216, 183, 108, 0.2);
+  --border-color: rgba(216, 183, 108, 0.22);
+  --error-fg: #f08a72;
+  --message-success-bg: rgba(47, 138, 103, 0.2);
+  --message-warning-bg: rgba(216, 183, 108, 0.18);
+  --message-error-bg: rgba(240, 138, 114, 0.16);
+  --darkened-bg: #0a1a13;
+  --selected-bg: rgba(216, 183, 108, 0.12);
+  --selected-row: rgba(216, 183, 108, 0.1);
+  --button-fg: #07130f;
+  --button-bg: #d8b76c;
+  --button-hover-bg: #f1d891;
+  --default-button-bg: #d8b76c;
+  --default-button-hover-bg: #f1d891;
+  --close-button-bg: #17442d;
+  --close-button-hover-bg: #1d6b4c;
+  color-scheme: dark;
+}
+
+body {
+  background:
+    linear-gradient(135deg, rgba(216, 183, 108, 0.07) 0 1px, transparent 1px 13px),
+    linear-gradient(165deg, #06100c 0%, #0a1a13 42%, #143823 100%);
+}
+
+#header {
+  border-bottom: 1px solid rgba(216, 183, 108, 0.22);
+  background:
+    linear-gradient(145deg, rgba(216, 183, 108, 0.08), transparent 38%),
+    #06100c;
+}
+
+#branding h1,
+#branding h1 a:link,
+#branding h1 a:visited {
+  color: #f1d891;
+  font-weight: 850;
+}
+
+#branding h1 a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-brand-logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  object-fit: cover;
+  box-shadow: 0 12px 30px rgba(216, 183, 108, 0.18);
+}
+
+div.breadcrumbs {
+  border-bottom: 1px solid rgba(216, 183, 108, 0.16);
+}
+
+.module,
+.inline-group,
+.submit-row,
+.object-tools a,
+#changelist,
+#content-related,
+.paginator {
+  border-color: rgba(216, 183, 108, 0.2);
+  background:
+    linear-gradient(180deg, rgba(216, 183, 108, 0.06), rgba(216, 183, 108, 0.015)),
+    #10231a;
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22);
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+  color: #f8f0dd;
+  background: linear-gradient(135deg, #0d2118, #17442d);
+}
+
+table {
+  border-color: rgba(216, 183, 108, 0.18);
+}
+
+thead th,
+tfoot td {
+  color: rgba(248, 240, 221, 0.82);
+  background: rgba(6, 16, 12, 0.58);
+}
+
+tr:nth-child(odd),
+.row-form-errors {
+  background: rgba(16, 35, 26, 0.72);
+}
+
+tr:nth-child(even) {
+  background: rgba(13, 33, 24, 0.72);
+}
+
+input,
+textarea,
+select,
+.vTextField {
+  border-color: rgba(216, 183, 108, 0.24);
+  color: #f8f0dd;
+  background: rgba(6, 16, 12, 0.68);
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.vTextField:focus {
+  border-color: rgba(216, 183, 108, 0.64);
+  box-shadow: 0 0 0 4px rgba(216, 183, 108, 0.12);
+}
+
+select:not([multiple]) {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 42px;
+  cursor: pointer;
+  background:
+    linear-gradient(45deg, transparent 50%, #f1d891 50%) calc(100% - 22px) 50% / 8px 8px no-repeat,
+    linear-gradient(135deg, #f1d891 50%, transparent 50%) calc(100% - 15px) 50% / 8px 8px no-repeat,
+    linear-gradient(90deg, rgba(216, 183, 108, 0.32), rgba(216, 183, 108, 0.32)) calc(100% - 40px) 50% / 1px 62% no-repeat,
+    rgba(6, 16, 12, 0.68);
+}
+
+select:not([multiple]):hover {
+  border-color: rgba(216, 183, 108, 0.46);
+  box-shadow: 0 0 0 1px rgba(216, 183, 108, 0.12) inset;
+}
+
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input,
+a.button {
+  color: #07130f;
+  background: linear-gradient(135deg, #f1d891, #d8b76c 52%, #b59042);
+}

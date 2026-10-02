@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Диалоги — AurumWeb{% endblock %}
+
+{% block content %}
+  <div class="section-heading">
+    <p class="eyebrow">встроенный мессенджер</p>
+    <h1>Диалоги</h1>
+    <p>Позже здесь будет полноценная переписка клиента и администратора.</p>
+  </div>
+  <div class="template-row">
+    {% for conversation in conversations %}
+      <article class="template-card">
+        <h3>{{ conversation.title }}</h3>
+        <p>{{ conversation.client_email|default:"Клиент без email" }}</p>
+        <a class="button button--outline-light" href="{% url 'messenger:public-conversation' conversation.public_token %}">Открыть</a>
+      </article>
+    {% empty %}
+      <article class="template-card">
+        <h3>Диалогов пока нет</h3>
+        <p>Оставьте заявку с сайта, и здесь появится первая переписка.</p>
+      </article>
+    {% endfor %}
+  </div>
+{% endblock %}

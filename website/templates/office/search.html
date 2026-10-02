@@ -1,0 +1,13 @@
+{% extends "office/base.html" %}
+{% block title %}Поиск — AurumWeb Office{% endblock %}
+{% block heading %}Поиск{% endblock %}
+{% block content %}
+  {% if query|length < 2 %}<section class="office-panel"><p class="empty-state">Введите не менее двух символов.</p></section>{% else %}
+  <section class="office-search-results">
+    <article class="office-panel"><div class="panel-head"><h2>Проекты</h2></div><div class="compact-list">{% for item in results.projects %}<a href="{% url 'office:project-detail' item.public_id %}"><strong>{{ item.title }}</strong><span>{{ item.client_name|default:item.client_email }}</span></a>{% empty %}<p class="empty-state">Не найдено.</p>{% endfor %}</div></article>
+    <article class="office-panel"><div class="panel-head"><h2>Клиенты</h2></div><div class="compact-list">{% for item in results.clients %}<a href="{% url 'office:client-detail' item.pk %}"><strong>{{ item.get_full_name|default:item.username }}</strong><span>{{ item.email }}</span></a>{% empty %}<p class="empty-state">Не найдено.</p>{% endfor %}</div></article>
+    <article class="office-panel"><div class="panel-head"><h2>Счета</h2></div><div class="compact-list">{% for item in results.invoices %}<a href="{% url 'office:invoice-detail' item.pk %}"><strong>{{ item.title }}</strong><span>{{ item.amount }} ₽</span></a>{% empty %}<p class="empty-state">Не найдено.</p>{% endfor %}</div></article>
+    <article class="office-panel"><div class="panel-head"><h2>Диалоги</h2></div><div class="compact-list">{% for item in results.conversations %}<a href="{% url 'office:conversation-detail' item.pk %}"><strong>{{ item.title }}</strong><span>{{ item.client_email }}</span></a>{% empty %}<p class="empty-state">Не найдено.</p>{% endfor %}</div></article>
+    <article class="office-panel"><div class="panel-head"><h2>Сайты</h2></div><div class="compact-list">{% for item in results.sites %}<a href="{% url 'office:site-detail' item.pk %}"><strong>{{ item.title }}</strong><span>{{ item.domain_name }}</span></a>{% empty %}<p class="empty-state">Не найдено.</p>{% endfor %}</div></article>
+  </section>{% endif %}
+{% endblock %}

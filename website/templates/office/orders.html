@@ -1,0 +1,41 @@
+{% extends "office/base.html" %}
+
+{% block title %}Заказы — AurumWeb Office{% endblock %}
+{% block heading %}Заказы{% endblock %}
+
+{% block content %}
+  <form class="office-filter" method="get">
+    <input type="search" name="q" value="{{ request.GET.q }}" placeholder="Поиск по заказу, клиенту или составу работ">
+    <select name="status">
+      <option value="">Все статусы</option>
+      {% for value,label in statuses %}
+        <option value="{{ value }}" {% if request.GET.status == value %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Фильтр</button>
+  </form>
+  <section class="office-panel">
+    <div class="office-table">
+      {% for order in orders %}
+        <div class="table-row table-row--order table-row--with-actions">
+          <span>{{ order.title }}</span>
+          <span>{{ order.client_email|default:"почта не указана" }}</span>
+          <span class="badge">{{ order.get_status_display }}</span>
+          <span class="table-row-actions">
+            <a class="office-row-button" href="{% url 'office:order-detail' order.pk %}">Открыть</a>
+            {% if order.status != "completed" and order.status != "cancelled" %}
+              <form method="post" action="{% url 'office:order-detail' order.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="complete_order">
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button class="office-row-button" type="submit" data-confirm="Завершить заказ #{{ order.pk }}?">Завершить</button>
+              </form>
+            {% endif %}
+          </span>
+        </div>
+      {% empty %}
+        <p class="empty-state">Заказов пока нет.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

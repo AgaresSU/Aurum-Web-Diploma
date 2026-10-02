@@ -1,0 +1,73 @@
+{% extends "office/base.html" %}
+
+{% block title %}{{ client_account.get_full_name|default:client_account.username }} — AurumWeb Office{% endblock %}
+{% block heading %}{{ client_account.get_full_name|default:client_account.username }}{% endblock %}
+
+{% block content %}
+  <section class="office-project-summary">
+    <div><span>Email</span><strong>{{ client_account.email|default:"Не указан" }}</strong></div>
+    <div><span>Регистрация</span><strong>{{ client_account.date_joined|date:"d.m.Y" }}</strong></div>
+    <div><span>Последний вход</span><strong>{{ client_account.last_login|date:"d.m.Y H:i"|default:"Еще не входил" }}</strong></div>
+  </section>
+
+  <section class="office-grid">
+    <article class="office-panel office-panel--wide">
+      <div class="panel-head"><h2>Проекты</h2></div>
+      <div class="compact-list">
+        {% for project in projects %}
+          <a href="{% url 'office:project-detail' project.public_id %}">
+            <strong>{{ project.title }}</strong>
+            <span>{{ project.get_status_display }}</span>
+          </a>
+        {% empty %}<p class="empty-state">Проектов пока нет.</p>{% endfor %}
+      </div>
+    </article>
+
+    <article class="office-panel">
+      <div class="panel-head"><h2>Счета</h2></div>
+      <div class="compact-list">
+        {% for invoice in invoices %}
+          <a href="{% url 'office:invoice-detail' invoice.pk %}">
+            <strong>{{ invoice.title }}</strong>
+            <span>{{ invoice.amount }} ₽ · {{ invoice.get_status_display }}</span>
+          </a>
+        {% empty %}<p class="empty-state">Счетов пока нет.</p>{% endfor %}
+      </div>
+    </article>
+
+    <article class="office-panel">
+      <div class="panel-head">
+        <h2>Диалоги</h2>
+        {% if primary_conversation %}
+          <a class="office-row-button" href="{% url 'office:conversation-detail' primary_conversation.pk %}">Открыть диалог</a>
+        {% else %}
+          <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="open_conversation">
+            <button class="office-row-button" type="submit">Начать диалог</button>
+          </form>
+        {% endif %}
+      </div>
+      <div class="compact-list">
+        {% for conversation in conversations %}
+          <a href="{% url 'office:conversation-detail' conversation.pk %}">
+            <strong>{{ conversation.title }}</strong>
+            <span>{{ conversation.get_status_display }}</span>
+          </a>
+        {% empty %}<p class="empty-state">Диалогов пока нет.</p>{% endfor %}
+      </div>
+    </article>
+
+    <article class="office-panel">
+      <div class="panel-head"><h2>Сайты</h2></div>
+      <div class="compact-list">
+        {% for site in sites %}
+          <a href="{% url 'office:site-detail' site.pk %}">
+            <strong>{{ site.title }}</strong>
+            <span>{{ site.domain_name|default:"Домен не указан" }}</span>
+          </a>
+        {% empty %}<p class="empty-state">Сайтов пока нет.</p>{% endfor %}
+      </div>
+    </article>
+  </section>
+{% endblock %}

@@ -1,0 +1,36 @@
+<footer id="site-footer" class="premium-footer">
+  <div class="premium-footer__brand">
+    <a class="brand-mark brand-mark--premium" href="/">
+      <img class="brand-mark__logo" src="/assets/brand/aurumweb-mark-squircle-new-128.webp" alt="AurumWeb" width="48" height="48">
+      <span>AurumWeb</span>
+    </a>
+    <p>Сайты под ключ, поддержка после запуска, Python-автоматизация и Telegram-боты.</p>
+  </div>
+
+  <nav class="premium-footer__column" aria-label="Документы">
+    <strong>Документы</strong>
+    <a href="/legal/offer/">Публичная оферта</a>
+    <a href="/legal/payment/">Оплата</a>
+    <a href="/legal/refund/">Возврат</a>
+    <a href="/legal/privacy/">Политика данных</a>
+    <a href="/legal/contacts/">Контакты</a>
+  </nav>
+
+  <nav class="premium-footer__column" aria-label="Разделы сайта">
+    <strong>Разделы</strong>
+    <a href="/">Главная</a>
+    <a href="/content/services/">Услуги</a>
+    <a href="/content/templates/">Примеры сайтов</a>
+    <a href="/accounts/login/?next=/client/">Личный кабинет</a>
+    <a href="/brief/">Заявка</a>
+  </nav>
+
+  <div class="premium-footer__seller" aria-label="Реквизиты продавца">
+    <strong>Реквизиты</strong>
+    <p>{{ public_seller.name|default:"AurumWeb" }}</p>
+    <p>{{ public_seller.status|default:"Самозанятый исполнитель" }}</p>
+    {% if public_seller.inn %}<p>ИНН {{ public_seller.inn }}</p>{% endif %}
+    {% if public_seller.phone %}<p>{{ public_seller.phone }}</p>{% endif %}
+    {% if public_seller.email %}<p>{{ public_seller.email }}</p>{% endif %}
+  </div>
+</footer>

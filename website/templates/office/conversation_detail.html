@@ -1,0 +1,80 @@
+{% extends "office/base.html" %}
+
+{% block title %}Диалог #{{ conversation.pk }} — AurumWeb Office{% endblock %}
+{% block heading %}{{ conversation.title }}{% endblock %}
+{% block eyebrow %}{{ conversation.get_status_display }}{% endblock %}
+
+{% block content %}
+  <section class="detail-layout">
+    <article class="office-panel">
+      <h2>Переписка</h2>
+      {% if selected_template %}
+        <div class="office-template-card office-template-card--inline">
+          <span>выбранный пример</span>
+          <h3>{{ selected_template.title }}</h3>
+          <p>{{ selected_template.industry }}{% if selected_template.conversion_focus %} · {{ selected_template.conversion_focus }}{% endif %}</p>
+          <a href="{{ selected_template.demo_url }}" target="_blank">Открыть пример</a>
+        </div>
+      {% endif %}
+      <div class="message-thread">
+        {% for message in conversation.messages.all %}
+          <p class="message message--{{ message.author_role }}">
+            <span>
+              {% if message.author_role == "system" %}AurumWeb{% else %}{{ message.get_author_role_display }}{% endif %}
+              · {{ message.created_at|date:"d.m.Y H:i" }}
+            </span>
+            {{ message.body|linebreaksbr }}
+          </p>
+        {% empty %}
+          <p class="empty-state">Сообщений пока нет.</p>
+        {% endfor %}
+      </div>
+    </article>
+    <aside class="office-panel" id="reply">
+      <h2>Ответить</h2>
+      <p class="muted">
+        Напишите ответ клиенту. Сообщение появится в его кабинете, а при необходимости ссылку на диалог
+        можно скопировать ниже.
+      </p>
+      <form class="office-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Добавить ответ</button>
+      </form>
+      {% if conversation.status != "closed" %}
+        <form class="office-action-form" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="close_conversation">
+          <button class="office-button office-button--danger" type="submit" data-confirm="Закрыть диалог #{{ conversation.pk }}?">Закрыть диалог</button>
+        </form>
+      {% endif %}
+      <a class="office-button" href="{% url 'office:conversation-client-preview' conversation.pk %}">Посмотреть кабинет клиента</a>
+      <a class="office-button office-button--secondary" href="{% url 'messenger:public-conversation' conversation.public_token %}" target="_blank">Открыть быстрый просмотр</a>
+      <details class="office-disclosure office-disclosure--inner">
+        <summary>
+          <span>Ссылки для клиента</span>
+          <em>Скопировать ссылку в кабинет или быстрый просмотр</em>
+        </summary>
+        <div class="client-card">
+          <p>
+            <span>В личный кабинет</span>
+            <code class="office-link-code">
+              {{ request.scheme }}://{{ request.get_host }}{% url 'client_portal:conversation-detail' conversation.public_token %}
+            </code>
+            <button class="office-copy-button" type="button" data-copy="{{ request.scheme }}://{{ request.get_host }}{% url 'client_portal:conversation-detail' conversation.public_token %}">Скопировать</button>
+          </p>
+          <p>
+            <span>Быстрый просмотр</span>
+            <a class="office-link-code" href="{% url 'messenger:public-conversation' conversation.public_token %}" target="_blank">
+              {{ request.scheme }}://{{ request.get_host }}{% url 'messenger:public-conversation' conversation.public_token %}
+            </a>
+            <button class="office-copy-button" type="button" data-copy="{{ request.scheme }}://{{ request.get_host }}{% url 'messenger:public-conversation' conversation.public_token %}">Скопировать</button>
+          </p>
+        </div>
+      </details>
+      {% if conversation.lead %}
+        <a class="office-button office-button--secondary" href="{% url 'office:lead-detail' conversation.lead.pk %}">Открыть заявку</a>
+      {% endif %}
+    </aside>
+  </section>
+{% endblock %}

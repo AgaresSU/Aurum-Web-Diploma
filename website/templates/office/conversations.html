@@ -1,0 +1,50 @@
+{% extends "office/base.html" %}
+
+{% block title %}Диалоги — AurumWeb Office{% endblock %}
+{% block heading %}Диалоги{% endblock %}
+
+{% block content %}
+  <section class="office-panel office-list-intro">
+    <div>
+      <h2>Переписка с клиентами</h2>
+      <p class="muted">
+        Открытые диалоги лучше держать коротким списком: ответили клиенту, передали ссылку или материал,
+        закрыли разговор после решения вопроса.
+      </p>
+    </div>
+  </section>
+
+  <form class="office-filter" method="get">
+    <select name="status">
+      <option value="">Все статусы</option>
+      {% for value,label in statuses %}
+        <option value="{{ value }}" {% if request.GET.status == value %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Показать</button>
+  </form>
+  <section class="office-panel">
+    <div class="office-table">
+      {% for conversation in conversations %}
+        <div class="table-row table-row--conversation table-row--with-actions">
+          <span>{{ conversation.title }}</span>
+          <span>{{ conversation.client_email|default:"почта не указана" }}</span>
+          <span class="badge">{{ conversation.get_status_display }}</span>
+          <span class="table-row-actions">
+            <a class="office-row-button" href="{% url 'office:conversation-detail' conversation.pk %}">Открыть</a>
+            {% if conversation.status != "closed" %}
+              <form method="post" action="{% url 'office:conversation-detail' conversation.pk %}">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="close_conversation">
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button class="office-row-button office-row-button--danger" type="submit" data-confirm="Закрыть диалог #{{ conversation.pk }}?">Закрыть</button>
+              </form>
+            {% endif %}
+          </span>
+        </div>
+      {% empty %}
+        <p class="empty-state">Диалогов пока нет.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "office/base.html" %}
+
+{% block title %}{{ site.title }} — AurumWeb Office{% endblock %}
+{% block heading %}{{ site.title }}{% endblock %}
+{% block eyebrow %}{{ site.get_status_display }}{% endblock %}
+
+{% block content %}
+  <section class="detail-layout">
+    <article class="office-panel">
+      <div class="qualification-summary">
+        <p>
+          <span>Домен оплачен до</span>
+          <strong>{{ site.domain_expires_at|date:"d.m.Y"|default:"не указан" }}</strong>
+        </p>
+        <p>
+          <span>Хостинг оплачен до</span>
+          <strong>{{ site.hosting_expires_at|date:"d.m.Y"|default:"не указан" }}</strong>
+        </p>
+        <p>
+          <span>Защита сайта до</span>
+          <strong>{{ site.ssl_expires_at|date:"d.m.Y"|default:"не указан" }}</strong>
+        </p>
+      </div>
+
+      <div class="office-template-card office-template-card--inline">
+        <span>адрес сайта</span>
+        <h3>{{ site.domain_name|default:"Домен пока не привязан" }}</h3>
+        <p>{{ site.url|default:"Адрес пока не указан" }}</p>
+        {% if site.url %}<a href="{{ site.url }}" target="_blank">Открыть сайт</a>{% endif %}
+      </div>
+
+      <form class="office-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить карточку сайта</button>
+      </form>
+    </article>
+
+    <aside class="office-panel">
+      <h2>Контроль поддержки</h2>
+      <div class="status-stack">
+        <p><span>План</span><strong>{{ site.get_support_plan_display }}</strong></p>
+        <p><span>Поддержка до</span><strong>{{ site.support_until|date:"d.m.Y"|default:"не указана" }}</strong></p>
+        <p><span>Резервные копии</span><strong>{{ site.backup_frequency|default:"не указано" }}</strong></p>
+        <p><span>Аналитика</span><strong>{% if site.analytics_connected %}подключена{% else %}нет{% endif %}</strong></p>
+        <p><span>Подготовка для поиска</span><strong>{% if site.seo_baseline_ready %}готова{% else %}нет{% endif %}</strong></p>
+      </div>
+
+      {% if site.order %}
+        <a class="office-button" href="{% url 'office:order-detail' site.order.pk %}">Открыть заказ</a>
+      {% endif %}
+      {% if site.lead %}
+        <a class="office-button office-button--secondary" href="{% url 'office:lead-detail' site.lead.pk %}">Открыть заявку</a>
+      {% endif %}
+    </aside>
+  </section>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Оплата не завершена — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Оплата счета AurumWeb не завершена: можно вернуться к счету и повторить оплату.">
+{% endblock %}
+{% block meta_robots %}<meta name="robots" content="noindex,nofollow,noarchive">{% endblock %}
+{% block og_title %}Оплата не завершена — AurumWeb{% endblock %}
+{% block analytics %}{% endblock %}
+
+{% block content %}
+  <div class="section-heading">
+    <p class="eyebrow">оплата</p>
+    <h1>Оплата не завершена</h1>
+    <p>Платеж отменен или не был подтвержден платежной формой. Счет можно открыть повторно и выбрать удобный способ оплаты.</p>
+  </div>
+
+  {% if invoice %}
+    <section class="content-card">
+      <p class="eyebrow">счет</p>
+      <h2>{{ invoice.title }}</h2>
+      <p>{{ invoice.amount }} ₽ · {{ invoice.get_status_display }}</p>
+      <a class="primary-button" href="{% url 'billing:invoice-detail' invoice.public_token %}">Вернуться к счету</a>
+    </section>
+  {% else %}
+    <section class="content-card">
+      <h2>Если платеж нужен, напишите менеджеру</h2>
+      <p>Менеджер проверит счет и отправит ссылку на оплату повторно.</p>
+    </section>
+  {% endif %}
+{% endblock %}

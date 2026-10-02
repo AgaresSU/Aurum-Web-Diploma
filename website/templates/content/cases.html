@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Кейсы — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Кейсы AurumWeb через бизнес-результат: сайты, поддержка, автоматизация заявок, Python-разработка, Telegram-боты и интеграции.">
+{% endblock %}
+{% block og_title %}Кейсы AurumWeb{% endblock %}
+{% block og_description %}Примеры задач и результатов: сайты, заявки, поддержка, автоматизация и интеграции.{% endblock %}
+
+{% block content %}
+  <section class="lux-page-hero">
+    <p class="lux-kicker">работы и результаты</p>
+    <h1>Что было сделано и какую задачу решило</h1>
+    <p>Примеры задач и результатов: сайты, заявки, поддержка, автоматизация и интеграции.</p>
+  </section>
+
+  <section class="lux-case-grid">
+    {% for case in cases %}
+      <article class="{% if forloop.first %}is-large{% endif %}">
+        <span>{{ case.industry|default:"Работа" }}</span>
+        <h2>{{ case.title }}</h2>
+        {% if case.challenge %}<p><strong>Задача:</strong> {{ case.challenge }}</p>{% endif %}
+        {% if case.solution %}<p><strong>Решение:</strong> {{ case.solution }}</p>{% endif %}
+        <p><strong>Результат:</strong> {{ case.result }}</p>
+        {% if case.stack %}
+          <div>
+            {% for item in case.stack.split %}
+              <small>{{ item }}</small>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </article>
+    {% empty %}
+      <article class="is-large">
+        <span>в работе</span>
+        <h2>Работы будут опубликованы после согласования с клиентами</h2>
+        <p>Пока можно посмотреть примеры сайтов и отправить задачу на разбор: структура, заявка, кабинет и дальнейшая поддержка уже заложены в продукт.</p>
+      </article>
+    {% endfor %}
+  </section>
+{% endblock %}

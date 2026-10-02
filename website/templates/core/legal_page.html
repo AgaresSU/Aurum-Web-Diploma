@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="{{ page.description|default:page.lead }}">
+{% endblock %}
+{% block og_title %}{{ page.title }} — AurumWeb{% endblock %}
+{% block og_description %}{{ page.description|default:page.lead }}{% endblock %}
+{% block twitter_title %}{{ page.title }} — AurumWeb{% endblock %}
+{% block twitter_description %}{{ page.description|default:page.lead }}{% endblock %}
+
+{% block content %}
+  <div class="legal-hub">
+    <section class="legal-hub__hero">
+      <div>
+        <p class="eyebrow">юридическая информация</p>
+        <h1>{{ page.title }}</h1>
+      </div>
+      <div class="legal-hub__status">
+        <span>Редакция</span>
+        <strong>{{ updated_at }}</strong>
+      </div>
+    </section>
+
+    <section class="legal-fulltext legal-fulltext--document">
+      <div class="legal-fulltext__head">
+        <p class="eyebrow">официальная редакция</p>
+        <h2>{{ page.title }}</h2>
+      </div>
+
+      <div class="legal-fulltext__items">
+        {% for title,text in page.sections %}
+          <article class="legal-clause">
+            <h3><span>{{ forloop.counter }}</span>{{ title }}</h3>
+            <p>{{ text }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    {% if page_slug == "contacts" %}
+      <section class="legal-requisites">
+        <p class="eyebrow">реквизиты</p>
+        <h2>Исполнитель</h2>
+        <dl>
+          <div>
+            <dt>Наименование</dt>
+            <dd>{{ seller.name|default:"AurumWeb" }}</dd>
+          </div>
+          <div>
+            <dt>Статус</dt>
+            <dd>{{ seller.status|default:"Самозанятый исполнитель" }}</dd>
+          </div>
+          {% if seller.inn %}
+            <div>
+              <dt>ИНН</dt>
+              <dd>{{ seller.inn }}</dd>
+            </div>
+          {% endif %}
+          {% if seller.email %}
+            <div>
+              <dt>Email</dt>
+              <dd>{{ seller.email }}</dd>
+            </div>
+          {% endif %}
+          {% if seller.phone %}
+            <div>
+              <dt>Телефон</dt>
+              <dd>{{ seller.phone }}</dd>
+            </div>
+          {% endif %}
+        </dl>
+      </section>
+    {% endif %}
+
+    {% if page_slug == "offer" %}
+      <section class="legal-document">
+        <div>
+          <p class="eyebrow">файл оферты</p>
+          <h2>Официальная редакция</h2>
+        </div>
+        <a href="/assets/legal/oferta_341902923482.docx">
+          Скачать публичную оферту в формате DOCX
+        </a>
+      </section>
+    {% endif %}
+
+    {% if page_slug == "payment" or page_slug == "offer" %}
+      <section class="legal-prices">
+        <div>
+          <p class="eyebrow">услуги</p>
+          <h2>Услуги и стартовые цены</h2>
+        </div>
+        <div class="legal-prices__list">
+          {% for service in services %}
+            <a href="{{ service.get_absolute_url }}">
+              <strong>{{ service.title }}</strong>
+              <span>{{ service.price_display }}</span>
+            </a>
+          {% empty %}
+            <p>Услуги временно не опубликованы.</p>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+
+  </div>
+{% endblock %}

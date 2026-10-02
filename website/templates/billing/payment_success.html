@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Оплата прошла — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Страница успешной оплаты счета AurumWeb.">
+{% endblock %}
+{% block meta_robots %}<meta name="robots" content="noindex,nofollow,noarchive">{% endblock %}
+{% block og_title %}Оплата прошла — AurumWeb{% endblock %}
+{% block analytics %}{% endblock %}
+
+{% block content %}
+  <div class="section-heading">
+    <p class="eyebrow">оплата</p>
+    <h1>{% if invoice and invoice.status == "paid" %}Счет оплачен{% else %}Платеж принят в обработку{% endif %}</h1>
+    <p>{{ status_message }}</p>
+  </div>
+
+  {% if invoice %}
+    <section class="content-card">
+      <p class="eyebrow">счет</p>
+      <h2>{{ invoice.title }}</h2>
+      <p>{{ invoice.amount }} ₽ · {{ invoice.get_status_display }}</p>
+      {% if signature_valid is not None %}
+        <p class="muted">
+          Проверка Robokassa:
+          подпись — {% if signature_valid %}корректна{% else %}требует проверки{% endif %},
+          сумма — {% if amount_valid %}совпадает{% else %}требует проверки{% endif %}.
+        </p>
+      {% endif %}
+      <a class="primary-button" href="{% url 'billing:invoice-detail' invoice.public_token %}">Открыть счет</a>
+    </section>
+  {% else %}
+    <section class="content-card">
+      <h2>Счет будет обновлен автоматически</h2>
+      <p>Если оплата прошла, Robokassa отправит серверное подтверждение, и менеджер увидит статус в кабинете.</p>
+    </section>
+  {% endif %}
+{% endblock %}

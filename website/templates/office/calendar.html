@@ -1,0 +1,47 @@
+{% extends "office/base.html" %}
+
+{% block title %}Календарь — AurumWeb Office{% endblock %}
+{% block heading %}Календарь сроков{% endblock %}
+
+{% block content %}
+  <nav class="calendar-toolbar" aria-label="Выбор месяца">
+    <a href="?month={{ previous_month }}" aria-label="Предыдущий месяц">←</a>
+    <strong>{{ month_label }}</strong>
+    <a href="?month={{ next_month }}" aria-label="Следующий месяц">→</a>
+  </nav>
+
+  <div class="calendar-workspace">
+    <section class="office-calendar">
+      <div class="calendar-weekdays" aria-hidden="true"><span>Пн</span><span>Вт</span><span>Ср</span><span>Чт</span><span>Пт</span><span>Сб</span><span>Вс</span></div>
+      <div class="calendar-grid">
+        {% for week in weeks %}
+          {% for day in week %}
+            <article class="calendar-day{% if not day.in_month %} calendar-day--outside{% endif %}{% if day.is_today %} calendar-day--today{% endif %}{% if day.events %} calendar-day--has-events{% endif %}">
+              <time datetime="{{ day.date|date:'Y-m-d' }}">{{ day.date.day }}</time>
+              <div>
+                {% for event in day.events %}<a class="calendar-event calendar-event--{{ event.kind }}" href="{{ event.url }}"><span>{{ event.label }}</span><strong>{{ event.title }}</strong></a>{% endfor %}
+              </div>
+            </article>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </section>
+
+    <aside class="calendar-agenda" aria-label="Ближайшие сроки">
+      <section class="calendar-agenda-section calendar-agenda-section--overdue">
+        <div class="panel-head"><h2>Требуют внимания</h2><span>{{ overdue_deadlines|length }}</span></div>
+        <div class="calendar-agenda-list">
+          {% for event in overdue_deadlines %}<a href="{{ event.url }}"><time datetime="{{ event.date|date:'Y-m-d' }}">{{ event.date|date:"d.m.Y" }}</time><strong>{{ event.title }}</strong><span>{{ event.label }}</span></a>{% empty %}<p class="empty-state">Просроченных сроков нет.</p>{% endfor %}
+        </div>
+      </section>
+      <section class="calendar-agenda-section">
+        <div class="panel-head"><h2>Ближайшие 14 дней</h2><span>{{ upcoming_deadlines|length }}</span></div>
+        <div class="calendar-agenda-list">
+          {% for event in upcoming_deadlines %}<a href="{{ event.url }}"><time datetime="{{ event.date|date:'Y-m-d' }}">{{ event.date|date:"d.m.Y" }}</time><strong>{{ event.title }}</strong><span>{{ event.label }}</span></a>{% empty %}<p class="empty-state">Ближайших сроков нет.</p>{% endfor %}
+        </div>
+      </section>
+    </aside>
+  </div>
+
+  <section class="calendar-legend" aria-label="Обозначения"><span class="calendar-event--project">Проект</span><span class="calendar-event--stage">Этап</span><span class="calendar-event--invoice">Счет</span><span class="calendar-event--site">Сайт</span></section>
+{% endblock %}

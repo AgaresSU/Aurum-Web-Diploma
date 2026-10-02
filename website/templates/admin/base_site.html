@@ -1,0 +1,22 @@
+{% extends "admin/base_site.html" %}
+
+{% block extrastyle %}
+{{ block.super }}
+<link rel="stylesheet" href="/assets/admin.css?v=20260528-dropdowns">
+{% endblock %}
+
+{% block extrahead %}
+{{ block.super }}
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/assets/brand/aurumweb-favicon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="/assets/brand/aurumweb-apple-touch-icon.png">
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">
+  <a href="{% url 'admin:index' %}">
+      <img class="admin-brand-logo" src="/assets/brand/aurumweb-mark-squircle-new-128.webp" alt="" width="40" height="40">
+    AurumWeb Admin
+  </a>
+</h1>
+{% endblock %}

@@ -1,0 +1,10 @@
+{% extends "office/base.html" %}
+{% block title %}Доходы — AurumWeb Office{% endblock %}
+{% block heading %}Доходы{% endblock %}
+{% block content %}
+  <section class="metric-grid metric-grid--four"><article class="metric-card"><span>за все время</span><strong>{{ total }} ₽</strong></article><article class="metric-card"><span>текущий месяц</span><strong>{{ month_total }} ₽</strong></article><article class="metric-card"><span>ожидается по счетам</span><strong>{{ outstanding }} ₽</strong></article><article class="metric-card"><span>нужна проверка</span><strong>{{ needs_review }}</strong></article></section>
+  <section class="office-grid">
+    <article class="office-panel office-panel--wide"><div class="panel-head"><h2>По месяцам</h2></div><div class="office-revenue-list">{% for row in monthly %}<div><span>{{ row.month|date:"F Y" }}</span><strong>{{ row.total }} ₽</strong><em>{{ row.payments }} платежей</em></div>{% empty %}<p class="empty-state">Успешных платежей пока нет.</p>{% endfor %}</div></article>
+    <article class="office-panel"><div class="panel-head"><h2>За что платят</h2></div><div class="office-revenue-list">{% for row in top_services %}<div><span>{{ row.invoice__title }}</span><strong>{{ row.total }} ₽</strong><em>{{ row.payments }} платежей</em></div>{% empty %}<p class="empty-state">Данных пока нет.</p>{% endfor %}</div></article>
+  </section>
+{% endblock %}

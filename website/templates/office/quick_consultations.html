@@ -1,0 +1,65 @@
+{% extends "office/base.html" %}
+
+{% block title %}Быстрые консультации — AurumWeb Office{% endblock %}
+{% block heading %}Быстрые консультации{% endblock %}
+{% block eyebrow %}быстрые оплаты и вопросы из Telegram{% endblock %}
+
+{% block content %}
+  <section class="office-panel office-list-intro">
+    <div>
+      <h2>Быстрый бот консультаций</h2>
+      <p class="muted">
+        Обращения и оплаты из отдельного Telegram-бота. Ссылку лучше отправлять вручную тем клиентам,
+        кому нужен быстрый счет без личного кабинета.
+      </p>
+    </div>
+  </section>
+
+  <section class="office-panel office-list-intro">
+    <div>
+      <h2>Ссылка для клиента</h2>
+      <p class="muted">
+        Сценарий запускается только по ссылке, которую вы даете клиенту вручную:
+      </p>
+      {% if quick_start_url %}
+        <a class="office-link-code" href="{{ quick_start_url }}" target="_blank" rel="noopener">{{ quick_start_url }}</a>
+      {% else %}
+        <strong>сначала укажите имя бота в интеграциях</strong>
+      {% endif %}
+    </div>
+  </section>
+  <form class="office-filter" method="get">
+    <input name="q" type="search" placeholder="Поиск по имени, Telegram или вопросу" value="{{ request.GET.q }}">
+    <select name="status">
+      <option value="">Все статусы</option>
+      {% for value,label in statuses %}
+        <option value="{{ value }}" {% if request.GET.status == value %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Показать</button>
+  </form>
+
+  <section class="office-panel">
+    <div class="office-table">
+      {% for consultation in consultations %}
+        <a class="table-row table-row--lead" href="{% url 'office:quick-consultation-detail' consultation.pk %}">
+          <span>
+            <strong>{{ consultation.display_name }}</strong>
+            <small>{{ consultation.question|default:"вопрос еще не отправлен"|truncatechars:110 }}</small>
+          </span>
+          <span>{{ consultation.telegram_username|default:consultation.telegram_chat_id }}</span>
+          <span>
+            {% if consultation.invoice %}
+              Счет #{{ consultation.invoice.pk }} · {{ consultation.invoice.get_status_display }}
+            {% else %}
+              счета нет
+            {% endif %}
+          </span>
+          <span class="badge">{{ consultation.get_status_display }}</span>
+        </a>
+      {% empty %}
+        <p class="empty-state">Быстрых консультаций пока нет.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "office/base.html" %}
+
+{% block title %}Сайты — AurumWeb Office{% endblock %}
+{% block heading %}Сайты клиентов{% endblock %}
+{% block eyebrow %}поддержка и контроль сроков{% endblock %}
+
+{% block content %}
+  <form class="office-filter" method="get">
+    <input name="q" type="search" value="{{ request.GET.q }}" placeholder="Домен, клиент, сайт">
+    <select name="status">
+      <option value="">Все статусы</option>
+      {% for value,label in statuses %}
+        <option value="{{ value }}" {% if request.GET.status == value %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Фильтр</button>
+  </form>
+
+  <section class="office-panel">
+    <div class="office-table">
+      {% for site in sites %}
+        <a class="table-row table-row--site" href="{% url 'office:site-detail' site.pk %}">
+          <span>
+            <strong>{{ site.title }}</strong>
+            <small>{{ site.domain_name|default:site.url|default:"домен не указан" }}</small>
+          </span>
+          {% if site.user %}
+            <span>{{ site.user.email|default:site.user.username|default:"клиент не указан" }}</span>
+          {% elif site.order and site.order.client_email %}
+            <span>{{ site.order.client_email }}</span>
+          {% elif site.lead and site.lead.email %}
+            <span>{{ site.lead.email }}</span>
+          {% else %}
+            <span>клиент не указан</span>
+          {% endif %}
+          <span class="badge">{{ site.get_status_display }}</span>
+          <span class="site-date site-date--{{ site.domain_state }}">Домен {{ site.domain_expires_at|date:"d.m.Y"|default:"не указан" }}</span>
+        </a>
+      {% empty %}
+        <p class="empty-state">Сайтов пока нет.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

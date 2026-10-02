@@ -1,1 +1,6 @@
-Django==5.2.16
+Django>=5.2.17,<6.0
+cryptography>=50,<51
+Pillow>=12.3,<13
+psycopg[binary]>=3.2,<4
+gunicorn>=22,<24; platform_system != "Windows"
+sqlparse>=0.6,<1

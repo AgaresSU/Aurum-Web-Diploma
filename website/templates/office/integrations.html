@@ -1,0 +1,548 @@
+{% extends "office/base.html" %}
+
+{% block title %}Интеграции — AurumWeb Office{% endblock %}
+{% block heading %}Интеграции{% endblock %}
+{% block eyebrow %}уведомления, боты и оплата{% endblock %}
+
+{% block content %}
+  <section class="office-panel integration-overview">
+    <div class="panel-head">
+      <div>
+        <h2>Центр подключений</h2>
+        <p class="muted">
+          Основные статусы и действия собраны по рабочим зонам. Редкие настройки раскрываются отдельно,
+          чтобы не мешать ежедневной проверке оплат и уведомлений.
+        </p>
+      </div>
+    </div>
+    <div class="integration-shortcuts">
+      <a href="#payments">
+        <span>Оплата</span>
+        <strong>Robokassa</strong>
+        <em>ключи, чеки, адреса</em>
+      </a>
+      <a href="#main-bot">
+        <span>Telegram</span>
+        <strong>Кабинет клиента</strong>
+        <em>уведомления и привязка</em>
+      </a>
+      <a href="#quick-bot">
+        <span>Consult</span>
+        <strong>Быстрые оплаты</strong>
+        <em>отдельный бот для консультаций</em>
+      </a>
+      <a href="#brand">
+        <span>Оформление</span>
+        <strong>Бренд бота</strong>
+        <em>описание и аватарка</em>
+      </a>
+    </div>
+  </section>
+
+  <section id="payments" class="office-panel office-risk-panel integration-anchor">
+    <div class="panel-head">
+      <h2>Robokassa</h2>
+      <span class="badge">
+        {% if robokassa.configured %}
+          {% if robokassa.test_mode %}тестовый режим{% else %}готова к оплатам{% endif %}
+        {% else %}
+          ожидает ключи
+        {% endif %}
+      </span>
+    </div>
+    <p class="muted">
+      Счета формируются в AurumWeb, клиент оплачивает банковской картой, СБП или QR через Robokassa.
+      Ключи не выводятся в открытом виде: сохраненные пароли отображаются только звездочками.
+    </p>
+    <div class="integration-status" aria-label="Статус Robokassa">
+      <div class="integration-status-card">
+        <span>Логин магазина</span>
+        <strong>{% if robokassa.merchant_login_set %}сохранен{% else %}не указан{% endif %}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Пароль оплаты</span>
+        <strong>{% if robokassa.password1_set %}************{% else %}не указан{% endif %}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Пароль уведомлений</span>
+        <strong>{% if robokassa.password2_set %}************{% else %}не указан{% endif %}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Режим</span>
+        <strong>{% if robokassa.test_mode %}тест{% else %}боевой{% endif %}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Подпись</span>
+        <strong>{{ robokassa.hash_algorithm }}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Чек</span>
+        <strong>{% if robokassa.receipt_enabled %}включен{% else %}выключен{% endif %}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Ожидают сверки</span>
+        <strong>{{ robokassa.pending_reconciliation }}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Требуют проверки</span>
+        <strong>{{ robokassa.requires_review }}</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="integration-grid">
+    <article class="office-panel office-settings-panel">
+      <details class="office-disclosure" {% if robokassa_form.errors %}open{% endif %}>
+        <summary>
+          <span>Ключи магазина</span>
+          <em>Открывайте при первой настройке или смене параметров оплаты</em>
+        </summary>
+      <p class="muted">
+        Вставьте логин магазина и два пароля из кабинета Robokassa. Для сохранения нужно подтвердить действие текущим паролем администратора.
+      </p>
+      <form class="office-form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="save_robokassa">
+
+        <p>{{ robokassa_form.is_enabled.label_tag }} {{ robokassa_form.is_enabled }} {{ robokassa_form.is_enabled.errors }}</p>
+        <p>{{ robokassa_form.merchant_login.label_tag }} {{ robokassa_form.merchant_login }} {{ robokassa_form.merchant_login.errors }}</p>
+        <p>{{ robokassa_form.password1_mask.label_tag }} {{ robokassa_form.password1_mask }} {{ robokassa_form.password1_mask.errors }}</p>
+        <p>{{ robokassa_form.new_password1.label_tag }} {{ robokassa_form.new_password1 }} <span class="helptext">{{ robokassa_form.new_password1.help_text }}</span> {{ robokassa_form.new_password1.errors }}</p>
+        <p>{{ robokassa_form.password2_mask.label_tag }} {{ robokassa_form.password2_mask }} {{ robokassa_form.password2_mask.errors }}</p>
+        <p>{{ robokassa_form.new_password2.label_tag }} {{ robokassa_form.new_password2 }} <span class="helptext">{{ robokassa_form.new_password2.help_text }}</span> {{ robokassa_form.new_password2.errors }}</p>
+        <p>{{ robokassa_form.test_mode.label_tag }} {{ robokassa_form.test_mode }} {{ robokassa_form.test_mode.errors }}</p>
+        <p>{{ robokassa_form.hash_algorithm.label_tag }} {{ robokassa_form.hash_algorithm }} {{ robokassa_form.hash_algorithm.errors }}</p>
+        <p>{{ robokassa_form.payment_url.label_tag }} {{ robokassa_form.payment_url }} {{ robokassa_form.payment_url.errors }}</p>
+        <p>{{ robokassa_form.receipt_enabled.label_tag }} {{ robokassa_form.receipt_enabled }} {{ robokassa_form.receipt_enabled.errors }}</p>
+        <p>{{ robokassa_form.receipt_sno.label_tag }} {{ robokassa_form.receipt_sno }} {{ robokassa_form.receipt_sno.errors }}</p>
+        <p>{{ robokassa_form.receipt_tax.label_tag }} {{ robokassa_form.receipt_tax }} {{ robokassa_form.receipt_tax.errors }}</p>
+        <p>{{ robokassa_form.receipt_payment_method.label_tag }} {{ robokassa_form.receipt_payment_method }} {{ robokassa_form.receipt_payment_method.errors }}</p>
+        <p>{{ robokassa_form.receipt_payment_object.label_tag }} {{ robokassa_form.receipt_payment_object }} {{ robokassa_form.receipt_payment_object.errors }}</p>
+        <p>{{ robokassa_form.password.label_tag }} {{ robokassa_form.password }} {{ robokassa_form.password.errors }}</p>
+        {{ robokassa_form.non_field_errors }}
+
+        <button type="submit">Сохранить Robokassa</button>
+      </form>
+      </details>
+    </article>
+
+    <article class="office-panel">
+      <h2>Сценарий подключения</h2>
+      <ol class="office-steps">
+        <li>Отправить сайт на проверку Robokassa с публичными услугами, офертой, возвратом, политикой данных и реквизитами.</li>
+        <li>После одобрения получить логин магазина и два пароля в кабинете Robokassa.</li>
+        <li>Внести ключи в это окно или в переменные окружения сервера.</li>
+        <li>Создать тестовый счет, пройти оплату и проверить, что счет стал оплаченным.</li>
+      </ol>
+      <p class="muted">
+        Платежная ссылка создается автоматически из счета. Если платежные ключи не настроены, кнопка оплаты недоступна и списание не выполняется.
+      </p>
+    </article>
+  </section>
+
+  <section class="office-panel office-settings-panel">
+    <details class="office-disclosure">
+      <summary>
+        <span>Адреса для кабинета Robokassa</span>
+        <em>Скопировать в настройки магазина</em>
+      </summary>
+      <p class="muted">
+        Эти адреса нужно указать в настройках магазина Robokassa.
+        Адрес результата принимает уведомление об оплате и подтверждает его автоматически.
+      </p>
+      <div class="compact-list">
+        {% for callback in robokassa.callbacks %}
+          <p>
+            <strong>{{ callback.label }}</strong>
+            <span>{{ callback.purpose }}</span>
+            <code>{{ callback.url }}</code>
+          </p>
+        {% endfor %}
+      </div>
+    </details>
+  </section>
+
+  <section class="office-panel">
+    <div class="panel-head">
+      <h2>Последние события Robokassa</h2>
+    </div>
+    <div class="compact-list">
+      {% for event in robokassa_events %}
+        <p>
+          <strong>{{ event.title }}</strong>
+          <span>{{ event.get_status_display }} · {{ event.created_at|date:"d.m.Y H:i" }}</span>
+        </p>
+      {% empty %}
+        <p>Событий Robokassa пока нет.</p>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section id="main-bot" class="office-panel office-risk-panel integration-anchor">
+    <div class="panel-head">
+      <h2>Telegram-бот</h2>
+      <span class="badge">{% if config.configured %}активен{% elif config.has_bot_token %}ключ сохранен{% else %}не настроен{% endif %}</span>
+    </div>
+    <p class="muted">
+      Ключ бота и чат для уведомлений сохраняются в защищенном виде:
+      сохраненный ключ отображается как <strong>************</strong>.
+    </p>
+    <div class="integration-status" aria-label="Статус Telegram-бота">
+      <div class="integration-status-card">
+        <span>Ключ бота</span>
+        <strong>{% if config.has_bot_token %}************{% else %}не сохранен{% endif %}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Имя бота</span>
+        <strong>{% if config.bot_username %}@{{ config.bot_username }}{% else %}не указан{% endif %}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Чат для уведомлений</span>
+        <strong>{{ config.admin_chat_id|default:"не указан" }}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Ключ защиты</span>
+        <strong>{% if config.has_webhook_secret %}************{% else %}не сохранен{% endif %}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Уведомления</span>
+        <strong>{% if config.is_enabled %}включены{% else %}выключены{% endif %}</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="integration-grid">
+    <article class="office-panel office-settings-panel">
+      <details class="office-disclosure" {% if form.errors %}open{% endif %}>
+        <summary>
+          <span>Настройки доступа</span>
+          <em>Ключ бота, чат уведомлений и адрес приема сообщений</em>
+        </summary>
+      <p class="muted">
+        Вставьте ключ бота, проверьте подключение, затем укажите чат для уведомлений и подтвердите сохранение текущим паролем.
+        Имя бота нужно для клиентской кнопки “Подключить Telegram”; обычно оно подтягивается кнопкой “Проверить бота”.
+      </p>
+      <form class="office-form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="save_telegram">
+
+        <p>{{ form.is_enabled.label_tag }} {{ form.is_enabled }} {{ form.is_enabled.errors }}</p>
+        <p>{{ form.token_mask.label_tag }} {{ form.token_mask }} {{ form.token_mask.errors }}</p>
+        <p>{{ form.new_bot_token.label_tag }} {{ form.new_bot_token }} <span class="helptext">{{ form.new_bot_token.help_text }}</span> {{ form.new_bot_token.errors }}</p>
+        <p>{{ form.bot_username.label_tag }} {{ form.bot_username }} <span class="helptext">{{ form.bot_username.help_text }}</span> {{ form.bot_username.errors }}</p>
+        <p>{{ form.admin_chat_id.label_tag }} {{ form.admin_chat_id }} <span class="helptext">{{ form.admin_chat_id.help_text }}</span> {{ form.admin_chat_id.errors }}</p>
+        <p>{{ form.webhook_secret_mask.label_tag }} {{ form.webhook_secret_mask }} {{ form.webhook_secret_mask.errors }}</p>
+        <p>{{ form.new_webhook_secret.label_tag }} {{ form.new_webhook_secret }} <span class="helptext">{{ form.new_webhook_secret.help_text }}</span> {{ form.new_webhook_secret.errors }}</p>
+        <p>{{ form.webhook_url.label_tag }} {{ form.webhook_url }} <span class="helptext">{{ form.webhook_url.help_text }}</span> {{ form.webhook_url.errors }}</p>
+        <p>{{ form.password.label_tag }} {{ form.password }} {{ form.password.errors }}</p>
+        {{ form.non_field_errors }}
+
+        <button type="submit">Сохранить Telegram</button>
+      </form>
+      </details>
+    </article>
+
+    <article class="office-panel">
+      <h2>Активация и проверка</h2>
+      <p class="muted">
+        Сначала сохраните ключ бота и нажмите “Проверить бота”, чтобы получить его имя.
+        Для уведомлений менеджеру напишите любое сообщение боту и нажмите “Найти мой чат”.
+        После публикации сайта можно включить прием сообщений, и клиентская привязка будет происходить сразу после первого сообщения боту.
+      </p>
+      <div class="integration-note">
+        <strong>Номер бота не подходит для уведомлений.</strong>
+        <span>Нужен номер личного чата с вами. Он появится здесь после сообщения боту.</span>
+      </div>
+      <div class="integration-actions">
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="telegram_check">
+          <button type="submit" class="office-button office-button--inline">Проверить бота</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="telegram_updates">
+          <button type="submit" class="office-button office-button--inline">Найти мой чат</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="telegram_process_updates">
+          <button type="submit" class="office-button office-button--inline">Обработать команды</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="telegram_send_test">
+          <button type="submit" class="office-button office-button--inline">Отправить тест</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="telegram_webhook_info">
+          <button type="submit" class="office-button office-button--inline">Проверить прием сообщений</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="telegram_set_webhook">
+          <button type="submit" class="office-button office-button--inline">Включить прием сообщений</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="telegram_delete_webhook">
+          <button type="submit" class="office-button office-button--secondary office-button--inline">Отключить прием сообщений</button>
+        </form>
+      </div>
+
+      {% if telegram_result %}
+        <div class="integration-result">
+          <strong>{{ telegram_result.title }}</strong>
+          {% if telegram_chats %}
+            <div class="telegram-chat-list">
+              {% for chat in telegram_chats %}
+                <div class="telegram-chat-card">
+                  <p>
+                    <span>{{ chat.type }}</span>
+                    <strong>{{ chat.id }}</strong>
+                    <em>{{ chat.label }}</em>
+                    {% if chat.message %}<small>{{ chat.message }}</small>{% endif %}
+                  </p>
+                  <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="telegram_set_chat_id">
+                    <input type="hidden" name="chat_id" value="{{ chat.id }}">
+                    <button type="submit" class="office-copy-button">Использовать этот чат</button>
+                  </form>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="muted">
+              Если список пустой, откройте Telegram, напишите этому боту любое сообщение,
+              затем обновите подключение и снова нажмите “Найти мой чат”.
+            </p>
+          {% endif %}
+          <details class="office-disclosure office-disclosure--inner integration-debug">
+            <summary>
+              <span>Подробности ответа</span>
+              <em>Открывайте только при настройке или поиске ошибки</em>
+            </summary>
+            <pre>{{ telegram_result.body }}</pre>
+          </details>
+        </div>
+      {% endif %}
+    </article>
+  </section>
+
+  <section id="quick-bot" class="office-panel office-risk-panel integration-anchor">
+    <div class="panel-head">
+      <h2>Бот быстрых консультаций</h2>
+      <span class="badge">
+        {% if quick_config.configured %}активен{% elif quick_config.has_bot_token %}ключ сохранен{% else %}не настроен{% endif %}
+      </span>
+    </div>
+    <p class="muted">
+      Это отдельный бот для быстрых консультаций. Он не выводится на сайте и в кабинете клиента:
+      ссылку вы отправляете только тому человеку, кому нужно быстро принять оплату.
+    </p>
+    <div class="integration-status" aria-label="Статус бота быстрых консультаций">
+      <div class="integration-status-card">
+        <span>Ключ бота</span>
+        <strong>{% if quick_config.has_bot_token %}************{% else %}не сохранен{% endif %}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Имя бота</span>
+        <strong>{% if quick_config.bot_username %}@{{ quick_config.bot_username }}{% else %}не указан{% endif %}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Чат для уведомлений</span>
+        <strong>{{ quick_config.admin_chat_id|default:"не указан" }}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Ключ защиты</span>
+        <strong>{% if quick_config.has_webhook_secret %}************{% else %}не сохранен{% endif %}</strong>
+      </div>
+      <div class="integration-status-card">
+        <span>Уведомления</span>
+        <strong>{% if quick_config.is_enabled %}включены{% else %}выключены{% endif %}</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="integration-grid">
+    <article class="office-panel office-settings-panel">
+      <details class="office-disclosure" {% if quick_form.errors %}open{% endif %}>
+        <summary>
+          <span>Настройки отдельного бота</span>
+          <em>Ключ бота и уведомления для быстрых консультаций</em>
+        </summary>
+      <p class="muted">
+        Укажите ключ отдельного бота для быстрых консультаций. Бот личного кабинета эти команды не принимает.
+      </p>
+      <form class="office-form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="save_quick_telegram">
+
+        <p>{{ quick_form.is_enabled.label_tag }} {{ quick_form.is_enabled }} {{ quick_form.is_enabled.errors }}</p>
+        <p>{{ quick_form.token_mask.label_tag }} {{ quick_form.token_mask }} {{ quick_form.token_mask.errors }}</p>
+        <p>{{ quick_form.new_bot_token.label_tag }} {{ quick_form.new_bot_token }} <span class="helptext">{{ quick_form.new_bot_token.help_text }}</span> {{ quick_form.new_bot_token.errors }}</p>
+        <p>{{ quick_form.bot_username.label_tag }} {{ quick_form.bot_username }} <span class="helptext">{{ quick_form.bot_username.help_text }}</span> {{ quick_form.bot_username.errors }}</p>
+        <p>{{ quick_form.admin_chat_id.label_tag }} {{ quick_form.admin_chat_id }} <span class="helptext">{{ quick_form.admin_chat_id.help_text }}</span> {{ quick_form.admin_chat_id.errors }}</p>
+        <p>{{ quick_form.webhook_secret_mask.label_tag }} {{ quick_form.webhook_secret_mask }} {{ quick_form.webhook_secret_mask.errors }}</p>
+        <p>{{ quick_form.new_webhook_secret.label_tag }} {{ quick_form.new_webhook_secret }} <span class="helptext">{{ quick_form.new_webhook_secret.help_text }}</span> {{ quick_form.new_webhook_secret.errors }}</p>
+        <p>{{ quick_form.webhook_url.label_tag }} {{ quick_form.webhook_url }} <span class="helptext">{{ quick_form.webhook_url.help_text }}</span> {{ quick_form.webhook_url.errors }}</p>
+        <p>{{ quick_form.password.label_tag }} {{ quick_form.password }} {{ quick_form.password.errors }}</p>
+        {{ quick_form.non_field_errors }}
+
+        <button type="submit">Сохранить бота консультаций</button>
+      </form>
+      </details>
+    </article>
+
+    <article class="office-panel">
+      <h2>Проверка и ссылка для клиента</h2>
+      <p class="muted">
+        После включения приема сообщений клиент пишет только этому отдельному боту. Новые обращения попадают в Office:
+        <a href="{% url 'office:quick-consultations' %}">быстрые консультации</a>.
+      </p>
+      <div class="integration-actions">
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="quick_telegram_check">
+          <button type="submit" class="office-button office-button--inline">Проверить бота</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="quick_telegram_updates">
+          <button type="submit" class="office-button office-button--inline">Найти мой чат</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="quick_telegram_process_updates">
+          <button type="submit" class="office-button office-button--inline">Обработать команды</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="quick_telegram_send_test">
+          <button type="submit" class="office-button office-button--inline">Отправить тест</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="quick_telegram_webhook_info">
+          <button type="submit" class="office-button office-button--inline">Проверить прием сообщений</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="quick_telegram_set_webhook">
+          <button type="submit" class="office-button office-button--inline">Включить прием сообщений</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="quick_telegram_delete_webhook">
+          <button type="submit" class="office-button office-button--secondary office-button--inline">Отключить прием сообщений</button>
+        </form>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="quick_telegram_brand_setup">
+          <button type="submit" class="office-button office-button--inline">Применить бренд</button>
+        </form>
+      </div>
+
+      {% if quick_config.bot_username %}
+        <div class="integration-note">
+          <strong>Ссылка для клиента</strong>
+          <span><a href="https://t.me/{{ quick_config.bot_username }}" target="_blank" rel="noopener">https://t.me/{{ quick_config.bot_username }}</a></span>
+        </div>
+      {% endif %}
+
+      {% if quick_telegram_result %}
+        <div class="integration-result">
+          <strong>{{ quick_telegram_result.title }}</strong>
+          {% if quick_telegram_chats %}
+            <div class="telegram-chat-list">
+              {% for chat in quick_telegram_chats %}
+                <div class="telegram-chat-card">
+                  <p>
+                    <span>{{ chat.type }}</span>
+                    <strong>{{ chat.id }}</strong>
+                    <em>{{ chat.label }}</em>
+                    {% if chat.message %}<small>{{ chat.message }}</small>{% endif %}
+                  </p>
+                  <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="quick_telegram_set_chat_id">
+                    <input type="hidden" name="chat_id" value="{{ chat.id }}">
+                    <button type="submit" class="office-copy-button">Использовать этот чат</button>
+                  </form>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p class="muted">Если список пустой, напишите отдельному боту любое сообщение и повторите проверку.</p>
+          {% endif %}
+          <details class="office-disclosure office-disclosure--inner integration-debug">
+            <summary>
+              <span>Подробности ответа</span>
+              <em>Открывайте только при настройке или поиске ошибки</em>
+            </summary>
+            <pre>{{ quick_telegram_result.body }}</pre>
+          </details>
+        </div>
+      {% endif %}
+    </article>
+  </section>
+
+  <section id="brand" class="integration-grid integration-anchor">
+    <article class="office-panel">
+      <div class="panel-head">
+        <h2>Бренд бота</h2>
+        <span class="badge">AurumWeb preset</span>
+      </div>
+      <div class="telegram-brand-preview">
+          <img src="/assets/brand/aurumweb-mark-squircle-new-128.webp" alt="AurumWeb" width="96" height="96">
+        <div>
+          <strong>AurumWeb</strong>
+          <p>Сайты под ключ, поддержка, Python и Telegram-боты.</p>
+        </div>
+      </div>
+      <div class="telegram-brand-copy">
+        <p><span>Описание</span><strong>AurumWeb помогает обсудить сайт под ключ, поддержку после запуска, Python-автоматизацию и Telegram-ботов.</strong></p>
+        <p><span>Команды</span><strong>/start, /request, /status, /help</strong></p>
+      </div>
+      <form method="post" class="integration-single-action">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="telegram_brand_setup">
+        <button type="submit" class="office-button office-button--inline">Применить имя, описание и команды</button>
+      </form>
+    </article>
+
+    <article class="office-panel">
+      <h2>Аватарка бота</h2>
+      <p class="muted">
+        Фото профиля бота ставится вручную в настройках Telegram.
+      </p>
+      <ol class="office-steps">
+        <li>Откройте управление ботами в Telegram.</li>
+        <li>Введите команду <code>/setuserpic</code>.</li>
+        <li>Выберите своего бота AurumWeb.</li>
+        <li>Загрузите файл логотипа из проекта: <code>assets/brand/aurumweb-mark-squircle-new.png</code>.</li>
+      </ol>
+      <p class="muted">
+        Логотип уже квадратный и подходит для аватарки. После установки нажмите “Проверить бота”.
+      </p>
+    </article>
+  </section>
+
+  <section class="office-panel">
+    <div class="panel-head">
+      <h2>Последние события Telegram</h2>
+    </div>
+    <div class="compact-list">
+      {% for event in events %}
+        <p>
+          <strong>{{ event.title }}</strong>
+          <span>{{ event.get_status_display }} · {{ event.created_at|date:"d.m.Y H:i" }}</span>
+        </p>
+      {% empty %}
+        <p>Событий пока нет.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

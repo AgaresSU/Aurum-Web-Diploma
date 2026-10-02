@@ -1,0 +1,135 @@
+{% extends "office/base.html" %}
+
+{% block title %}{{ project.title }} — AurumWeb Office{% endblock %}
+{% block heading %}{{ project.title }}{% endblock %}
+
+{% block content %}
+  <section class="office-project-summary">
+    <div><span>Статус</span><strong>{{ project.get_status_display }}</strong></div>
+    <div><span>Клиент</span><strong>{{ project.client_name|default:project.client_email|default:"Не указан" }}</strong></div>
+    <div><span>Срок</span><strong>{{ project.due_at|date:"d.m.Y"|default:"Не назначен" }}</strong></div>
+    <div><span>Следующий шаг</span><strong>{% if project.status == "completed" %}Работы завершены{% else %}{{ project.next_action|default:"Нужно назначить" }}{% endif %}</strong></div>
+  </section>
+
+  <section class="office-project-layout">
+    <div class="office-project-main">
+      <article class="office-panel" id="project-stages">
+        <div class="panel-head"><h2>Этапы</h2></div>
+        <div class="office-stage-list">
+          {% for stage in project.stages.all %}
+            <div class="office-stage-row">
+              <span>{{ forloop.counter|stringformat:"02d" }}</span>
+              <div>
+                <strong>{{ stage.title }}</strong>
+                <p>{{ stage.description|default:stage.get_status_display }}</p>
+                {% if stage.result_summary %}<small class="office-stage-result"><b>Выполнено:</b> {{ stage.result_summary }}</small>{% endif %}
+                {% if stage.result_url %}<a class="office-stage-link" href="{{ stage.result_url }}" target="_blank" rel="noopener">Открыть результат</a>{% endif %}
+                {% for file in stage.result_files.all %}<a class="office-stage-link" href="{% url 'projects:file-download' file.public_id %}">{{ file.title }}</a>{% endfor %}
+                {% if stage.approval_comment %}<small class="office-stage-comment">Комментарий клиента: {{ stage.approval_comment }}</small>{% endif %}
+              </div>
+              <div class="office-stage-state"><em>{{ stage.due_at|date:"d.m.Y"|default:"без срока" }}</em>{% if stage.approval_required %}<span class="approval-state approval-state--{{ stage.approval_state }}">{{ stage.get_approval_state_display }}</span>{% endif %}<a href="?stage={{ stage.pk }}#project-stage-form">Изменить</a></div>
+            </div>
+          {% endfor %}
+        </div>
+        <details class="office-inline-form" id="project-stage-form"{% if edit_stage %} open{% endif %}>
+          <summary>{% if edit_stage %}Изменить этап «{{ edit_stage.title }}»{% else %}Добавить этап{% endif %}</summary>
+          <form method="post" class="office-form">
+            {% csrf_token %}<input type="hidden" name="action" value="stage">{% if edit_stage %}<input type="hidden" name="stage_id" value="{{ edit_stage.pk }}">{% endif %}{{ stage_form.as_p }}
+            <button type="submit">Сохранить этап</button>
+          </form>
+        </details>
+      </article>
+
+      <article class="office-panel">
+        <div class="panel-head"><h2>История</h2></div>
+        <div class="office-timeline">
+          {% for event in project.events.all %}
+            <div><time>{{ event.created_at|date:"d.m.Y H:i" }}</time><strong>{{ event.title }}</strong>{% if event.description %}<p>{{ event.description }}</p>{% endif %}</div>
+          {% empty %}<p class="empty-state">Событий пока нет.</p>{% endfor %}
+        </div>
+      </article>
+    </div>
+
+    <aside class="office-project-aside">
+      <article class="office-panel">
+        <div class="panel-head"><h2>Параметры</h2></div>
+        <form class="office-form office-project-settings-form" method="post">
+          {% csrf_token %}<input type="hidden" name="action" value="project">{{ project_form.as_p }}
+          <button type="submit">Сохранить проект</button>
+        </form>
+      </article>
+    </aside>
+  </section>
+
+  <section class="office-project-tools">
+    <article class="office-panel office-project-files-panel">
+      <div class="panel-head"><h2>Файлы</h2></div>
+      <div class="compact-list">
+        {% for file in project.files.all %}
+          <div class="compact-list-item">
+            <a href="{% url 'projects:file-download' file.public_id %}">
+              <strong>{{ file.title }}</strong>
+              <span>{{ file.original_name }}{% if file.stage %} · {{ file.stage.title }}{% endif %}</span>
+            </a>
+            <form method="post">
+              {% csrf_token %}
+              <input type="hidden" name="action" value="delete_file">
+              <input type="hidden" name="file_id" value="{{ file.public_id }}">
+              <button
+                class="office-row-button office-row-button--danger"
+                type="submit"
+                data-confirm="Удалить файл «{{ file.title }}» из проекта и истории? Это действие нельзя отменить."
+              >Удалить</button>
+            </form>
+          </div>
+        {% empty %}<p class="empty-state">Файлов пока нет.</p>{% endfor %}
+      </div>
+      <form class="office-form office-project-file-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}<input type="hidden" name="action" value="file">{{ file_form.as_p }}
+        <button type="submit">Добавить файл</button>
+      </form>
+    </article>
+
+    <article class="office-panel">
+      <div class="panel-head"><h2>Завершение проекта</h2></div>
+      {% if project.status == "completed" %}
+        <div class="office-project-completed">
+          <strong>Проект завершен</strong>
+          <span>{{ project.completed_at|date:"d.m.Y H:i" }}</span>
+        </div>
+      {% elif project.status == "cancelled" %}
+        <div class="office-project-completed">
+          <strong>Проект отменен</strong>
+        </div>
+      {% else %}
+        <form class="office-completion-form" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="complete_project">
+          <fieldset class="office-notification-choice">
+            <legend>Уведомление клиента</legend>
+            <label>
+              <input type="radio" name="notify_client" value="1" checked>
+              <span><strong>Уведомить</strong><small>В личном кабинете и подключенном Telegram</small></span>
+            </label>
+            <label>
+              <input type="radio" name="notify_client" value="0">
+              <span><strong>Без уведомления</strong><small>Только изменить статус проекта</small></span>
+            </label>
+          </fieldset>
+          <button
+            class="office-button"
+            type="submit"
+            data-confirm="Отметить проект «{{ project.title }}» завершенным?"
+          >Завершить проект</button>
+        </form>
+      {% endif %}
+    </article>
+
+    <article class="office-panel">
+      <div class="panel-head"><h2>Связанные записи</h2></div>
+      <div class="office-link-counts">
+        <span>Заявки <strong>{{ project.leads.count }}</strong></span><span>Заказы <strong>{{ project.orders.count }}</strong></span><span>Счета <strong>{{ project.invoices.count }}</strong></span><span>Сайты <strong>{{ project.sites.count }}</strong></span>
+      </div>
+    </article>
+  </section>
+{% endblock %}

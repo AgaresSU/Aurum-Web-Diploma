@@ -1,0 +1,39 @@
+{% extends "office/base.html" %}
+
+{% block title %}Обзор — AurumWeb Office{% endblock %}
+{% block heading %}Обзор{% endblock %}
+
+{% block content %}
+  <section class="metric-grid metric-grid--four">
+    <a class="metric-card" href="{% url 'office:projects' %}"><span>активные проекты</span><strong>{{ stats.active_projects }}</strong></a>
+    <a class="metric-card" href="{% url 'office:inbox' %}"><span>входящие</span><strong>{{ stats.open_inbox }}</strong></a>
+    <a class="metric-card" href="{% url 'office:conversations' %}?status=waiting_manager"><span>ждут ответа</span><strong>{{ stats.waiting_manager }}</strong></a>
+    <a class="metric-card" href="{% url 'office:revenue' %}"><span>оплачено за месяц</span><strong>{{ stats.month_revenue }} ₽</strong></a>
+  </section>
+
+  <section class="office-panel office-priority-panel">
+    <div class="panel-head"><h2>Требует действия</h2></div>
+    <div class="office-action-grid">
+      {% for action in next_actions %}
+        <a class="office-action-card" href="{{ action.url }}"><span>{{ action.count }}</span><strong>{{ action.title }}</strong><p>{{ action.text }}</p><em>{{ action.label }}</em></a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="office-grid">
+    <article class="office-panel office-panel--wide">
+      <div class="panel-head"><h2>Последние проекты</h2><a href="{% url 'office:projects' %}">Все проекты</a></div>
+      <div class="compact-list">
+        {% for project in recent_projects %}
+          <a href="{% url 'office:project-detail' project.public_id %}"><strong>{{ project.title }}</strong><span>{{ project.client_name|default:project.client_email|default:"Клиент не указан" }} · {{ project.get_status_display }}</span></a>
+        {% empty %}<p class="empty-state">Проектов пока нет.</p>{% endfor %}
+      </div>
+    </article>
+    <article class="office-panel">
+      <div class="panel-head"><h2>Черновики счетов</h2><a href="{% url 'office:invoices' %}?status=draft">Все счета</a></div>
+      <div class="compact-list">
+        {% for invoice in draft_invoices %}<a href="{% url 'office:invoice-detail' invoice.pk %}"><strong>{{ invoice.title }}</strong><span>{{ invoice.amount }} ₽</span></a>{% empty %}<p class="empty-state">Черновиков нет.</p>{% endfor %}
+      </div>
+    </article>
+  </section>
+{% endblock %}

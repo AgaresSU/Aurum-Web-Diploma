@@ -1,0 +1,27 @@
+/* AurumWeb palette adjustment: only colors, original layout/assets are preserved. */
+:root {
+  --primary: #2f7f61;
+  --primary-active: #1f2f27;
+  --primary-rgb: 47, 127, 97;
+  --secondary: #1f2f27;
+  --secondary-active: #1f2f27;
+  --secondary-rgb: 31, 47, 39;
+  --warning: #d2aa55;
+  --warning-active: #d2aa55;
+  --warning-rgb: 210, 170, 85;
+  --success: #2f7f61;
+  --success-active: #1f2f27;
+  --success-rgb: 47, 127, 97;
+  --light: #f4efe5;
+  --light-active: #f4efe5;
+  --light-rgb: 244, 239, 229;
+  --dark: #1f2f27;
+  --dark-active: #1f2f27;
+  --dark-rgb: 31, 47, 39;
+}
+.btn-primary, .bg-primary { border-color: #2f7f61 !important; background-color: #2f7f61 !important; }
+.btn-primary:hover, .btn-primary.active { border-color: #1f2f27 !important; background-color: #1f2f27 !important; }
+.btn-warning, .bg-warning { border-color: #d2aa55 !important; background-color: #d2aa55 !important; }
+.text-primary { color: #2f7f61 !important; }
+.border-primary { border-color: #2f7f61 !important; }
+a:not(.btn):hover { color: #2f7f61; }

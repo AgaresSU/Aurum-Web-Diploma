@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Счет — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Счет AurumWeb на согласованные работы: сумма, назначение, способы оплаты и статус.">
+{% endblock %}
+{% block meta_robots %}<meta name="robots" content="noindex,nofollow,noarchive">{% endblock %}
+{% block og_title %}Счет — AurumWeb{% endblock %}
+{% block analytics %}{% endblock %}
+
+{% block content %}
+  <div class="lead-panel">
+    <div>
+      <p class="eyebrow">счет на оплату</p>
+      <h1>{{ invoice.title }}</h1>
+      <p>{{ invoice.description|default:"Описание работ фиксируется после согласования задачи." }}</p>
+      <div class="brief-points">
+        <span>{{ invoice.get_status_display }}</span>
+        <span>{{ invoice.amount }} ₽</span>
+        <span>СБП · QR · карта</span>
+      </div>
+      {% if invoice.items.all %}
+        <div class="compact-list">
+          {% for item in invoice.items.all %}
+            <p>
+              <strong>{{ item.name }}</strong>
+              <span>
+                {% if item.note %}{{ item.note }} · {% endif %}
+                {{ item.quantity }} × {{ item.unit_price }} ₽
+              </span>
+            </p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+    <div class="lead-form">
+      <h2>{{ invoice.amount }} ₽</h2>
+      <p>Персональные данные и реквизиты доступны только после входа в личный кабинет.</p>
+      <div class="brief-points">
+        <span>СБП</span>
+        <span>QR-код</span>
+        <span>Банковская карта</span>
+      </div>
+      {% if invoice.status == "paid" %}
+        <p><strong>Счет оплачен.</strong> Повторная оплата по этой ссылке недоступна.</p>
+      {% elif invoice.status == "cancelled" %}
+        <p><strong>Счет отменен.</strong> Для нового счета напишите менеджеру.</p>
+      {% else %}
+        <a class="button button--primary" href="{% url 'billing:pay-invoice' invoice.public_token %}">Перейти к оплате счета</a>
+        <p>Оплата доступна банковской картой, QR-кодом или через СБП по защищенной платежной ссылке.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

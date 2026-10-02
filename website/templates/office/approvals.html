@@ -1,0 +1,44 @@
+{% extends "office/base.html" %}
+
+{% block title %}Согласования — AurumWeb Office{% endblock %}
+{% block heading %}Согласования{% endblock %}
+
+{% block content %}
+  <section class="approval-summary">
+    <article><span>ожидают клиента</span><strong>{{ pending_approvals|length }}</strong></article>
+    <article><span>нужны изменения</span><strong>{{ changes_requested|length }}</strong></article>
+  </section>
+
+  <section class="office-grid office-grid--approvals">
+    <article class="office-panel">
+      <div class="panel-head"><h2>Ожидают решения</h2></div>
+      <div class="office-approval-list">
+        {% for stage in pending_approvals %}
+          <a href="{% url 'office:project-detail' stage.project.public_id %}#project-stages"><span>{{ stage.project.title }}</span><strong>{{ stage.title }}</strong><em>{% if stage.due_at %}до {{ stage.due_at|date:"d.m.Y" }}{% else %}без срока{% endif %}</em></a>
+        {% empty %}<p class="empty-state">Ожидающих согласований нет.</p>{% endfor %}
+      </div>
+    </article>
+
+    <article class="office-panel">
+      <div class="panel-head"><h2>Клиент просит изменить</h2></div>
+      <div class="office-approval-list">
+        {% for stage in changes_requested %}
+          <article>
+            <a href="{% url 'office:project-detail' stage.project.public_id %}#project-stages"><span>{{ stage.project.title }}</span><strong>{{ stage.title }}</strong></a>
+            <p>{{ stage.approval_comment }}</p>
+            <form method="post">{% csrf_token %}<input type="hidden" name="stage_id" value="{{ stage.pk }}"><button type="submit">Отправить повторно</button></form>
+          </article>
+        {% empty %}<p class="empty-state">Новых замечаний нет.</p>{% endfor %}
+      </div>
+    </article>
+  </section>
+
+  {% if approval_history %}
+    <section class="office-panel">
+      <div class="panel-head"><h2>Недавно согласовано</h2></div>
+      <div class="compact-list">
+        {% for stage in approval_history %}<a href="{% url 'office:project-detail' stage.project.public_id %}#project-stages"><strong>{{ stage.title }}</strong><span>{{ stage.project.title }} · {{ stage.approval_decided_at|date:"d.m.Y H:i" }}</span></a>{% endfor %}
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

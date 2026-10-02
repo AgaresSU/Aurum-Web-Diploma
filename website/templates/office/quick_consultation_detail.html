@@ -1,0 +1,54 @@
+{% extends "office/base.html" %}
+
+{% block title %}Быстрая консультация #{{ consultation.pk }} — AurumWeb Office{% endblock %}
+{% block heading %}Быстрая консультация #{{ consultation.pk }}{% endblock %}
+{% block eyebrow %}{{ consultation.get_status_display }}{% endblock %}
+
+{% block content %}
+  <section class="detail-layout">
+    <article class="office-panel office-panel--wide">
+      <div class="panel-head">
+        <h2>Вопрос клиента</h2>
+        <span class="badge">{{ consultation.get_status_display }}</span>
+      </div>
+      <p class="muted">
+        Проверьте вопрос, ответьте клиенту и при необходимости отправьте счет. После оплаты счет будет
+        доступен в карточке справа.
+      </p>
+      <div class="proposal-draft">
+        <pre>{{ consultation.question|default:"Клиент еще не отправил вопрос." }}</pre>
+      </div>
+
+      <form class="office-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="form-actions">
+          <button type="submit" name="action" value="save">Сохранить</button>
+          <button type="submit" name="action" value="send_message">Ответить клиенту</button>
+          <button type="submit" name="action" value="create_invoice">Сформировать счет и отправить оплату</button>
+        </div>
+      </form>
+    </article>
+
+    <aside class="office-panel">
+      <h2>Клиент</h2>
+      <div class="client-card">
+        <p><span>Имя</span><strong>{{ consultation.display_name }}</strong></p>
+        <p><span>Email</span><strong>{{ consultation.client_email|default:"не указан" }}</strong></p>
+        <p><span>Ник в Telegram</span><strong>{{ consultation.telegram_username|default:"не указан" }}</strong></p>
+        <p><span>Чат клиента</span><strong>{{ consultation.telegram_chat_id }}</strong></p>
+        <p><span>Оферта</span><strong>{% if consultation.offer_accepted_at %}принята {{ consultation.offer_accepted_at|date:"d.m.Y H:i" }}{% else %}не принята{% endif %}</strong></p>
+        <p><span>Политика</span><strong>{% if consultation.privacy_accepted_at %}принята {{ consultation.privacy_accepted_at|date:"d.m.Y H:i" }}{% else %}не принята{% endif %}</strong></p>
+        <p><span>Создано</span><strong>{{ consultation.created_at|date:"d.m.Y H:i" }}</strong></p>
+        <p><span>Обновлено</span><strong>{{ consultation.updated_at|date:"d.m.Y H:i" }}</strong></p>
+      </div>
+
+      {% if consultation.invoice %}
+        <a class="office-button" href="{% url 'office:invoice-detail' consultation.invoice.pk %}">Открыть счет #{{ consultation.invoice.pk }}</a>
+        <a class="office-button office-button--secondary" href="{% url 'billing:pay-invoice' consultation.invoice.public_token %}" target="_blank">Открыть страницу оплаты</a>
+      {% else %}
+        <p class="empty-state">Счет появится после указания суммы и отправки оплаты клиенту.</p>
+      {% endif %}
+    </aside>
+  </section>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Оплата счета — AurumWeb{% endblock %}
+{% block meta_description %}
+  <meta name="description" content="Оплата счета AurumWeb банковской картой, QR-кодом или через СБП.">
+{% endblock %}
+{% block meta_robots %}<meta name="robots" content="noindex,nofollow,noarchive">{% endblock %}
+{% block og_title %}Оплата счета — AurumWeb{% endblock %}
+{% block analytics %}{% endblock %}
+
+{% block content %}
+  <div class="lead-panel payment-preview">
+    <div>
+      <p class="eyebrow">оплата счета</p>
+      <h1>Оплата счета через СБП, QR-код или карту</h1>
+      <p>
+        Счет сформирован в кабинете. После проверки суммы можно перейти к защищенной
+        платежной странице и выбрать удобный способ оплаты.
+      </p>
+      <div class="brief-points">
+        <span>Счет #{{ invoice.pk }}</span>
+        <span>проверка оплаты</span>
+        <span>{{ invoice.amount }} ₽</span>
+      </div>
+      {% if invoice.items.all %}
+        <div class="compact-list">
+          {% for item in invoice.items.all %}
+            <p>
+              <strong>{{ item.name }}</strong>
+              <span>
+                {% if item.note %}{{ item.note }} · {% endif %}
+                {{ item.quantity }} × {{ item.unit_price }} ₽
+              </span>
+            </p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="lead-form">
+      <div class="payment-qr" aria-label="QR-код для оплаты счета"></div>
+      <h2>{{ invoice.amount }} ₽</h2>
+      <p>Назначение: {{ invoice.title }}</p>
+      <div class="brief-points">
+        <span>СБП</span>
+        <span>QR-код</span>
+        <span>Карта</span>
+      </div>
+      <p>Перед оплатой проверьте сумму, назначение платежа и выбранный способ: СБП, QR-код или банковская карта.</p>
+    </div>
+  </div>
+{% endblock %}

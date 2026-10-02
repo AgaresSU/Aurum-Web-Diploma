@@ -1,0 +1,42 @@
+{% extends "office/base.html" %}
+
+{% block title %}Счета — AurumWeb Office{% endblock %}
+{% block heading %}Счета{% endblock %}
+
+{% block content %}
+  <section class="office-panel office-list-intro">
+    <div>
+      <h2>Счета и оплаты</h2>
+      <p class="muted">
+        Проверяйте черновики, отправленные счета и оплаты в одном списке. Откройте счет,
+        чтобы посмотреть страницу клиента, чек и историю платежей.
+      </p>
+    </div>
+    <a class="office-button office-button--inline" href="{% url 'office:leads' %}">Открыть заявки</a>
+  </section>
+
+  <form class="office-filter" method="get">
+    <input type="search" name="q" value="{{ request.GET.q }}" placeholder="Поиск по счету, клиенту или описанию">
+    <select name="status">
+      <option value="">Все статусы</option>
+      {% for value,label in statuses %}
+        <option value="{{ value }}" {% if request.GET.status == value %}selected{% endif %}>{{ label }}</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Показать</button>
+  </form>
+  <section class="office-panel">
+    <div class="office-table">
+      {% for invoice in invoices %}
+        <a class="table-row" href="{% url 'office:invoice-detail' invoice.pk %}">
+          <span>{{ invoice.title }}</span>
+          <span>{{ invoice.client_email|default:"почта не указана" }}</span>
+          <span>{{ invoice.amount }} ₽</span>
+          <span class="badge">{{ invoice.get_status_display }}</span>
+        </a>
+      {% empty %}
+        <p class="empty-state">Счетов пока нет.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

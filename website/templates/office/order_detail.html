@@ -1,0 +1,54 @@
+{% extends "office/base.html" %}
+
+{% block title %}Заказ #{{ order.pk }} — AurumWeb Office{% endblock %}
+{% block heading %}{{ order.title }}{% endblock %}
+{% block eyebrow %}{{ order.get_status_display }}{% endblock %}
+
+{% block content %}
+  <section class="detail-layout">
+    <article class="office-panel">
+      <h2>Рабочая карточка заказа</h2>
+      <p class="muted">
+        Обновляйте статус, сроки и основные данные проекта. После завершения заказ можно закрыть,
+        а счет, заявка и карточка сайта останутся в истории.
+      </p>
+      <form class="office-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сохранить заказ</button>
+      </form>
+    </article>
+    <aside class="office-panel">
+      <h2>Связанные материалы</h2>
+      <div class="client-card">
+        <p><span>Клиент</span><strong>{{ order.client_name|default:"не указан" }}</strong></p>
+        <p><span>Email</span><strong>{{ order.client_email|default:"не указан" }}</strong></p>
+        <p><span>Старт</span><strong>{{ order.starts_at|date:"d.m.Y"|default:"не указан" }}</strong></p>
+        <p><span>Срок</span><strong>{{ order.due_at|date:"d.m.Y"|default:"не указан" }}</strong></p>
+      </div>
+      {% if order.status != "completed" and order.status != "cancelled" %}
+        <form class="office-action-form" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="complete_order">
+          <button class="office-button" type="submit" data-confirm="Завершить заказ #{{ order.pk }}?">Завершить заказ</button>
+        </form>
+      {% endif %}
+      {% if order.lead %}
+        <a class="office-button office-button--secondary" href="{% url 'office:lead-detail' order.lead.pk %}">Открыть заявку</a>
+      {% endif %}
+      {% if order.invoice %}
+        <a class="office-button" href="{% url 'office:invoice-detail' order.invoice.pk %}">Открыть счет</a>
+      {% endif %}
+      {% if sites %}
+        {% for site in sites %}
+          <a class="office-button office-button--secondary" href="{% url 'office:site-detail' site.pk %}">Карточка сайта</a>
+        {% endfor %}
+      {% else %}
+        <form method="post" action="{% url 'office:create-site-for-order' order.pk %}">
+          {% csrf_token %}
+          <button class="office-button" type="submit">Создать карточку сайта</button>
+        </form>
+      {% endif %}
+    </aside>
+  </section>
+{% endblock %}

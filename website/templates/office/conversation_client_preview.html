@@ -1,0 +1,215 @@
+{% extends "office/base.html" %}
+
+{% block title %}Клиент — AurumWeb Office{% endblock %}
+{% block heading %}Карточка клиента{% endblock %}
+{% block eyebrow %}сводка для менеджера{% endblock %}
+
+{% block content %}
+  <section class="client-preview-hero office-panel">
+    <div>
+      <p class="office-eyebrow">клиент</p>
+      <h2>{{ client_summary.name }}</h2>
+      <p class="muted">
+        Контакты, заказы, счета, сайты и диалоги по этому клиенту в одной карточке.
+        Данные для входа и коды защиты не показываются.
+      </p>
+    </div>
+    <div class="client-preview-actions">
+      <a class="office-button" href="{% url 'office:conversation-detail' conversation.pk %}#reply">Написать клиенту</a>
+      <a class="office-button office-button--secondary" href="{% url 'office:conversation-detail' conversation.pk %}">Перейти в диалог</a>
+    </div>
+  </section>
+
+  <section class="metric-grid client-preview-metrics">
+    <article class="metric-card">
+      <span>диалоги</span>
+      <strong>{{ conversations|length }}</strong>
+    </article>
+    <article class="metric-card">
+      <span>заявки</span>
+      <strong>{{ leads|length }}</strong>
+    </article>
+    <article class="metric-card">
+      <span>заказы</span>
+      <strong>{{ orders|length }}</strong>
+    </article>
+    <article class="metric-card">
+      <span>счета</span>
+      <strong>{{ invoices|length }}</strong>
+    </article>
+    <article class="metric-card">
+      <span>сайты</span>
+      <strong>{{ sites|length }}</strong>
+    </article>
+  </section>
+
+  <section class="detail-layout">
+    <article class="office-panel">
+      <div class="panel-head">
+        <h2>Контактная карточка</h2>
+      </div>
+      <div class="client-card client-card--grid">
+        <p><span>Имя</span><strong>{{ client_summary.name }}</strong></p>
+        <p><span>Email</span><strong>{{ client_summary.email }}</strong></p>
+        <p><span>Телефон</span><strong>{{ client_summary.phone }}</strong></p>
+        <p><span>Telegram</span><strong>{{ client_summary.telegram }}</strong></p>
+        <p><span>Telegram подключен</span><strong>{{ client_summary.telegram_linked }}</strong></p>
+        <p><span>Уведомления</span><strong>{{ client_summary.telegram_notifications }}</strong></p>
+        <p><span>Контакт из заявки</span><strong>{{ client_summary.brief_contact }}</strong></p>
+        <p><span>Аккаунт</span><strong>{{ client_summary.account }}</strong></p>
+        <p><span>Тип плательщика</span><strong>{{ client_summary.client_type }}</strong></p>
+        <p><span>Реквизиты</span><strong>{{ client_summary.requisites }}</strong></p>
+        <p><span>Плательщик</span><strong>{{ client_summary.payer_name }}</strong></p>
+      </div>
+      <div class="client-preview-actions">
+        {% if client_profile and client_profile.telegram_linked %}
+          <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="telegram_client_test">
+            <button class="office-button" type="submit">Проверить уведомление клиенту</button>
+          </form>
+          <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="telegram_client_disconnect">
+            <button class="office-button office-button--secondary" type="submit">Отключить Telegram клиента</button>
+          </form>
+        {% elif client_profile %}
+          {% if telegram_start_url %}
+            <a class="office-button" href="{{ telegram_start_url }}" target="_blank" rel="noopener">Открыть ссылку подключения</a>
+          {% endif %}
+          <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="telegram_client_refresh_code">
+            <button class="office-button office-button--secondary" type="submit">Обновить ссылку подключения</button>
+          </form>
+        {% else %}
+          <p class="empty-state">Профиля клиента пока нет. Telegram подключится после регистрации клиента.</p>
+        {% endif %}
+      </div>
+    </article>
+
+    <aside class="office-panel">
+      <div class="panel-head">
+        <h2>Текущий диалог</h2>
+      </div>
+      <div class="client-card">
+        <p><span>Тема</span><strong>{{ conversation.title }}</strong></p>
+        <p><span>Статус</span><strong>{{ conversation.get_status_display }}</strong></p>
+        <p><span>Создан</span><strong>{{ conversation.created_at|date:"d.m.Y H:i" }}</strong></p>
+        <p><span>Обновлен</span><strong>{{ conversation.updated_at|date:"d.m.Y H:i" }}</strong></p>
+      </div>
+      <a class="office-button" href="{% url 'office:conversation-detail' conversation.pk %}#reply">Ответить в этом диалоге</a>
+      <a class="office-button office-button--secondary" href="{% url 'office:conversation-detail' conversation.pk %}">Открыть переписку</a>
+    </aside>
+  </section>
+
+  <section class="detail-layout detail-layout--secondary">
+    <article class="office-panel">
+      <div class="panel-head">
+        <h2>Заказы</h2>
+      </div>
+      <div class="office-table">
+        {% for order in orders %}
+          <a class="table-row" href="{% url 'office:order-detail' order.pk %}">
+            <span>{{ order.title }}</span>
+            <span>{{ order.client_email|default:client_summary.email }}</span>
+            <span class="badge">{{ order.get_status_display }}</span>
+          </a>
+        {% empty %}
+          <p class="empty-state">Заказов пока нет.</p>
+        {% endfor %}
+      </div>
+    </article>
+
+    <article class="office-panel">
+      <div class="panel-head">
+        <h2>Счета</h2>
+      </div>
+      <div class="office-table">
+        {% for invoice in invoices %}
+          <a class="table-row" href="{% url 'office:invoice-detail' invoice.pk %}">
+            <span>{{ invoice.title }}</span>
+            <span>{{ invoice.amount }} ₽</span>
+            <span class="badge">{{ invoice.get_status_display }}</span>
+          </a>
+        {% empty %}
+          <p class="empty-state">Счетов пока нет.</p>
+        {% endfor %}
+      </div>
+    </article>
+  </section>
+
+  <section class="detail-layout detail-layout--secondary">
+    <article class="office-panel">
+      <div class="panel-head">
+        <h2>Сайты клиента</h2>
+      </div>
+      <div class="office-table">
+        {% for site in sites %}
+          <a class="table-row table-row--site" href="{% url 'office:site-detail' site.pk %}">
+            <span>
+              <strong>{{ site.title }}</strong>
+              <small>{{ site.domain_name|default:site.url|default:"домен не указан" }}</small>
+            </span>
+            <span>{{ site.get_support_plan_display }}</span>
+            <span class="badge">{{ site.get_status_display }}</span>
+            <span class="site-date site-date--{{ site.domain_state }}">Домен {{ site.domain_expires_at|date:"d.m.Y"|default:"не указан" }}</span>
+          </a>
+        {% empty %}
+          <p class="empty-state">Сайтов пока нет.</p>
+        {% endfor %}
+      </div>
+    </article>
+
+    <article class="office-panel">
+      <div class="panel-head">
+        <h2>Диалоги и заявки</h2>
+      </div>
+      <div class="compact-list">
+        {% for item in conversations %}
+          <a href="{% url 'office:conversation-detail' item.pk %}">
+            <strong>{{ item.title }}</strong>
+            <span>{{ item.get_status_display }} · {{ item.updated_at|date:"d.m.Y H:i" }}</span>
+          </a>
+        {% empty %}
+          <p class="empty-state">Диалогов пока нет.</p>
+        {% endfor %}
+      </div>
+      <div class="compact-list client-preview-leads">
+        {% for item in leads %}
+          <a href="{% url 'office:lead-detail' item.pk %}">
+            <strong>{{ item.subject|default:item.service_type|default:"Заявка" }}</strong>
+            <span>{{ item.get_status_display }} · {{ item.created_at|date:"d.m.Y H:i" }}</span>
+          </a>
+        {% empty %}
+          <p class="empty-state">Заявок пока нет.</p>
+        {% endfor %}
+      </div>
+    </article>
+  </section>
+
+  {% if selected_template %}
+    <section class="office-panel detail-layout--secondary">
+      <div class="panel-head">
+        <h2>Выбранный пример сайта</h2>
+        <a href="{{ selected_template.demo_url }}" target="_blank">Открыть пример</a>
+      </div>
+      <div class="client-card">
+        <p><span>Название</span><strong>{{ selected_template.title }}</strong></p>
+        <p>
+          <span>Ниша</span>
+          <strong>
+            {% if selected_template.industry %}
+              {{ selected_template.industry }}
+            {% elif selected_template.category %}
+              {{ selected_template.category }}
+            {% else %}
+              не указана
+            {% endif %}
+          </strong>
+        </p>
+        <p><span>Цель</span><strong>{{ selected_template.conversion_focus|default:"не указана" }}</strong></p>
+      </div>
+    </section>
+  {% endif %}
+{% endblock %}

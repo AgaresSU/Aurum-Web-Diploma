@@ -1,0 +1,61 @@
+{% extends "office/base.html" %}
+
+{% block title %}Услуги и цены — AurumWeb Office{% endblock %}
+{% block eyebrow %}витрина и цены{% endblock %}
+{% block heading %}Услуги и цены{% endblock %}
+
+{% block content %}
+  <section class="metric-grid">
+    <article class="metric-card">
+      <span>опубликовано</span>
+      <strong>{{ summary.published }}</strong>
+    </article>
+    <article class="metric-card">
+      <span>на главной</span>
+      <strong>{{ summary.featured }}</strong>
+    </article>
+    <article class="metric-card">
+      <span>с ценой</span>
+      <strong>{{ summary.priced }}</strong>
+    </article>
+  </section>
+
+  <section class="office-panel">
+    <div class="panel-head">
+      <div>
+        <h2>Витрина услуг</h2>
+        <p class="muted">Меняйте цену здесь: главная и страница услуг обновятся автоматически.</p>
+      </div>
+      <a href="/" target="_blank" rel="noopener">Открыть главную</a>
+    </div>
+    <form class="office-filter" method="get">
+      <input type="search" name="q" value="{{ query }}" placeholder="Поиск по услуге, описанию или комментарию">
+      <select name="type">
+        <option value="">Все направления</option>
+        {% for value, label in service_types %}
+          <option value="{{ value }}" {% if current_type == value %}selected{% endif %}>{{ label }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit">Найти</button>
+    </form>
+
+    <div class="office-table service-price-table">
+      {% for service in services %}
+        <a class="table-row table-row--service-price" href="{% url 'office:service-price-detail' service.pk %}">
+          <span>
+            <strong>{{ service.title }}</strong>
+            <small>{{ service.get_service_type_display }}</small>
+          </span>
+          <span>
+            <strong>{{ service.price_display }}</strong>
+            <small>{{ service.price_note|default:"комментарий не указан" }}</small>
+          </span>
+          <span class="badge">{% if service.is_featured %}на главной{% else %}не на главной{% endif %}</span>
+          <span class="badge">{% if service.is_published %}опубликовано{% else %}не опубликовано{% endif %}</span>
+        </a>
+      {% empty %}
+        <p class="empty-state">Услуги не найдены.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

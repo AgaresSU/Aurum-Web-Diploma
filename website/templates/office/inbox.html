@@ -1,0 +1,35 @@
+{% extends "office/base.html" %}
+
+{% block title %}Входящие — AurumWeb Office{% endblock %}
+{% block heading %}Входящие{% endblock %}
+
+{% block content %}
+  <nav class="office-subnav" aria-label="Состояние входящих">
+    <a class="{% if status == 'open' %}is-active{% endif %}" href="?status=open">Открытые</a>
+    <a class="{% if status == 'all' %}is-active{% endif %}" href="?status=all">Все</a>
+    <a class="{% if status == 'closed' %}is-active{% endif %}" href="?status=closed">Закрытые</a>
+  </nav>
+  <section class="office-panel">
+    <div class="office-work-list">
+      {% for entry in entries %}
+        {% if entry.kind == 'lead' %}
+          <a href="{% url 'office:lead-detail' entry.item.pk %}">
+            <span class="office-source">Сайт</span>
+            <strong>{{ entry.item.subject|default:entry.item.service_type|default:"Новая заявка" }}</strong>
+            <span>{{ entry.item.name|default:entry.item.email|default:"Контакт не указан" }}</span>
+            <em>{{ entry.item.get_status_display }}</em>
+          </a>
+        {% else %}
+          <a href="{% url 'office:quick-consultation-detail' entry.item.pk %}">
+            <span class="office-source">Бот</span>
+            <strong>{{ entry.item.display_name }}</strong>
+            <span>{{ entry.item.question|truncatechars:90|default:"Ожидается сообщение клиента" }}</span>
+            <em>{{ entry.item.get_status_display }}</em>
+          </a>
+        {% endif %}
+      {% empty %}
+        <p class="empty-state">В этой очереди ничего нет.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}

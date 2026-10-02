@@ -1,0 +1,82 @@
+{% extends "office/base.html" %}
+
+{% block title %}Проекты — AurumWeb Office{% endblock %}
+{% block heading %}Проекты{% endblock %}
+
+{% block content %}
+  <form class="office-filter" method="get">
+    <input type="search" name="q" value="{{ query }}" placeholder="Название, клиент или направление">
+    <select name="status">
+      <option value="">Все статусы</option>
+      {% for value, label in statuses %}<option value="{{ value }}" {% if selected_status == value %}selected{% endif %}>{{ label }}</option>{% endfor %}
+    </select>
+    <button type="submit">Показать</button>
+  </form>
+  <form class="office-project-bulk" method="post" data-project-bulk-form>
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <div class="office-bulk-toolbar">
+      <label class="office-bulk-select-all">
+        <input type="checkbox" data-project-select-all>
+        <span>Выбрать все открытые</span>
+      </label>
+      <span class="office-bulk-counter" data-project-selected-count>Выбрано: 0</span>
+      <button class="office-button office-bulk-complete-button" type="button" data-project-bulk-open disabled>
+        Завершить выбранные
+      </button>
+    </div>
+    <section class="office-project-grid">
+      {% for project in projects %}
+        <article class="office-project-card">
+          <div class="office-project-card__top">
+            {% if project.status != "completed" and project.status != "cancelled" %}
+              <label class="office-project-selector">
+                <input type="checkbox" name="project_ids" value="{{ project.public_id }}" data-project-checkbox>
+                <span>{{ project.service_type|default:"Проект" }}</span>
+              </label>
+            {% else %}
+              <span>{{ project.service_type|default:"Проект" }}</span>
+            {% endif %}
+            <em class="project-status project-status--{{ project.status }}">{{ project.get_status_display }}</em>
+          </div>
+          <a class="office-project-card__body" href="{% url 'office:project-detail' project.public_id %}">
+            <h2>{{ project.title }}</h2>
+            <p>{{ project.client_name|default:project.client_email|default:"Клиент не указан" }}</p>
+            <dl>
+              <div><dt>Следующий шаг</dt><dd>{{ project.next_action|default:"Уточнить и назначить" }}</dd></div>
+              <div><dt>Срок</dt><dd>{{ project.due_at|date:"d.m.Y"|default:"не назначен" }}</dd></div>
+            </dl>
+          </a>
+        </article>
+      {% empty %}
+        <p class="empty-state">Проекты не найдены.</p>
+      {% endfor %}
+    </section>
+
+    <div class="office-confirm office-bulk-complete-modal" data-project-bulk-modal hidden>
+      <button class="office-confirm__backdrop" type="button" aria-label="Закрыть" data-project-bulk-close></button>
+      <section class="office-confirm__dialog" role="dialog" aria-modal="true" aria-labelledby="bulk-complete-title">
+        <span class="office-confirm__eyebrow">Завершение проектов</span>
+        <h2 id="bulk-complete-title">Что сообщить клиентам?</h2>
+        <p><span data-project-modal-count>Выбрано проектов: 0</span>. Все выбранные проекты получат статус «Завершен».</p>
+        <fieldset class="office-notification-choice">
+          <legend>Уведомление клиентов</legend>
+          <label>
+            <input type="radio" name="notify_client" value="1" checked>
+            <span><strong>Уведомить</strong><small>Изменение появится в личном кабинете; подключенным клиентам также придет сообщение в Telegram.</small></span>
+          </label>
+          <label>
+            <input type="radio" name="notify_client" value="0">
+            <span><strong>Без уведомления</strong><small>Проекты будут завершены без сообщения клиентам.</small></span>
+          </label>
+        </fieldset>
+        <div class="office-confirm__actions">
+          <button class="office-confirm__button office-confirm__button--secondary" type="button" data-project-bulk-close>Отмена</button>
+          <button class="office-confirm__button office-confirm__button--primary" type="submit" name="action" value="complete_selected">
+            Завершить проекты
+          </button>
+        </div>
+      </section>
+    </div>
+  </form>
+{% endblock %}

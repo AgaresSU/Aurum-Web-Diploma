@@ -1,0 +1,9 @@
+{% extends "office/base.html" %}
+{% block title %}Клиенты — AurumWeb Office{% endblock %}
+{% block heading %}Клиенты{% endblock %}
+{% block content %}
+  <form class="office-filter" method="get"><input type="search" name="q" value="{{ query }}" placeholder="Имя, email или логин"><button type="submit">Найти</button></form>
+  <section class="office-panel"><div class="office-client-list">
+    {% for item in clients %}<a href="{% url 'office:client-detail' item.user.pk %}"><div><strong>{{ item.user.get_full_name|default:item.user.username }}</strong><span>{{ item.user.email|default:"Email не указан" }}</span></div><span>Проектов: {{ item.projects }}</span><span>Счетов: {{ item.invoices }}</span></a>{% empty %}<p class="empty-state">Клиенты не найдены.</p>{% endfor %}
+  </div></section>
+{% endblock %}

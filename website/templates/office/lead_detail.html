@@ -1,0 +1,154 @@
+{% extends "office/base.html" %}
+
+{% block title %}Заявка #{{ lead.pk }} — AurumWeb Office{% endblock %}
+{% block heading %}Заявка #{{ lead.pk }}{% endblock %}
+{% block eyebrow %}{{ lead.get_status_display }}{% endblock %}
+
+{% block content %}
+  <section class="detail-layout">
+    <article class="office-panel office-panel--wide">
+      <div class="panel-head">
+        <h2>Разбор заявки</h2>
+        <form method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="build_proposal">
+          <button class="office-button office-button--inline" type="submit">Собрать предложение</button>
+        </form>
+      </div>
+      <p class="muted">
+        Вверху виден короткий итог по заявке. Если нужно уточнить состав работ, сроки или бюджет,
+        раскройте разбор, сохраните изменения и соберите предложение клиенту.
+      </p>
+
+      <div class="qualification-summary">
+        <p><span>Тип сайта</span><strong>{{ qualification.project_type|default:"не указан" }}</strong></p>
+        <p><span>Ниша</span><strong>{{ qualification.industry|default:"не указана" }}</strong></p>
+        <p><span>Цель</span><strong>{{ qualification.goal|default:"не указана" }}</strong></p>
+        <p><span>Бюджет</span><strong>{{ qualification.budget|default:"оценить" }}</strong></p>
+        <p><span>Сроки</span><strong>{{ qualification.timeframe|default:"уточнить" }}</strong></p>
+        <p><span>Контакт</span><strong>{{ qualification.contact|default:lead.email|default:"не указан" }}</strong></p>
+      </div>
+
+      {% if brief.integrations %}
+        <div class="qualification-tags">
+          {% for integration in brief.integrations %}
+            <span>{{ integration }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <details class="office-disclosure office-disclosure--inner" {% if qualification_form.errors %}open{% endif %}>
+        <summary>
+          <span>Редактировать разбор</span>
+          <em>Тип проекта, сроки, бюджет, состав работ и заметки</em>
+        </summary>
+        <form class="office-form qualification-form" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="qualification">
+          <div class="qualification-fields">
+            <p>{{ qualification_form.project_type.label_tag }}{{ qualification_form.project_type }}</p>
+            <p>{{ qualification_form.industry.label_tag }}{{ qualification_form.industry }}</p>
+            <p>{{ qualification_form.goal.label_tag }}{{ qualification_form.goal }}</p>
+            <p>{{ qualification_form.budget.label_tag }}{{ qualification_form.budget }}</p>
+            <p>{{ qualification_form.timeframe.label_tag }}{{ qualification_form.timeframe }}</p>
+            <p>{{ qualification_form.contact.label_tag }}{{ qualification_form.contact }}</p>
+          </div>
+
+          <div class="qualification-integrations">
+            <strong>{{ qualification_form.integrations.label }}</strong>
+            {{ qualification_form.integrations }}
+          </div>
+
+          <div class="qualification-checklist">
+            <label>{{ qualification_form.has_domain }} <span>{{ qualification_form.has_domain.label }}</span></label>
+            <label>{{ qualification_form.has_hosting }} <span>{{ qualification_form.has_hosting.label }}</span></label>
+            <label>{{ qualification_form.needs_design }} <span>{{ qualification_form.needs_design.label }}</span></label>
+            <label>{{ qualification_form.needs_content }} <span>{{ qualification_form.needs_content.label }}</span></label>
+            <label>{{ qualification_form.needs_seo }} <span>{{ qualification_form.needs_seo.label }}</span></label>
+            <label>{{ qualification_form.needs_robokassa }} <span>{{ qualification_form.needs_robokassa.label }}</span></label>
+            <label>{{ qualification_form.needs_telegram }} <span>{{ qualification_form.needs_telegram.label }}</span></label>
+            <label>{{ qualification_form.needs_client_portal }} <span>{{ qualification_form.needs_client_portal.label }}</span></label>
+            <label>{{ qualification_form.needs_billing }} <span>{{ qualification_form.needs_billing.label }}</span></label>
+            <label>{{ qualification_form.needs_admin }} <span>{{ qualification_form.needs_admin.label }}</span></label>
+            <label>{{ qualification_form.needs_support }} <span>{{ qualification_form.needs_support.label }}</span></label>
+          </div>
+
+          <p>{{ qualification_form.manager_notes.label_tag }}{{ qualification_form.manager_notes }}</p>
+          <button type="submit">Сохранить разбор</button>
+        </form>
+      </details>
+    </article>
+
+    <aside class="office-panel">
+      <h2>Клиент и быстрые действия</h2>
+      <div class="client-card">
+        <p><span>Имя</span><strong>{{ lead.name|default:"не указано" }}</strong></p>
+        <p><span>Email</span><strong>{{ lead.email|default:"не указан" }}</strong></p>
+        <p><span>Источник</span><strong>{{ lead.get_source_display }}</strong></p>
+        <p><span>Создано</span><strong>{{ lead.created_at|date:"d.m.Y H:i" }}</strong></p>
+      </div>
+      {% if lead.status != "lost" %}
+        <form class="office-action-form" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="close_lead">
+          <button class="office-button office-button--danger" type="submit" data-confirm="Закрыть заявку #{{ lead.pk }}?">Закрыть заявку</button>
+        </form>
+      {% endif %}
+      {% if selected_template %}
+        <div class="office-template-card">
+          <span>выбранный пример</span>
+          <h3>{{ selected_template.title }}</h3>
+          <p>{{ selected_template.industry }}{% if selected_template.conversion_focus %} · {{ selected_template.conversion_focus }}{% endif %}</p>
+          <a href="{{ selected_template.demo_url }}" target="_blank">Открыть пример</a>
+        </div>
+      {% endif %}
+      {% if demo_request.fields %}
+        <div class="office-template-card">
+          <span>заявка из выбранного примера</span>
+          <h3>{{ demo_request.request_title|default:"Заявка из выбранного примера" }}</h3>
+          {% for item in demo_request.fields %}
+            <p><strong>{{ item.label }}:</strong> {{ item.value|default:"не указано" }}</p>
+          {% endfor %}
+          {% if demo_request.reply_contact %}
+            <p><strong>Ответить:</strong> {{ demo_request.reply_contact }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if order %}
+        <a class="office-button" href="{% url 'office:order-detail' order.pk %}">Открыть заказ</a>
+      {% endif %}
+      {% for conversation in conversations %}
+        <a class="office-button office-button--secondary" href="{% url 'office:conversation-detail' conversation.pk %}">Диалог #{{ conversation.pk }}</a>
+      {% endfor %}
+    </aside>
+  </section>
+
+  <section class="detail-layout detail-layout--secondary">
+    <article class="office-panel">
+      <div class="panel-head">
+        <h2>Предложение клиенту</h2>
+        <a href="{% url 'office:create-invoice' lead.pk %}">Создать счет</a>
+      </div>
+      {% if proposal_draft %}
+        <div class="proposal-draft">
+          <span>обновлено {{ proposal_draft.updated_at|default:"" }}</span>
+          <pre>{{ proposal_draft.body }}</pre>
+        </div>
+      {% else %}
+        <p class="empty-state">Предложение пока не собрано. Сохраните разбор и нажмите “Собрать предложение”.</p>
+      {% endif %}
+    </article>
+
+    <article class="office-panel">
+      <div class="panel-head">
+        <h2>Клиент и задача</h2>
+      </div>
+      <form class="office-form" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="action" value="lead">
+        {{ form.as_p }}
+        <button type="submit">Сохранить заявку</button>
+      </form>
+    </article>
+  </section>
+{% endblock %}

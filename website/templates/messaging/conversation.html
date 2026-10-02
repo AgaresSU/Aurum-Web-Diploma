@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Диалог — AurumWeb</title>
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/brand/aurumweb-favicon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/assets/brand/aurumweb-apple-touch-icon.png">
+  <link rel="stylesheet" href="/assets/styles.css?v=20260528-dropdowns">
+  </head>
+  <body class="client-chat-page">
+    <main class="client-chat-shell">
+      <header class="client-chat-head">
+        <a class="brand-mark brand-mark--premium" href="/">
+        <img class="brand-mark__logo" src="/assets/brand/aurumweb-mark-squircle-new-128.webp" alt="AurumWeb" width="48" height="48">
+          <span>AurumWeb</span>
+        </a>
+        <span class="client-chat-status">{{ conversation.get_status_display }}</span>
+      </header>
+
+      <section class="client-chat-layout">
+        <article class="client-thread-card">
+          <div class="client-thread-title">
+            <p class="eyebrow">личный диалог</p>
+            <h1>{{ conversation.title }}</h1>
+            <p>
+              Это защищенная ссылка на переписку по вашей задаче. Сохраните ее,
+              чтобы вернуться к обсуждению, счету и следующим шагам.
+            </p>
+          </div>
+
+          {% if selected_template %}
+            <div class="client-chat-template">
+              <span>выбранный пример</span>
+              <strong>{{ selected_template.title }}</strong>
+              <p>{{ selected_template.industry }}{% if selected_template.conversion_focus %} · {{ selected_template.conversion_focus }}{% endif %}</p>
+              <a href="{{ selected_template.demo_url }}" target="_blank">Открыть пример</a>
+            </div>
+          {% endif %}
+
+          <div class="client-thread">
+            {% for message in visible_messages %}
+              <p class="client-message client-message--{{ message.author_role }}">
+                <span>
+                  {% if message.author_role == "system" %}AurumWeb{% else %}{{ message.get_author_role_display }}{% endif %}
+                  · {{ message.created_at|date:"d.m.Y H:i" }}
+                </span>
+                {{ message.body|linebreaksbr }}
+              </p>
+            {% empty %}
+              <p class="client-empty">Сообщений пока нет.</p>
+            {% endfor %}
+          </div>
+        </article>
+
+        <aside class="client-reply-card">
+          <h2>Ответить</h2>
+          <form class="lead-form lead-form--light" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p class="form-legal-note">
+              Продолжая переписку, вы соглашаетесь с
+              <a href="/legal/privacy/" target="_blank">политикой обработки данных</a>.
+            </p>
+            <button class="button button--primary" type="submit">Отправить сообщение</button>
+          </form>
+          <div class="client-link-note">
+              <span>Для счета</span>
+            <p>После согласования задачи можно создать личный кабинет с этой почтой. Реквизиты нужны только для отдельного счета на ИП или ООО.</p>
+            <a href="{% url 'accounts:register' %}?email={{ conversation.client_email|urlencode }}&amp;next={% url 'client_portal:dashboard' %}">Создать кабинет</a>
+          </div>
+          <div class="client-link-note">
+            <span>Ссылка на этот диалог</span>
+            <code>{{ request.build_absolute_uri }}</code>
+          </div>
+        </aside>
+      </section>
+      {% include "core/public_footer.html" %}
+    </main>
+  </body>
+</html>

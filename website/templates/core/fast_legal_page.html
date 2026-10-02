@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }} — AurumWeb</title>
+    <meta name="description" content="{{ page.description|default:page.lead }}">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="{{ canonical_url }}">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="AurumWeb">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ page.title }} — AurumWeb">
+    <meta property="og:description" content="{{ page.description|default:page.lead }}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:image" content="{{ public_og_image_url }}">
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/assets/brand/aurumweb-favicon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/assets/brand/aurumweb-apple-touch-icon.png">
+    <link rel="stylesheet" href="/assets/styles.css?v=20260717-legal-doc-clean">
+  </head>
+  <body class="fast-legal-body">
+    <div class="fast-legal-shell">
+      <header class="fast-legal-topbar">
+        <a class="fast-legal-brand" href="/">
+          <img src="/assets/brand/aurumweb-mark-squircle-new-128.webp" alt="AurumWeb" width="36" height="36">
+          <span>AurumWeb</span>
+        </a>
+        <nav class="fast-legal-menu" aria-label="Документы быстрых консультаций">
+          {% for slug,item in pages.items %}
+            <a href="{% url legal_route_name slug %}" {% if slug == page_slug %}class="is-active"{% endif %}>
+              {% if slug == "offer" %}Оферта{% elif slug == "privacy" %}Политика{% else %}Контакты{% endif %}
+            </a>
+          {% endfor %}
+        </nav>
+      </header>
+
+      <main class="fast-legal-card">
+        <p class="fast-legal-version">Версия от {{ updated_at }}</p>
+        <h1>{{ page.title }}</h1>
+
+        <div class="fast-legal-content">
+          {% for title,text in page.sections %}
+            <section class="fast-legal-item">
+              <h2>{{ forloop.counter }}. {{ title }}</h2>
+              <p>{{ text }}</p>
+            </section>
+          {% endfor %}
+        </div>
+      </main>
+
+      <footer class="fast-legal-footer">
+        <span>© 2026 AurumWeb</span>
+        <span>{{ seller.name }}</span>
+        <a href="mailto:{{ seller.email }}">{{ seller.email }}</a>
+      </footer>
+    </div>
+    {% include "core/yandex_metrika.html" %}
+  </body>
+</html>

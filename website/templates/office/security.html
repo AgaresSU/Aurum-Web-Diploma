@@ -1,0 +1,142 @@
+{% extends "office/base.html" %}
+
+{% block title %}Безопасность — AurumWeb Office{% endblock %}
+{% block heading %}Безопасность входа{% endblock %}
+{% block eyebrow %}двухфакторная защита и резервные коды{% endblock %}
+
+{% block content %}
+  {% if totp_setup_required %}
+    <section class="office-panel security-required">
+      <div class="panel-head">
+        <h2>Нужно включить второй код входа</h2>
+        <span class="badge">обязательно</span>
+      </div>
+      <p class="muted">
+        Доступ к рабочему кабинету закрыт, пока для этого аккаунта не настроен одноразовый код из приложения для защиты входа.
+        Добавьте ключ в приложение, подтвердите первый код и сохраните резервные коды.
+      </p>
+    </section>
+  {% endif %}
+
+  {% if generated_codes %}
+    <section class="office-panel security-codes-once">
+      <div class="panel-head">
+        <h2>Новые резервные коды</h2>
+        <span class="badge">показываются один раз</span>
+      </div>
+      <p class="muted">Каждый код работает один раз вместо кода из приложения, если телефон недоступен.</p>
+      <div class="security-code-list">
+        {% for code in generated_codes %}
+          <code>{{ code }}</code>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="security-grid">
+    <article class="office-panel">
+      <div class="panel-head">
+        <h2>Второй код входа</h2>
+        <span class="badge">{% if profile.totp_enabled %}включен{% else %}выключен{% endif %}</span>
+      </div>
+      <div class="security-stack">
+        <p>
+          <span>Аккаунт</span>
+          <strong>{{ request.user.email|default:request.user.username }}</strong>
+        </p>
+        {% if totp_secret %}
+          <p>
+            <span>Код для ручной настройки</span>
+            <code class="security-secret">{{ totp_secret|default:"не создан" }}</code>
+          </p>
+        {% else %}
+          <p>
+            <span>Ключ приложения</span>
+            <strong>сохранен и больше не отображается</strong>
+          </p>
+        {% endif %}
+        {% if otpauth_uri and totp_secret %}
+          <details class="office-disclosure office-disclosure--inner">
+            <summary>
+              <span>Ссылка для ручной настройки</span>
+              <em>нужна только если приложение просит ссылку</em>
+            </summary>
+            <code class="security-uri">{{ otpauth_uri }}</code>
+          </details>
+        {% endif %}
+      </div>
+    </article>
+
+    <article class="office-panel">
+      <div class="panel-head">
+        <h2>Резервные коды</h2>
+        <span class="badge">{{ backup_stats.remaining }} / {{ backup_stats.total }}</span>
+      </div>
+      <p class="muted">
+        Коды не хранятся в открытом виде. После использования каждый код становится недействительным.
+      </p>
+      <div class="status-stack">
+        <p><span>Активные</span><strong>{{ backup_stats.remaining }}</strong></p>
+        <p><span>Использованные</span><strong>{{ backup_stats.used }}</strong></p>
+      </div>
+    </article>
+  </section>
+
+  {% if totp_setup_required %}
+    <section class="security-grid">
+      <article class="office-panel">
+        <h2>Подтвердить второй код</h2>
+        <p class="muted">
+          Добавьте ключ в приложение для кодов, введите текущий пароль и первый 6-значный код.
+          Только после этого доступ к рабочему кабинету будет открыт.
+        </p>
+        <form class="office-form" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="confirm_totp_setup">
+          {{ totp_confirm_form.as_p }}
+          <button type="submit">Включить защиту</button>
+        </form>
+      </article>
+    </section>
+  {% else %}
+    <section class="security-grid">
+      <article class="office-panel">
+        {% if totp_rotation_in_progress %}
+          <h2>Подтвердить новый ключ</h2>
+          <p class="muted">Старый ключ продолжает работать, пока новый код не будет подтвержден.</p>
+          <form class="office-form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="confirm_totp_rotation">
+            {{ rotation_confirm_form.as_p }}
+            <button type="submit">Сохранить новый ключ</button>
+          </form>
+          <form class="office-form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="cancel_totp_rotation">
+            <button type="submit">Отменить обновление</button>
+          </form>
+        {% else %}
+          <h2>Обновить ключ входа</h2>
+          <p class="muted">Сначала подтвердите пароль и текущий код. Новый ключ заменит старый только после отдельной проверки.</p>
+          <form class="office-form" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="start_totp_rotation">
+            {{ rotation_start_form.as_p }}
+            <button type="submit">Подготовить новый ключ</button>
+          </form>
+        {% endif %}
+      </article>
+
+      <article class="office-panel">
+        <h2>Новые резервные коды</h2>
+        <p class="muted">Оставляет текущий ключ входа, но заменяет набор одноразовых резервных кодов.</p>
+        <form class="office-form" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="action" value="regenerate_backup_codes">
+          {{ password_form.as_p }}
+          <button type="submit">Выпустить новые коды</button>
+        </form>
+      </article>
+    </section>
+  {% endif %}
+{% endblock %}
